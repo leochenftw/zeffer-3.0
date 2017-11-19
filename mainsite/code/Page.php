@@ -4,11 +4,30 @@ use SaltedHerring\Utilities;
 class Page extends SiteTree
 {
 
-    private static $db = array(
-    );
+    private static $db = [
+        'AlternativeTitle'  =>  'Varchar(128)'
+    ];
 
-    private static $has_one = array(
-    );
+    private static $has_one = [];
+
+    /**
+     * CMS Fields
+     * @return FieldList
+     */
+    public function getCMSFields()
+    {
+        $fields = parent::getCMSFields();
+        $fields->addFieldToTab(
+            'Root.Main',
+            TextField::create(
+                'AlternativeTitle',
+                'Alternative title'
+            )->setDescription('if an alt title is set, it will be used as the block title, when it\'s displayed on the homepage'),
+            'URLSegment'
+        );
+        $this->extend('updateCMSFields', $fields);
+        return $fields;
+    }
 }
 
 class Page_Controller extends ContentController

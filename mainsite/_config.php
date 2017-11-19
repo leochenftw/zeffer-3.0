@@ -43,3 +43,15 @@ if(class_exists('Memcache')) {
     );
     SS_Cache::pick_backend('primary_memcached', 'any', 10);
 }
+
+i18n::set_locale('en_NZ');
+Translatable::set_default_locale('en_NZ');
+Translatable::set_allowed_locales(
+	array(
+		'zh_Hans',
+		'en_NZ'
+	)
+);
+
+Object::add_extension('SiteTree', 'Translatable');
+Object::add_extension('SiteConfig', 'Translatable');

@@ -14,7 +14,7 @@ class ControllerAjaxExtension extends DataExtension
             return json_encode($this->owner->AjaxResponse());
         }
 
-        return $this->owner->renderWith([$this->owner->ClassName, 'Page']);
+        return $this->owner->renderWith([$this->owner->ClassName, 'AjaxPage']);
     }
 
     public function AjaxResponse()

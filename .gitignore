@@ -62,3 +62,5 @@ display_logic/
 linkable/
 silverstripe-rest-api/
 themes/default/package-lock.json
+translatable/
+silverstripe-socialnetwork-links/

@@ -32,3 +32,14 @@ SeoConfig:
     ErrorPage: false
     RedirectorPage: false
     VirtualPage: false
+i18n:
+  all_locales:
+    zh_Hans: Chinese (Simplified)
+  common_locales:
+    zh_Hans:
+      name: Chinese (Simplified)
+      native: 简体中文
+Link:
+  extensions:
+    - LinkExtension
+    - SortOrderExtension

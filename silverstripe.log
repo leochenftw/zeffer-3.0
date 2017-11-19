@@ -1,0 +1,2 @@
+[19-Nov-2017 16:22:32] Error at framework/core/Object.php line 780: Uncaught Exception: Object->__call(): the method 'offices' does not exist on 'ContactPage', or the method is not public. (http://zeffer.leochen.co.nz/admin/pages/settings/EditForm/3?Locale=en_NZ)
+[19-Nov-2017 16:22:42] Error at framework/core/Object.php line 780: Uncaught Exception: Object->__call(): the method 'offices' does not exist on 'ContactPage', or the method is not public. (http://zeffer.leochen.co.nz/admin/pages/settings/EditForm/3?Locale=en_NZ)
