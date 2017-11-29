@@ -18,7 +18,8 @@
 
 // @include retina-sprite-add(spritesheet, 'sprites/*.png', 'retina_sprites/*.png');
 
-// @import 'blocks/cropperjs';
+@import 'blocks/owl',
+        'blocks/map';
 
 html {
     font-size: 16px;

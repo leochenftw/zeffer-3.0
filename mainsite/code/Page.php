@@ -1,8 +1,16 @@
 <?php
-use SaltedHerring\Debuger;
+use SaltedHerring\Debugger;
 use SaltedHerring\Utilities;
 class Page extends SiteTree
 {
+    /**
+     * Defines extension names and parameters to be applied
+     * to this object upon construction.
+     * @var array
+     */
+    private static $extensions = [
+        'ImageBreakExtension'
+    ];
 
     private static $db = [
         'AlternativeTitle'  =>  'Varchar(128)'
@@ -27,6 +35,11 @@ class Page extends SiteTree
         );
         $this->extend('updateCMSFields', $fields);
         return $fields;
+    }
+
+    public function getSectionTitle()
+    {
+        return !empty($this->AlternativeTitle) ? $this->AlternativeTitle : $this->Title;
     }
 }
 
@@ -63,6 +76,17 @@ class Page_Controller extends ContentController
     {
         parent::init();
 
+        if (empty(Session::get('lang'))) {
+
+            $lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
+
+            if ($lang == 'zh') {
+                Session::set('lang', 'zh_Hans');
+            } else {
+                Session::set('lang', 'en_NZ');
+            }
+        }
+
         Requirements::block(THIRDPARTY_DIR . '/jquery/jquery.js');
         Requirements::block(SALTEDCROPPER_PATH . '/css/salted-cropper.css');
         Requirements::block("framework/javascript/ConfirmedPasswordField.js");
@@ -83,13 +107,14 @@ class Page_Controller extends ContentController
             Requirements::combine_files(
                 'scripts.js',
                 array(
-                    'themes/default/js/components/jquery/dist/jquery.min.js',
-                    'themes/default/js/components/gsap/src/minified/TweenMax.min.js',
-                    'themes/default/js/components/salted-js/dist/salted-js.min.js',
-                    // 'themes/default/js/components/moment/min/moment.min.js',
-                    // 'themes/default/js/components/clndr/clndr.min.js',
-                    // 'themes/default/js/ui/ui-calendar.js',
-                    'themes/default/js/custom.scripts.js'
+                    // 'themes/default/js/components/jquery/dist/jquery.min.js',
+                    // 'themes/default/js/components/gsap/src/minified/TweenMax.min.js',
+                    // 'themes/default/js/components/salted-js/dist/salted-js.min.js',
+                    // // 'themes/default/js/components/moment/min/moment.min.js',
+                    // // 'themes/default/js/components/clndr/clndr.min.js',
+                    // // 'themes/default/js/ui/ui-calendar.js',
+                    // 'themes/default/js/custom.scripts.js'
+                    'themes/default/js/scripts.min.js'
                 )
             );
         }
@@ -164,5 +189,11 @@ class Page_Controller extends ContentController
     public function getBodyClass()
     {
         return Utilities::sanitiseClassName($this->singular_name(),'-');
+    }
+
+    public function getLang()
+    {
+        // Debugger::inspect(Session::get('lang'));
+        return str_replace('_', '-', Session::get('lang'));
     }
 }

@@ -31,14 +31,14 @@ if(class_exists('Memcache')) {
         'primary_memcached',
         'Memcached',
         array(
-            'host' => 'localhost',
-            'port' => 11211,
-            'persistent' => true,
-            'weight' => 1,
-            'timeout' => 1,
-            'retry_interval' => 15,
-            'status' => true,
-            'failure_callback' => ''
+            'host'              =>  'localhost',
+            'port'              =>  11211,
+            'persistent'        =>  true,
+            'weight'            =>  1,
+            'timeout'           =>  1,
+            'retry_interval'    =>  15,
+            'status'            =>  true,
+            'failure_callback'  =>  ''
         )
     );
     SS_Cache::pick_backend('primary_memcached', 'any', 10);
@@ -46,12 +46,10 @@ if(class_exists('Memcache')) {
 
 i18n::set_locale('en_NZ');
 Translatable::set_default_locale('en_NZ');
-Translatable::set_allowed_locales(
-	array(
-		'zh_Hans',
-		'en_NZ'
-	)
-);
+Translatable::set_allowed_locales([
+    'zh_Hans',
+    'en_NZ'
+]);
 
 Object::add_extension('SiteTree', 'Translatable');
 Object::add_extension('SiteConfig', 'Translatable');

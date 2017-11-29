@@ -9,13 +9,12 @@ use SaltedHerring\Grid;
  */
 class Ciders extends Page
 {
-
     /**
      * Has_many relationship
      * @var array
      */
     private static $has_many = [
-        'Ciders'        =>  'Cider',
+        'Ciders'        =>  'Cider'
     ];
 
     /**
@@ -31,6 +30,9 @@ class Ciders extends Page
                 Grid::make('Ciders', 'Ciders', $this->Ciders())
             );
         }
+
+        // Debugger::inspect($this->getData());
+
         return $fields;
     }
 
@@ -42,11 +44,27 @@ class Ciders extends Page
     {
         return Versioned::get_by_stage($this->ClassName, 'Stage')->count() == 0;
     }
+
+    public function getData()
+    {
+        $data   =   [
+                        'title'     =>  !empty($this->AlternativeTitle) ? $this->AlternativeTitle : $this->title,
+                        'content'   =>  $this->Content,
+                        'ciders'    =>  $this->exists() ? $this->Ciders()->getData() : null
+                    ];
+
+        return $data;
+    }
+
 }
+
 class Ciders_Controller extends Page_Controller
 {
-    public function init()
+    public function AjaxResponse()
     {
-        parent::init();
+        $data                           =   parent::AjaxResponse();
+
+
+        return $data;
     }
 }

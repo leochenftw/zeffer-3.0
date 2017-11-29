@@ -43,3 +43,30 @@ Link:
   extensions:
     - LinkExtension
     - SortOrderExtension
+DataList:
+  extensions:
+    - DataListExt
+
+ArrayList:
+  extensions:
+    - DataListExt
+
+HtmlEditorField:
+  insert_width: 1344
+
+SocialMediaLink:
+  SocialMedias:
+    'facebook': 'Facebook'
+    'twitter': 'Twitter'
+    'linkedin': 'LinkedIn'
+    'google-plus': 'G+'
+    'skype': 'Skype'
+    'instagram': 'Instagram'
+    'whatsapp': 'Whatsapp'
+    'qq': 'QQ'
+    'envelope-o': 'Email'
+    'weixin': 'WeChat'
+    'weibo': 'Weibo'
+    'newspaper-o': 'Newsletter'
+GoogleAPIs:
+  Map: 'AIzaSyB5LdVLLklbFKZ29l7kSL4PW_J46c2apPI'

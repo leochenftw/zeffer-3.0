@@ -21,6 +21,30 @@ class ContactPage extends Page
         'ZoomRate'          =>  'Decimal'
     ];
 
+    /**
+     * Has_many relationship
+     * @var array
+     */
+    private static $has_many = [
+        'SocialMedias'      =>  'SocialMediaLink',
+        'ContactMethods'    =>  'ContactMethod'
+    ];
+
+    public function getData()
+    {
+        $data               =   [
+                                    'title'     =>  !empty($this->AlternativeTitle) ? $this->AlternativeTitle : $this->title,
+                                    'content'   =>  $this->Content,
+                                    'hero'      =>  $this->ImageBreak()->exists() ? $this->ImageBreak()->SetWidth(1980)->URL : null,
+                                    'lat'       =>  $this->Latitude,
+                                    'lng'       =>  $this->Longitude,
+                                    'api_key'   =>  Config::inst()->get('GoogleAPIs', 'Map'),
+                                    'methods'   =>  $this->exists() ? $this->ContactMethods()->getData() : null,
+                                    'socials'   =>  $this->exists() ? $this->SocialMedias()->getData() : null,
+                                ];
+        return $data;
+    }
+
     private static $description = 'Contact page. You may only create 1 Contact page at all times';
 
     /**
@@ -41,14 +65,22 @@ class ContactPage extends Page
         if ($api = Config::inst()->get('GoogleAPIs', 'Map')) {
             $fields->addFieldToTab(
                 'Root.Map',
-                LiteralField::create('GoogleMapAPI', '<h2>API: ' . $api . '</h2>'),
-                'Title'
+                LiteralField::create('GoogleMapAPI', '<h2>API: ' . $api . '</h2>')
             );
         } else {
             $fields->addFieldToTab(
                 'Root.Map',
-                LiteralField::create('GoogleMapAPI', '<h2>Please define Google API in your config.yml file</h2>'),
-                'Title'
+                LiteralField::create('GoogleMapAPI', '<h2>Please define Google API in your config.yml file</h2>')
+            );
+        }
+
+        if ($this->exists()) {
+            $fields->addFieldsToTab(
+                'Root.ContactMethods',
+                [
+                    Grid::make('ContactMethods', 'Contact methods', $this->ContactMethods()),
+                    Grid::make('SocialMedias', 'Social medias', $this->SocialMedias())
+                ]
             );
         }
 

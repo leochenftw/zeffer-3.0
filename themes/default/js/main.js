@@ -1,11 +1,59 @@
-var $ = require("jquery");
+var $           =   require('jquery');
+    Header      =   require('./ui/header'),
+    Carousel    =   require('./ui/carousel'),
+    Story       =   require('./ui/story'),
+    Awards      =   require('./ui/awards'),
+    Team        =   require('./ui/team'),
+    Contact     =   require('./ui/contact'),
+    Buy         =   require('./ui/buy'),
+    News        =   require('./ui/news'),
+    Subscriber  =   require('./ui/subscribe-form');
 
-// require('./backup-animation');
-// require('./modal-popup');
-// require('./form');
-// require('./range-slider');
-// require('./bouncy');
-// require('./jquery.visible.min');
-// require('./jquery-ui.min');
-// require('./legacy');
-// require('./tab');
+$.getJSON(window.location.pathname, function(data)
+{
+    $('html').attr('lang', data.lang);
+
+    var header  =   new Header(data.navigation, data.languages),
+        caro    =   new Carousel(data.carousel),
+        story   =   new Story('#story', data.story),
+        sustain =   new Story('#sustainability', data.sustainability),
+        awards  =   new Awards(data.awards),
+        team    =   new Team(data.team),
+        contact =   new Contact(data.contact);
+        buy     =   new Buy(data.buy),
+        news    =   new News(data.news),
+        form    =   new Subscriber(data.csrf, data.subscribed);
+
+        $(document).on('click', '.btn-lang', function(e)
+        {
+            e.preventDefault();
+            if ($(this).hasClass('is-active')) return;
+            var locale  =   $(this).data('locale');
+            $.post(
+                window.location.pathname,
+                {
+                    lang: locale
+                },
+                function(response)
+                {
+                    $('html').attr('lang', response.lang);
+                    header.navigation   =   response.navigation;
+                    header.languages    =   response.languages;
+                    story.title         =   response.story.title;
+                    story.content       =   response.story.content;
+                    story.hero          =   response.story.hero;
+                }
+            );
+        });
+});
+
+$(document).ready(function(e)
+{
+    $('#btn-mobile-menu').click(function(e)
+    {
+        e.preventDefault();
+        var target  =   $('#' + $(this).data('target'));
+        target.animate({height: 'toggle'});
+        $(this).toggleClass('is-active');
+    });
+});

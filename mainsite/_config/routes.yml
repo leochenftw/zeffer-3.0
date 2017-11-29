@@ -6,3 +6,4 @@ Director:
   rules:
     'signin': 'Signin'
     # 'signup': 'Signup'
+    'api/v/1/subscribe': 'SubscriberAPI'

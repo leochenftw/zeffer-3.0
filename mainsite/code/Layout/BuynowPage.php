@@ -9,6 +9,13 @@ use SaltedHerring\Grid;
 class BuynowPage extends Page
 {
     /**
+     * Database fields
+     * @var array
+     */
+    private static $db = [
+        'SecondaryContent'      =>  'HTMLText'
+    ];
+    /**
      * Defines the allowed child page types
      * @var array
      */
@@ -28,6 +35,13 @@ class BuynowPage extends Page
     public function getCMSFields()
     {
         $fields             =   parent::getCMSFields();
+        $fields->addFieldToTab(
+            'Root.Main',
+            HtmlEditorField::create(
+                'SecondaryContent',
+                'Secondary Content'
+            )
+        );
 
         if ($this->exists()) {
             $fields->addFieldToTab(
@@ -46,6 +60,18 @@ class BuynowPage extends Page
     public function canCreate($member = null)
     {
         return Versioned::get_by_stage($this->ClassName, 'Stage')->count() == 0;
+    }
+
+    public function getData()
+    {
+        $data               =   [
+                                    'title'             =>  !empty($this->AlternativeTitle) ? $this->AlternativeTitle : $this->title,
+                                    'content'           =>  $this->Content,
+                                    'secondary_content' =>  $this->SecondaryContent,
+                                    'hero'              =>  $this->ImageBreak()->exists() ? $this->ImageBreak()->SetWidth(1980)->URL : null,
+                                    'options'           =>  $this->exists() ? $this->BuyOptions()->getData() : null,
+                                ];
+        return $data;
     }
 }
 

@@ -1,5 +1,5 @@
 <?php
-
+use SaltedHerring\Debugger;
 /**
  * Description
  *
@@ -31,6 +31,42 @@ class NewsLandingPage extends Page
     public function canCreate($member = null)
     {
         return Versioned::get_by_stage($this->ClassName, 'Stage')->count() == 0;
+    }
+
+    /**
+     * CMS Fields
+     * @return FieldList
+     */
+    public function getCMSFields()
+    {
+        $fields =   parent::getCMSFields();
+        $grid   =   $fields->fieldByName('Root.ChildPages.ChildPages');
+        $grid->getConfig()
+            ->removeComponentsByType('GridFieldPaginator')
+            ->addComponents(
+                new GridFieldPaginatorWithShowAll(30),
+                new GridFieldOrderableRows('Sort')
+            );
+
+        $dataColumns = $grid->getConfig()->getComponentByType('GridFieldDataColumns');
+
+        $dataColumns->setDisplayFields([
+            'Type'      =>  'Type',
+            'Title'     =>  'Page name'
+        ]);
+
+        return $fields;
+    }
+
+    public function getData()
+    {
+        $data               =   [
+                                    'title'             =>  !empty($this->AlternativeTitle) ? $this->AlternativeTitle : $this->title,
+                                    'content'           =>  $this->Content,
+                                    'hero'              =>  $this->ImageBreak()->exists() ? $this->ImageBreak()->SetWidth(1980)->URL : null,
+                                    'articles'          =>  NewsItem::get()->getData()
+                                ];
+        return $data;
     }
 }
 

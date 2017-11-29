@@ -15,4 +15,13 @@ class LinkExtension extends DataExtension
     private static $has_one = [
         'Page'      =>  'BuynowPage',
     ];
+
+    public function getData()
+    {
+        return         [
+                            'title'     =>  $this->owner->Title,
+                            'url'       =>  !empty($this->owner->Email) ? ('mailto:' . $this->owner->Email) : $this->owner->URL,
+                            'new_tab'   =>  $this->owner->OpenInNewWindow
+                        ];
+    }
 }

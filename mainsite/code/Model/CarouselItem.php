@@ -35,4 +35,13 @@ class CarouselItem extends DataObject
         'TextImage'     =>  'Image',
         'HomePage'      =>  'HomePage'
     ];
+
+    public function getData()
+    {
+        return  [
+                    'id'            =>  $this->ID,
+                    'title'         =>  $this->Title,
+                    'background'    =>  $this->Background()->exists() ? $this->Background()->SetWidth(1980)->URL : null
+                ];
+    }
 }
