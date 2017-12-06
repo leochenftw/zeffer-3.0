@@ -65,7 +65,26 @@ class Cider extends DataObject
      */
     public function getCMSFields()
     {
+        Requirements::javascript('mainsite/js/cms.js');
         $fields         =   parent::getCMSFields();
+        $SoldOut        =   $fields->fieldByName('Root.Main.SoldOut');
+        $isReserved     =   $fields->fieldByName('Root.Main.ReserveRange');
+
+        $fields->addFieldsToTab(
+            'Root.Main',
+            [
+                $isReserved,
+                $SoldOut
+            ],
+            'Title'
+        );
+
+        $fields->addFieldToTab(
+            'Root.Main',
+            $fields->fieldByName('Root.Main.Subtitle'),
+            'Content'
+        );
+
         $availability   =   CheckboxSetField::create(
                                 'Availabilities',
                                 "Availabilities",
@@ -87,7 +106,6 @@ class Cider extends DataObject
                 $fields->fieldByName('Root.Main.Dryness'),
                 $fields->fieldByName('Root.Main.Tannin'),
                 $fields->fieldByName('Root.Main.Alchohol'),
-                $fields->fieldByName('Root.Main.SoldOut'),
                 $fields->fieldByName('Root.Main.Availabilities'),
                 $fields->fieldByName('Root.Main.CiderColour'),
                 $fields->fieldByName('Root.Main.ProductStyle'),
@@ -134,6 +152,8 @@ class Cider extends DataObject
         return  [
                     'id'                =>  $this->ID,
                     'title'             =>  $this->Title,
+                    'subtitle'          =>  $this->Subtitle,
+                    'content'           =>  $this->Content,
                     'see'               =>  $this->See,
                     'smell'             =>  $this->Smell,
                     'taste'             =>  $this->Taste,
@@ -146,7 +166,8 @@ class Cider extends DataObject
                     'cidercolour'       =>  $this->CiderColour,
                     'productstyle'      =>  $this->ProductStyle,
                     'proudctvintage'    =>  $this->ProudctVintage,
-                    'title_image'       =>  $this->TitleImage()->exists() ? $this->TitleImage()->SetWidth(300)->URL : null,
+                    'is_reserved'       =>  $this->ReserveRange,
+                    'title_image'       =>  $this->TitleImage()->exists() ? $this->TitleImage()->SetWidth(960)->URL : null,
                     'product_image'     =>  $this->ProductImage()->exists() ? $this->ProductImage()->SetWidth(620)->URL : null,
                     'product_signature' =>  $this->ProductSignature()->exists() ? $this->ProductSignature()->SetWidth(620)->URL : null,
                     'x_icons'           =>  $Xs

@@ -13,15 +13,15 @@ class ContactMethod extends DataObject
      * @var array
      */
     private static $db = [
-        'Title'     =>  'Varchar(64)',
-        'Content'   =>  'HTMLText'
+        'Title'                 =>  'Varchar(64)',
+        'Content'               =>  'HTMLText'
     ];
     /**
      * Has_one relationship
      * @var array
      */
     private static $has_one = [
-        'Page'      =>  'ContactPage'
+        'Page'                  =>  'ContactPage'
     ];
 
     /**

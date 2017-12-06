@@ -50,7 +50,7 @@ class Ciders extends Page
         $data   =   [
                         'title'     =>  !empty($this->AlternativeTitle) ? $this->AlternativeTitle : $this->title,
                         'content'   =>  $this->Content,
-                        'ciders'    =>  $this->exists() ? $this->Ciders()->getData() : null
+                        'list'      =>  $this->exists() ? $this->Ciders()->getData() : null
                     ];
 
         return $data;

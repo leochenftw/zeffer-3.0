@@ -21,12 +21,26 @@ var $               =   require('jquery'),
                                             title       :   data.title,
                                             content     :   data.content,
                                             hero        :   data.hero,
-                                            articles    :   data.articles,
-                                            type        :   data.type
+                                            articles    :   data.articles.list,
+                                            next_page   :   data.articles.pagination.url
                                         },
                             mounted :   function()
                                         {
+                                            var me      =   this;
                                             $('#news').find('.section-hero').css('background-image', 'url(' + this.hero + ')');
+                                            $(this.$el).find('button.button').on('click touchend', function(e)
+                                            {
+                                                e.preventDefault();
+                                                var url =   $(this).data('next');
+                                                $.get(
+                                                    url,
+                                                    function(data)
+                                                    {
+                                                        me.articles     =   me.articles.concat(data.articles.list);
+                                                        me.next_page    =   data.articles.pagination.url;
+                                                    }
+                                                );
+                                            });
                                         },
                             methods :   {
                                             parse_date  :   function(date)
@@ -42,6 +56,10 @@ var $               =   require('jquery'),
                                                                 var d   =   new Date(date);
                                                                 return days[d.getDay()] + ', ' + months[d.getMonth()] + ' ' + d.getDate().DoubleDigit() + ', ' + d.getFullYear();
                                                             }
+                                        },
+                            updated :   function()
+                                        {
+
                                         }
                         });
 

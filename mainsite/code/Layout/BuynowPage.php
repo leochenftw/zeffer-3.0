@@ -25,7 +25,7 @@ class BuynowPage extends Page
      * @var array
      */
     private static $has_many = [
-        'BuyOptions'        =>  'Link'
+        'BuyOptions'        =>  'BuyOption'
     ];
 
     /**

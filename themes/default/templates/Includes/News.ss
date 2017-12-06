@@ -19,5 +19,8 @@
                 <div class="content" v-html="article.content"></div>
             </div>
         </div>
+        <div v-if="next_page" class="news__items__load-more has-text-centered">
+            <button class="button is-info is-large" :data-next="next_page">Load more</button>
+        </div>
     </div>
 </div>

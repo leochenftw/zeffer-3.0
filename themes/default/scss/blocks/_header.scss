@@ -1,0 +1,98 @@
+#header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    .navbar {
+        height: 75px;
+        min-height: 0;
+        transition: all 0.2s;
+        &.mini {
+            height: 40px;
+            .navbar-item.is-logo {
+                transform: scale(0.5);
+            }
+        }
+        &-item {
+            img {
+                max-height: none;
+            }
+
+            &.is-logo {
+                transition: all 0.3s;
+            }
+
+            &:not([data-locale="zh_Hans"]) {
+                font-family: $knockout;
+                font-weight: normal;
+                font-style: normal;
+                font-size: 26px;
+                text-transform: uppercase;
+            }
+            transition: color 0.2s;
+            color: $brown;
+
+            &.is-active,
+            &:focus,
+            &:hover {
+                color: $orange;
+            }
+
+            &#language-selector {
+                position: absolute;
+                right: 0;
+                top: 0;
+                height: 100%;
+
+                img {
+                    width: 32px;
+                    display: block;
+                }
+
+                .navbar-link {
+                    user-select: none;
+                }
+
+                &.is-active {
+                    .navbar-link {
+                        background-color: rgba($orange, 0.1) !important;
+                    }
+                }
+
+                .navbar-dropdown {
+                    .lang-icon {
+                        display: inline-block;
+                        width: 32px;
+                        margin-right: 12px;
+                        img {
+                            width: 100%;
+                        }
+                    }
+
+                    left: auto;
+                    right: 0;
+
+                    .navbar-item {
+                        font-size: 18px;
+                        &[data-locale="zh_Hans"] {
+                            font-size: 12px;
+                            font-family: $chinese;
+                        }
+                    }
+                }
+            }
+
+            @for $i from 1 through 12 {
+                &.order-#{$i} {
+                    order: $i;
+                }
+            }
+        }
+
+        &-menu {
+            justify-content: center;
+        }
+    }
+}

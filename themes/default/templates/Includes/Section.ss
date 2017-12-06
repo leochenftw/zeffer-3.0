@@ -1,5 +1,5 @@
-<section id="$SectionID">
-    <div v-if="hero" class="section-hero" style="height: 20vh;"></div>
+<section id="$SectionID" class="section__text">
+    <div v-if="hero" class="section-hero"></div>
     <div class="section">
         <div class="container">
             <h2 class="title is-2">{{title}}</h2>

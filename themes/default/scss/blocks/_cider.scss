@@ -1,0 +1,202 @@
+.cider {
+    &.columns {
+        margin-bottom: 140px;
+        &:last-child {
+            margin-bottom: 36px;
+        }
+    }
+
+    &s__heading {
+        h2.title {
+            font-family: $knockout;
+            font-size: 50px;
+            font-weight: normal;
+            text-transform: uppercase;
+            position: relative;
+            color: $brown;
+            margin-bottom: 30px;
+            &:after {
+                position: absolute;
+                content: '';
+                bottom: -5px;
+                width: 60px;
+                height: 1px;
+                background: $dark;
+                left: 0;
+            }
+        }
+
+        .content {
+            margin-bottom: 64px;
+            blockquote, p, li, td, th, h2, h3, h4, h5, h6 {
+                font-size: 18px;
+                line-height: 1.8;
+            }
+
+            p {
+                margin-bottom: 1.5em;
+            }
+        }
+    }
+
+    &__details {
+        .title {
+            font-family: $knockout;
+            text-transform: uppercase;
+            color: $blue;
+        }
+
+        p {
+            &.title {
+                position: relative;
+                &:after {
+                    position: absolute;
+                    content: '';
+                    bottom: -10px;
+                    width: 60px;
+                    height: 1px;
+                    background: $dark;
+                    left: 0;
+                }
+            }
+        }
+
+        &__heading {
+            &.title {
+                margin-bottom: 40px;
+            }
+        }
+
+        &__taste-sheet,
+        &__content {
+            blockquote, p, li, td, th, h2, h3, h4, h5, h6 {
+                font-family: $knockout;
+                color: $blue;
+                font-size: 20px;
+                line-height: 1.6;
+            }
+        }
+
+        &__taste-sheet {
+            color: $red;
+            blockquote, p, li, td, th, h2, h3, h4, h5, h6 {
+                color: $red;
+            }
+        }
+
+        &__content {
+            color: $blue;
+            blockquote, p, li, td, th, h2, h3, h4, h5, h6 {
+                color: $blue;
+            }
+        }
+
+        &__taste-sheet {
+            .column {
+                &.is-half {
+                    .columns {
+                        border: 1px dotted $red;
+                        &.is-marginless {
+                            align-items: center;
+                            height: 100%;
+                        }
+
+                        &.dryness,
+                        &.tannin {
+                            align-items: stretch;
+                            border: none;
+                            margin: -5px !important;
+
+                            .column {
+                                padding: 5px;
+                                .cross {
+                                    border: 1px dotted $red;
+                                    padding-top: 100%;
+                                    position: relative;
+                                    img {
+                                        position: absolute;
+                                        top: 50%;
+                                        left: 50%;
+                                        transform: translate(-50%, -50%);
+                                    }
+
+                                    &:after {
+                                        content: '';
+                                        display: block;
+                                        border: 1px dotted $red;
+                                        border-radius: 50%;
+                                        position: absolute;
+                                        width: 50%;
+                                        height: 50%;
+                                        top: 50%;
+                                        left: 50%;
+                                        transform: translate(-50%, -50%);
+                                    }
+                                }
+                            }
+                        }
+
+                        &.availabilities {
+                            border: none;
+                            .column {
+                                border-right: 1px dotted $red;
+                                text-align: center;
+                                text-transform: uppercase;
+                                font-weight: bold;
+                                font-size: 16px;
+                                &:last-child {
+                                    border-right: none;
+                                }
+                            }
+                        }
+                    }
+
+                    .with-title {
+                        border: 1px dotted $red;
+                        padding: 5px;
+                        h4 {
+                            font-size: 12px;
+                            text-transform: uppercase;
+                            font-weight: bold;
+                            line-height: 1;
+                            padding-bottom: 9px;
+                            border-bottom: 1px dotted $red;
+                            margin-bottom: 5px;
+                        }
+                    }
+                }
+            }
+
+            &__icon {
+                background-color: $red;
+                border-radius: 50%;
+                padding: 10px;
+            }
+
+            &__details {
+                border-left: 1px dotted $red;
+                min-height: 77px;
+                height: 100%;
+                h4 {
+                    margin: 0 0 0.5em;
+                    font-size: 12px;
+                    line-height: 1;
+                    text-transform: uppercase;
+                }
+
+                p {
+                    text-transform: uppercase;
+                    line-height: 1.2;
+                }
+            }
+        }
+
+        &.is-reserved-range {
+            @import 'modifiers/reserved-cider';
+        }
+    }
+
+    &__alcohol {
+        font-size: 30px;
+    }
+}

@@ -1,0 +1,26 @@
+.section__text {
+    .team-member {
+        &__photo {
+            margin-bottom: 24px;
+            padding-bottom: 30px;
+            position: relative;
+            &:after {
+                position: absolute;
+                content: '';
+                bottom: -5px;
+                width: 60px;
+                height: 1px;
+                background: $dark;
+                left: 0;
+            }
+        }
+
+        &__bio {
+            margin-bottom: 0;
+            p {
+                font-size: 14px;
+                line-height: 1.4;
+            }
+        }
+    }
+}

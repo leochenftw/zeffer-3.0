@@ -1,20 +1,25 @@
 var $           =   require('jquery');
     Header      =   require('./ui/header'),
     Carousel    =   require('./ui/carousel'),
+    Ciders      =   require('./ui/ciders'),
     Story       =   require('./ui/story'),
     Awards      =   require('./ui/awards'),
     Team        =   require('./ui/team'),
     Contact     =   require('./ui/contact'),
     Buy         =   require('./ui/buy'),
     News        =   require('./ui/news'),
-    Subscriber  =   require('./ui/subscribe-form');
+    Subscriber  =   require('./ui/subscribe-form'),
+    lightbox    =   require('lightbox2'),
+    jarallax    =   require('jarallax');
 
 $.getJSON(window.location.pathname, function(data)
 {
+    $('body').addClass('ready');
     $('html').attr('lang', data.lang);
 
     var header  =   new Header(data.navigation, data.languages),
         caro    =   new Carousel(data.carousel),
+        ciders  =   new Ciders(data.ciders),
         story   =   new Story('#story', data.story),
         sustain =   new Story('#sustainability', data.sustainability),
         awards  =   new Awards(data.awards),

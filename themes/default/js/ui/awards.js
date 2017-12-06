@@ -13,7 +13,11 @@ var $               =   require('jquery'),
                                         },
                             mounted :   function()
                                         {
-                                            $('#awards').find('.section-hero').css('background-image', 'url(' + this.hero + ')');
+                                            $('#awards').find('.section-hero').attr('data-img-src', this.hero);
+                                            $('#awards').find('.section-hero').jarallax(
+                                            {
+                                                speed: 0.2
+                                            });
                                         }
                         });
 

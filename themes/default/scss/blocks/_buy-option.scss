@@ -1,0 +1,24 @@
+.buy-option {
+    &s {
+        margin-top: -35px;
+        margin-bottom: 36px !important;
+    }
+
+    &__link {
+        span {
+            transition: all 0.3s;
+            color: $brown;
+            border-bottom: 1px solid rgba($brown, 0.2);
+        }
+        &:focus,
+        &:hover {
+            span {
+                border-color: rgba($brown, 1);
+            }
+        }
+
+        img {
+            margin-bottom: 12px;
+        }
+    }
+}

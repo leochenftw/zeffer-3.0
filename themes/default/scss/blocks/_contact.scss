@@ -1,0 +1,95 @@
+#contact {
+    .contact {
+        &__info {
+            h3 {
+                font-family: $knockout;
+                font-weight: normal;
+                font-size: 18px;
+                margin-bottom: 14px;
+                text-transform: uppercase;
+            }
+
+            &__method {
+                blockquote, p, li, td, th, h2, h3, h4, h5, h6 {
+                    color: $brown;
+                }
+
+                p {
+                    font-size: 16px;
+                    line-height: 1.4;
+                    margin-bottom: 1em;
+                    a {
+                        transition: all 0.3s;
+                        color: $brown;
+                        border-bottom: 1px solid rgba($brown, 0.2);
+                        &:focus,
+                        &:hover {
+                            border-color: rgba($brown, 1);
+                        }
+                    }
+                }
+
+                .content {
+                    margin-bottom: 24px;
+                }
+            }
+
+            &__social {
+                font-size: 16px;
+                margin-bottom: 8px;
+                &:last-child {
+                    margin-bottom: 0;
+                }
+                &__link {
+                    transition: all 0.3s;
+                    color: $brown;
+                    border-bottom: 1px solid rgba($brown, 0);
+                    &:focus,
+                    &:hover {
+                        border-color: rgba($brown, 1);
+                    }
+                    .icon {
+                        display: inline-block;
+                        // width: 32px;
+                        // height: 32px;
+                        text-align: center;
+                        // vertical-align: middle;
+                        // line-height: 32px;
+                        color: white;
+                        // margin-right: 8px;
+
+                        &.facebook {
+                            // background-color: $facebook;
+                            color: $facebook;
+                        }
+
+                        &.twitter {
+                            // background-color: $twitter;
+                            color: $twitter;
+                        }
+
+                        &.instagram {
+                            // background-color: $instagram;
+                            color: $instagram;
+                        }
+
+                        &.weixin {
+                            // background-color: $wechat;
+                            color: $wechat;
+                        }
+
+                        &.envelope-o {
+                            // background-color: $mail;
+                            color: $mail;
+                        }
+
+                        &.newspaper-o {
+                            // background-color: $newsletter;
+                            color: $newsletter;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

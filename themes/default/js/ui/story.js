@@ -12,7 +12,12 @@ var $               =   require('jquery'),
                                         },
                             mounted :   function()
                                         {
-                                            $(id).find('.section-hero').css('background-image', 'url(' + this.hero + ')');
+                                            // $(id).find('.section-hero').css('background-image', 'url(' + this.hero + ')');
+                                            $(id).find('.section-hero').attr('data-img-src', this.hero);
+                                            $(id).find('.section-hero').jarallax(
+                                            {
+                                                speed: 0.2
+                                            });
                                         }
                         });
 

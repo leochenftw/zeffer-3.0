@@ -1,0 +1,151 @@
+.cider__details {
+    color: $copper;
+    &__style,
+    &__vintage,
+    &__signature,
+    &__try-with,
+    &__title {
+        color: $copper;
+        font-size: 24px;
+        font-weight: bold;
+        line-height: 1.2;
+        height: 72px;
+        padding: 25px 0 25px 2em;
+        position: relative;
+        font-family: $courier;
+        border-top: 2px dotted $copper;
+        position: relative;
+        &:before {
+            position: absolute;
+            font-size: 6pt;
+            text-transform: uppercase;
+            top: 30px;
+            left: 0;
+        }
+
+        &-col {
+            font-weight: bold;
+            text-transform: uppercase;
+            min-height: 87px;
+
+            &:before {
+                font-family: $knockout;
+                display: block;
+                font-size: 12px;
+                text-transform: uppercase;
+                font-weight: bold;
+                line-height: 1;
+                margin-bottom: 5px;
+            }
+        }
+    }
+
+    &__style {
+        &:before {
+            content: 'Style:';
+        }
+
+        &-col {
+            &:before {
+                content: 'Style';
+            }
+        }
+    }
+
+    &__vintage {
+        &:before {
+            content: 'Vintage:';
+        }
+        &-col {
+            &:before {
+                content: 'Vintage';
+            }
+        }
+    }
+
+    &__try-with {
+        &-col {
+            &:before {
+                content: 'Try me with';
+            }
+        }
+    }
+
+    &__signature {
+        border-bottom: 2px dotted $copper;
+        img {
+            height: 105px;
+            width: auto;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        &:before {
+            content: 'Cider maker:';
+        }
+    }
+
+    &__availability {
+        &-col {
+            .with-title {
+                border: 1px dotted $copper;
+                padding: 5px;
+                h4 {
+                    font-family: $knockout;
+                    font-size: 12px;
+                    text-transform: uppercase;
+                    font-weight: bold;
+                    line-height: 1;
+                    padding-bottom: 9px;
+                    border-bottom: 1px dotted $copper;
+                    margin-bottom: 5px;
+                }
+
+                .column {
+                    font-family: $whitney;
+                    font-size: 16px;
+                    font-weight: bold;
+                    color: $blue;
+                    border-right: 1px dotted $copper;
+                    &:last-child {
+                        border-right: none;
+                        &:first-child {
+                            border-right: 1px dotted $copper;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &__title {
+        &:before {
+            content: 'Name:';
+        }
+    }
+
+    &__content {
+        margin: 64px 0 42px;
+        blockquote, p, li, td, th, h2, h3, h4, h5, h6 {
+            font-family: $whitney;
+            font-size: 16px;
+            font-weight: bold;
+            color: $blue;
+        }
+
+        p {
+            line-height: 1.8;
+        }
+    }
+
+    &__table {
+        border: 1px dotted $copper;
+        margin-bottom: 24px !important;
+        .column {
+            border-right: 1px dotted $copper;
+            &:last-child {
+                border-right: none;
+            }
+        }
+    }
+}

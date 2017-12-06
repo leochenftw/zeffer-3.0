@@ -1,0 +1,17 @@
+.owl {
+    &-item {
+        height: 100vh;
+        background-position: center;
+        background-size: cover;
+        transition: all 0.3s;
+        opacity: 0;
+        visibility: hidden;
+        &.backgrounded {
+            opacity: 1;
+            visibility: visible;
+            img {
+                display: none;
+            }
+        }
+    }
+}

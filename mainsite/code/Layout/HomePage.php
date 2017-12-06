@@ -51,6 +51,7 @@ class HomePage_Controller extends Page_Controller
     {
         $data                           =   parent::AjaxResponse();
         $this->AttachCarousel($data);
+        $this->AttachCiders($data);
         $this->AttachStory($data, 'Story', 'story');
         $this->AttachStory($data, 'Sustainability', 'sustainability');
         $this->AttachTeam($data);
@@ -60,6 +61,13 @@ class HomePage_Controller extends Page_Controller
         $this->AttachNews($data);
 
         return $data;
+    }
+
+    public function AttachCiders(&$data)
+    {
+        if ($cider = Ciders::get()->first()) {
+            $data['ciders']              =   $cider->getData();
+        }
     }
 
     public function AttachNews(&$data)

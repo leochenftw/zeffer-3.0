@@ -10,9 +10,13 @@ var $                   =   require('jquery'),
                                             },
                                 mounted :   function() {
                                                 $('#carousel').owlCarousel({
-                                                    items       :   4,
+                                                    items       :   1,
                                                     lazyLoad    :   true,
                                                     loop        :   true
+                                                }).on('loaded.owl.lazy', function(e)
+                                                {
+                                                    var slide   =   $(e.target).find('img[src="' + e.url + '"]').parent();
+                                                    slide.css('background-image', 'url(' + e.url + ')').addClass('backgrounded');
                                                 });
                                             }
                             });

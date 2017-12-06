@@ -15,10 +15,11 @@
 
         <% include GA %>
     </head>
-    <body class="page-$URLSegment<% if $isMobile %> mobile<% end_if %> page-type-$BodyClass.LowerCase">
+    <body class="page-$URLSegment<% if $isMobile %> mobile<% end_if %> page-type-$BodyClass.LowerCase is-vued">
         <% include VueHeader %>
         <main id="main">
             <% include Carousel %>
+            <% include Ciders %>
             <% include Section SectionID=story %>
             <% include Section SectionID=sustainability %>
             <% include Section SectionID=awards %>

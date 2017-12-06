@@ -64,7 +64,8 @@ class SocialMediaLink extends Link
     public function getData()
     {
         $data           =   parent::getData();
-        $data['class']  =  'fa fa-' . $this->SocialMedia;
+        $data['media']  =   $this->SocialMedia;
+        $data['class']  =  'fa fa-' . $data['media'];
 
         return $data;
     }

@@ -1,0 +1,50 @@
+.section {
+    &__text {
+        h2.title {
+            font-family: $knockout;
+            font-size: 50px;
+            font-weight: normal;
+            text-transform: uppercase;
+            position: relative;
+            color: $brown;
+            margin-bottom: 30px;
+            &:after {
+                position: absolute;
+                content: '';
+                bottom: -5px;
+                width: 60px;
+                height: 1px;
+                background: $dark;
+                left: 0;
+            }
+        }
+
+        .content {
+            margin-bottom: 48px;
+            blockquote, p, li, td, th, h2, h3, h4, h5, h6 {
+                font-size: 18px;
+                line-height: 1.8;
+            }
+
+            p {
+                margin-bottom: 1.5em;
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+
+    &-hero {
+        height: 60vh;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+}
+
+#sustainability {
+    .section {
+        background-color: $smoke;
+    }
+}
