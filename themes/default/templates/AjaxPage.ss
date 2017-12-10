@@ -21,9 +21,9 @@
             <% include Carousel %>
             <% include Ciders %>
             <% include Section SectionID=story %>
+            <% include Section SectionID=team %>
             <% include Section SectionID=sustainability %>
             <% include Section SectionID=awards %>
-            <% include Section SectionID=team %>
             <% include Section SectionID=contact %>
             <% include Section SectionID=buy %>
             <% include Section SectionID=news %>

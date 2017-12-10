@@ -32,6 +32,8 @@ class ControllerAjaxExtension extends DataExtension
             $nav[]                  =   [
                                             'title'     =>  $nav_item->MenuTitle,
                                             'url'       =>  $nav_item->Link(),
+                                            'scrollto'  =>  $nav_item->MenuToSection,
+                                            'has_hero'  =>  !empty($nav_item->ImageBreakID),
                                             'is_active' =>  $nav_item->LinkOrCurrent() == 'current'
                                         ];
         }

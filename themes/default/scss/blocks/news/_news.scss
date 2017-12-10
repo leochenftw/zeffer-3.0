@@ -1,0 +1,116 @@
+#news {
+    .content {
+        &.content-content {
+            padding-bottom: 14px;
+            position: relative;
+            &:after {
+                position: absolute;
+                content: '';
+                bottom: -14px;
+                width: 60px;
+                height: 1px;
+                background: $dark;
+                left: 0;
+            }
+        }
+
+        blockquote, p, li, td, th, h2, h3, h4, h5, h6 {
+            a {
+                border-bottom: 1px solid rgba($copper, 0.2);
+                color: $copper;
+                transition: all 0.3s;
+                &:hover,
+                &:focus {
+                    border-bottom: 1px solid rgba($copper, 1);
+                }
+            }
+        }
+
+        blockquote, p, li, td, th {
+            line-height: 1.4;
+        }
+
+        p {
+            margin-bottom: 1em;
+        }
+
+        strong {
+            color: $copper;
+        }
+
+        h2, h3, h4, h5, h6 {
+            color: $copper;
+            font-family: $knockout;
+            line-height: 1.2;
+            font-size: 36px;
+            margin: 48px 0 14px;
+        }
+
+        h4 {
+            font-size: 36px;
+        }
+
+        h5 {
+            font-size: 28px;
+        }
+
+        h6 {
+            font-size: 20px;
+        }
+
+        ul, ol {
+            margin-bottom: 3em;
+            margin-left: 0;
+            padding-left: 1.5em;
+            li + li {
+                margin-top: 0.5em;
+            }
+        }
+    }
+}
+
+.news {
+    &__item {
+        &__news {
+            margin-bottom: 64px !important;
+            &__date-cube {
+                width: 96px;
+                height: 96px;
+                color: $copper;
+                border: 1px solid rgba($copper, 0.6);
+                text-align: center;
+                font-family: $knockout;
+                font-weight: bold;
+                font-size: 32px;
+                justify-content: center;
+                text-transform: uppercase;
+                display: flex;
+                align-items: center;
+            }
+
+            &__category {
+                a {
+                    transition: all 0.3s;
+                    &:focus,
+                    &:hover {
+                        color: $copper;
+                    }
+                }
+            }
+
+            &__title {
+                font-family: $knockout;
+                font-weight: normal;
+                color: $blue;
+            }
+
+            &__content {
+                margin-bottom: 0 !important;
+            }
+        }
+
+        &__blog {
+            @import 'elements/tag';
+        }
+    }
+}

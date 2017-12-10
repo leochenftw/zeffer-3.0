@@ -5,8 +5,11 @@
                 <h2 class="title is-2">{{title}}</h2>
                 <div class="content" v-html="content"></div>
             </div>
+            <nav class="ciders__menu">
+                <a v-on:click.prevent="go_to(cider.title)" class="ciders__menu__item" v-for="cider in ciders"><span>{{cider.title}}</span></a>
+            </nav>
             <div v-if="ciders" class="ciders">
-                <div v-for="cider in ciders" class="cider columns is-multiline">
+                <div v-for="cider in ciders" :class="make_class(cider.colour)" :data-cider="cider.title">
                     <div class="column is-4 cider__image">
                         <img v-if="cider" :src="cider.product_image" />
                         <p v-else>&lt;This cider has no image&gt;</p>
@@ -126,4 +129,5 @@
             </div>
         </div>
     </div>
+    <div class="end-of-section"></div>
 </section>

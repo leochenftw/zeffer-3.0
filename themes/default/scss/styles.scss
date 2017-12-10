@@ -15,7 +15,8 @@
 @import 'config/colours';
 @import "bulma/bulma";
 @import 'config/bulma-shim',
-        'config/typography';
+        'config/typography',
+        'config/mixins';
 
 // @include retina-sprite-add(spritesheet, 'sprites/*.png', 'retina_sprites/*.png');
 
@@ -28,7 +29,10 @@
         'blocks/section',
         'blocks/team',
         'blocks/contact',
-        'blocks/buy-option';
+        'blocks/subscription',
+        'blocks/buy-option',
+        'blocks/news/news',
+        'blocks/footer';
 @import 'elements/lightbox';
 
 html {

@@ -27,7 +27,11 @@ var $               =   require('jquery'),
                             mounted :   function()
                                         {
                                             var me      =   this;
-                                            $('#news').find('.section-hero').css('background-image', 'url(' + this.hero + ')');
+                                            $('#news').find('.section-hero').attr('data-img-src', this.hero);
+                                            $('#news').find('.section-hero').jarallax(
+                                            {
+                                                speed: 0.2
+                                            });
                                             $(this.$el).find('button.button').on('click touchend', function(e)
                                             {
                                                 e.preventDefault();
@@ -43,6 +47,10 @@ var $               =   require('jquery'),
                                             });
                                         },
                             methods :   {
+                                            make_link   :   function(filter, slug)
+                                                            {
+                                                                return '/news?' + filter + '=' + slug;
+                                                            },
                                             parse_date  :   function(date)
                                                             {
                                                                 var d   =   new Date(date);

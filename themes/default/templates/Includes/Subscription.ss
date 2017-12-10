@@ -16,9 +16,9 @@
                     <input class="input is-large" type="email" name="Email" required placeholder="Email">
                 </div>
             </div>
-            <div class="field">
+            <div class="field subscription-form__action">
                 <div class="control">
-                    <button class="button is-success icon" type="submit"><i class="fa fa-envelope"></i> Sign up</button>
+                    <button class="button is-info icon" type="submit"><i class="fa fa-envelope"></i> Subscribe</button>
                 </div>
             </div>
         </div>

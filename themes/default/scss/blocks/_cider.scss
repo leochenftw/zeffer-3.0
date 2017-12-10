@@ -6,35 +6,174 @@
         }
     }
 
-    &s__heading {
-        h2.title {
-            font-family: $knockout;
-            font-size: 50px;
-            font-weight: normal;
-            text-transform: uppercase;
-            position: relative;
-            color: $brown;
-            margin-bottom: 30px;
-            &:after {
-                position: absolute;
-                content: '';
-                bottom: -5px;
-                width: 60px;
-                height: 1px;
-                background: $dark;
-                left: 0;
+    &__image {
+        text-align: center;
+        font-size: 0;
+        img {
+            max-height: 85vh;
+            display: inline-block;
+        }
+    }
+
+    &s {
+        &__heading {
+            h2.title {
+                font-family: $knockout;
+                font-size: 50px;
+                font-weight: normal;
+                text-transform: uppercase;
+                position: relative;
+                color: $brown;
+                margin-bottom: 30px;
+                &:after {
+                    position: absolute;
+                    content: '';
+                    bottom: -5px;
+                    width: 60px;
+                    height: 1px;
+                    background: $dark;
+                    left: 0;
+                }
+            }
+
+            .content {
+                margin-bottom: 64px;
+                blockquote, p, li, td, th, h2, h3, h4, h5, h6 {
+                    font-size: 18px;
+                    line-height: 1.8;
+                }
+
+                p {
+                    margin-bottom: 1.5em;
+                }
             }
         }
 
-        .content {
-            margin-bottom: 64px;
-            blockquote, p, li, td, th, h2, h3, h4, h5, h6 {
-                font-size: 18px;
-                line-height: 1.8;
+        &__menu {
+            z-index: 8;
+            position: fixed;
+            height: 50vh;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            width: 155px;
+            pointer-events: none;
+            @include until(960px) {
+                display: none;
+            }
+            &__item {
+                position: relative;
+                transform: translateX(100%);
+                font-size: 14px;
+                font-family: $knockout;
+                text-transform: uppercase;
+                @include fullhd {
+                    font-size: 18px;
+                }
+                padding: 0.5em 1em;
+                width: 100%;
+                display: block;
+                color: $copper;
+                transition: all 0.3s;
+                text-align: right;
+                &:after,
+                span {
+                    vertical-align: middle;
+                }
+
+                &:after {
+                    transition: all 0.3s;
+                    content: '';
+                    display: inline-block;
+                    margin-left: 0.5em;
+                    border-radius: 50%;
+                    border: 1px solid $copper;
+                    width: 14px;
+                    height: 14px;
+                    @include fullhd {
+                        width: 18px;
+                        height: 18px;
+                    }
+                    background-color: rgba($copper, 0);
+                }
+
+                &:nth-child(1) {
+                    transition-delay: 0;
+                }
+
+                &:nth-child(2) {
+                    transition-delay: 0.01s;
+                }
+
+                &:nth-child(3) {
+                    transition-delay: 0.02s;
+                }
+
+                &:nth-child(4) {
+                    transition-delay: 0.03s;
+                }
+
+                &:nth-child(5) {
+                    transition-delay: 0.04s;
+                }
+
+                &:nth-child(6) {
+                    transition-delay: 0.05s;
+                }
+
+                &:nth-child(7) {
+                    transition-delay: 0.06s;
+                }
+
+                &:nth-child(8) {
+                    transition-delay: 0.07s;
+                }
+
+                &:nth-child(9) {
+                    transition-delay: 0.08s;
+                }
+
+                &:nth-child(10) {
+                    transition-delay: 0.09s;
+                }
+
+                &:hover,
+                &.is-active {
+                    color: $copper;
+                    &:after {
+                        background-color: rgba($copper, 1);
+                    }
+                }
+
+                @include until(1200px) {
+                    span {
+                        transition: all 0.3s;
+                        opacity: 0;
+                        visibility: hidden;
+                        position: absolute;
+                        right: 36px;
+                        transform: translateX(-12px);
+                    }
+
+                    &:hover,
+                    &.is-active {
+                        span {
+                            opacity: 1;
+                            visibility: visible;
+                            transform: translateX(0);
+                        }
+                    }
+                }
             }
 
-            p {
-                margin-bottom: 1.5em;
+            &.is-active {
+                pointer-events: auto;
+                .ciders__menu__item {
+                    transform: translateX(0);
+                }
             }
         }
     }
@@ -199,4 +338,11 @@
     &__alcohol {
         font-size: 30px;
     }
+
+    @import 'modifiers/crisp',
+            'modifiers/hopped',
+            'modifiers/ginger',
+            'modifiers/two-point-five',
+            'modifiers/crumble';
+
 }

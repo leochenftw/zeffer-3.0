@@ -31,7 +31,7 @@ var $               =   require('jquery'),
                                                         $('#header .navbar').addClass('mini');
                                                     }
                                                 }
-                                            });
+                                            }).scroll();
                                         },
                             updated :   function()
                                         {
@@ -51,17 +51,26 @@ var $               =   require('jquery'),
                                                                 if (i >= (this.navitems.length - 1) / 2) {
                                                                     n       =   2;
                                                                 }
-                                                                return 'navbar-item order-' + (i + n);
+                                                                return 'navbar-item order-' + (i + n) + ( this.navitems[i].is_active ? ' is-active' : '');
                                                             },
                                             logo_class  :   function()
                                                             {
                                                                 return 'navbar-item is-logo order-' + ((this.navitems.length * 0.5) + 1);
+                                                            },
+                                            go_to       :   function(id, has_hero, e)
+                                                            {
+                                                                if (!has_hero) {
+                                                                    $.scrollTo(document.getElementById(id), 500, {axis: 'y'});
+                                                                } else {
+                                                                    $.scrollTo($('#' + id).find('.section:eq(0)')[0], 500, {axis: 'y'});
+                                                                }
                                                             }
                                         }
                         });
 
         return  this.header;
     };
+require('jquery.scrollto');
 $(document).on('click touchend', '#selector-trigger', function(e)
 {
     e.preventDefault();

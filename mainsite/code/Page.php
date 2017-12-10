@@ -13,7 +13,8 @@ class Page extends SiteTree
     ];
 
     private static $db = [
-        'AlternativeTitle'  =>  'Varchar(128)'
+        'AlternativeTitle'  =>  'Varchar(128)',
+        'MenuToSection'     =>  'Varchar(128)'
     ];
 
     private static $has_one = [];
@@ -25,12 +26,19 @@ class Page extends SiteTree
     public function getCMSFields()
     {
         $fields = parent::getCMSFields();
-        $fields->addFieldToTab(
+        $fields->addFieldsToTab(
             'Root.Main',
-            TextField::create(
-                'AlternativeTitle',
-                'Alternative title'
-            )->setDescription('if an alt title is set, it will be used as the block title, when it\'s displayed on the homepage'),
+            [
+                TextField::create(
+                    'AlternativeTitle',
+                    'Alternative title'
+                )->setDescription('if an alt title is set, it will be used as the block title, when it\'s displayed on the homepage'),
+                DropdownField::create(
+                    'MenuToSection',
+                    'Scroll to section',
+                    $this->config()->sectionIDs
+                )->setEmptyString('- select one -')
+            ],
             'URLSegment'
         );
         $this->extend('updateCMSFields', $fields);

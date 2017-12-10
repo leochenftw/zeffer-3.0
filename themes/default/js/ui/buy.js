@@ -14,7 +14,11 @@ var $               =   require('jquery'),
                                         },
                             mounted :   function()
                                         {
-                                            $('#buy').find('.section-hero').css('background-image', 'url(' + this.hero + ')');
+                                            $('#buy').find('.section-hero').attr('data-img-src', this.hero);
+                                            $('#buy').find('.section-hero').jarallax(
+                                            {
+                                                speed: 0.2
+                                            });
                                         }
                         });
 

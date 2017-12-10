@@ -39,7 +39,8 @@ class NewsItem extends Page
      * @var array
      */
     private static $has_one = [
-        'Author'                =>  'Member'
+        'Author'                =>  'Member',
+        'Category'              =>  'Category'
     ];
 
     /**
@@ -67,6 +68,7 @@ class NewsItem extends Page
      */
     public function getCMSFields()
     {
+        Requirements::javascript('mainsite/js/quickaddhack.js');
         $fields                 =   parent::getCMSFields();
 
         $fields->addFieldToTab(
@@ -93,17 +95,68 @@ class NewsItem extends Page
             'Title'
         );
 
+        $source                 =   function()
+                                    {
+                                        return Category::get()->map()->toArray();
+                                    };
+
+        $category_field         =   DropdownField::create(
+                                        'CategoryID',
+                                        'Category',
+                                        $source()
+                                    );
+
+        $category_field->useAddNew('Category', $source)->setEmptyString('- select one -');
+        $fields->addFieldToTab(
+            'Root.Main',
+            $category_field,
+            'URLSegment'
+        );
+
+        $fields->addFieldToTab(
+            'Root.Main',
+            TagField::create(
+                'Tags',
+                'Tags',
+                Tag::get()
+            )
+        );
+
+        // $field->useAddNew('Category', $source);
+
+
         return $fields;
     }
 
     public function getData()
     {
+        $tags                   =   null;
+
+        if ($this->Tags()->exists()) {
+            $tags               =   [];
+            $t                  =   $this->Tags();
+            foreach ($t as $g)
+            {
+                $tags[]         =   [
+                                        'title'     =>  $g->Title,
+                                        'slug'      =>  $g->Slug
+                                    ];
+            }
+        }
+
         return  [
                     'type'      =>  strtolower($this->Type),
                     'title'     =>  $this->Title,
                     'content'   =>  $this->Content,
                     'published' =>  $this->DatePublished . ' ' . date("H:i:s",strtotime($this->Created)),
-                    'url'       =>  $this->AbsoluteLink()
+                    'url'       =>  $this->AbsoluteLink(),
+                    'category'  =>  !empty($this->CategoryID) ?
+                                    [
+                                        'title'     =>  $this->Category()->Title,
+                                        'slug'      =>  $this->Category()->Slug
+                                    ] :
+                                    null,
+                    'tags'      =>  $tags
                 ];
     }
 }

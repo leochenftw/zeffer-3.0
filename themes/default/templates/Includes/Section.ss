@@ -3,7 +3,7 @@
     <div class="section">
         <div class="container">
             <h2 class="title is-2">{{title}}</h2>
-            <div class="content" v-html="content"></div>
+            <div class="content-content content" v-html="content"></div>
             <% if $SectionID == 'team' %>
             <% include Team %>
             <% end_if %>
@@ -24,4 +24,5 @@
             <% end_if %>
         </div>
     </div>
+    <div class="end-of-section"></div>
 </section>

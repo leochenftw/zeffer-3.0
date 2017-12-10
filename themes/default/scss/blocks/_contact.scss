@@ -1,4 +1,8 @@
 #contact {
+    .section {
+        padding-bottom: 96px;
+    }
+
     .contact {
         &__info {
             h3 {
@@ -15,7 +19,7 @@
                 }
 
                 p {
-                    font-size: 16px;
+                    font-size: 18px;
                     line-height: 1.4;
                     margin-bottom: 1em;
                     a {

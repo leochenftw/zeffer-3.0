@@ -26,7 +26,7 @@ class Cider extends DataObject
         'Alchohol'          =>  'Decimal',
         'SoldOut'           =>  'Boolean',
         'Availabilities'    =>  'Varchar(16)',
-        'CiderColour'       =>  'Varchar(7)',
+        'CiderColour'       =>  'Varchar(16)',
         'ProductStyle'      =>  'Varchar(100)',
         'ProudctVintage'    =>  'Varchar(16)'
     ];
@@ -48,7 +48,8 @@ class Cider extends DataObject
      * @var array
      */
     private static $extensions = [
-        'SortOrderExtension'
+        'SortOrderExtension',
+        'SlugifyExtension'
     ];
 
     /**
@@ -85,6 +86,10 @@ class Cider extends DataObject
             'Content'
         );
 
+        $fields->removeByName([
+            'CiderColour'
+        ]);
+
         $availability   =   CheckboxSetField::create(
                                 'Availabilities',
                                 "Availabilities",
@@ -107,9 +112,26 @@ class Cider extends DataObject
                 $fields->fieldByName('Root.Main.Tannin'),
                 $fields->fieldByName('Root.Main.Alchohol'),
                 $fields->fieldByName('Root.Main.Availabilities'),
-                $fields->fieldByName('Root.Main.CiderColour'),
+                DropdownField::create(
+                    'CiderColour',
+                    'Cider colour',
+                    $this->config()->colours
+                )->setEmptyString('- select one -'),
                 $fields->fieldByName('Root.Main.ProductStyle'),
                 $fields->fieldByName('Root.Main.ProudctVintage')
+            ]
+        );
+
+        $fields->addFieldsToTab(
+            'Root.Graphics',
+            [
+                $fields->fieldByName('Root.Main.TitleImage'),
+                $fields->fieldByName('Root.Main.ProductImage'),
+                $fields->fieldByName('Root.Main.ProductSignature'),
+                UploadField::create(
+                    'Xs',
+                    'Cross images'
+                )
             ]
         );
 
@@ -117,12 +139,10 @@ class Cider extends DataObject
             $fields->removeByName([
                 'Xs'
             ]);
+
             $fields->addFieldsToTab(
                 'Root.Graphics',
                 [
-                    $fields->fieldByName('Root.Main.TitleImage'),
-                    $fields->fieldByName('Root.Main.ProductImage'),
-                    $fields->fieldByName('Root.Main.ProductSignature'),
                     UploadField::create(
                         'Xs',
                         'Cross images'
@@ -163,7 +183,7 @@ class Cider extends DataObject
                     'alchohol'          =>  $this->Alchohol,
                     'soldout'           =>  $this->SoldOut,
                     'availabilities'    =>  $this->Availabilities,
-                    'cidercolour'       =>  $this->CiderColour,
+                    'colour'            =>  $this->CiderColour,
                     'productstyle'      =>  $this->ProductStyle,
                     'proudctvintage'    =>  $this->ProudctVintage,
                     'is_reserved'       =>  $this->ReserveRange,

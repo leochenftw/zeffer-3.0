@@ -1,0 +1,66 @@
+&__details {
+    &__taste-sheet {
+        .two-point-five & {
+            color: $twodotfive;
+            blockquote, p, li, td, th, h2, h3, h4, h5, h6 {
+                color: $twodotfive;
+            }
+        }
+    }
+
+    &__taste-sheet {
+        .column {
+            &.is-half {
+                .columns {
+                    .two-point-five & {
+                        border-color: $twodotfive;
+                    }
+                    &.dryness,
+                    &.tannin {
+                        .two-point-five & {
+                            .column {
+                                .cross {
+                                    border-color: $twodotfive;
+
+                                    &:after {
+                                        border-color: $twodotfive;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    &.availabilities {
+                        border: none;
+                        .column {
+                            .two-point-five & {
+                                border-color: $twodotfive;
+                            }
+                        }
+                    }
+                }
+
+                .with-title {
+                    .two-point-five & {
+                        border-color: $twodotfive;
+                        h4 {
+                            border-color: $twodotfive;
+                        }
+                    }
+                }
+            }
+        }
+
+        &__icon {
+            .two-point-five & {
+                background-color: $twodotfive;
+            }
+        }
+
+        &__details {
+            .two-point-five & {
+                border-color: $twodotfive;
+            }
+        }
+    }
+}

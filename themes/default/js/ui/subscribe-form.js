@@ -9,12 +9,18 @@ var $               =   require('jquery'),
                                             title           :   'Subscribe to our newsletter',
                                             content         :   '<p>You can also sign up to our newsletter. We promise not to spam you! We’ll only be sharing juicy news, upcoming cider releases and giveaways (so just the good stuff).</p>',
                                             csrf            :   csrf,
-                                            hero            :   null,
+                                            hero            :   '/assets/Uploads/_resampled/ScaleWidthWzE5ODBd/3-GroupShot-1.jpg',
                                             completed       :   subscribed,
                                             message         :   'You have already subscribed to our newsletter :)'
                                         },
                             mounted :   function()
                                         {
+                                            $('#subscription').find('.section-hero').attr('data-img-src', this.hero);
+                                            $('#subscription').find('.section-hero').jarallax(
+                                            {
+                                                speed: 0.2
+                                            });
+
                                             var me          =   this,
                                                 the_form    =   $(this.$el).find('form');
 

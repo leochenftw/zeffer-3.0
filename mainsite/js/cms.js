@@ -27,4 +27,5 @@
             panel.prepend($('#Form_ItemEditForm_ReserveRange_Holder'));
         }
     });
+
 }(jQuery));

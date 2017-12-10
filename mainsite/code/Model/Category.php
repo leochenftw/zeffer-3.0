@@ -6,7 +6,7 @@
  * @package silverstripe
  * @subpackage mysite
  */
-class Tag extends DataObject
+class Category extends DataObject
 {
     /**
      * Database fields
@@ -17,10 +17,10 @@ class Tag extends DataObject
     ];
 
     /**
-     * Belongs_many_many relationship
+     * Has_many relationship
      * @var array
      */
-    private static $belongs_many_many = [
+    private static $has_many = [
         'News'      =>  'NewsItem'
     ];
 

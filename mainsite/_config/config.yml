@@ -10,6 +10,17 @@ SiteVersion:
 SSViewer:
   theme: 'default'
 Page:
+  sectionIDs:
+    'carousel': 'Carousel'
+    'ciders': 'Ciders'
+    'story': 'Story'
+    'sustainability': 'Sustainability'
+    'awards': 'Awards'
+    'team': 'Team members'
+    'contact': 'Contact'
+    'buy': 'Buy now'
+    'news': 'News & Blog'
+    'subscription': 'Subscription form'
   extensions:
     - OpenGraphExtension
     - TwitterCardExtension
@@ -70,3 +81,12 @@ SocialMediaLink:
     'newspaper-o': 'Newsletter'
 GoogleAPIs:
   Map: 'AIzaSyB5LdVLLklbFKZ29l7kSL4PW_J46c2apPI'
+
+Cider:
+  colours:
+    red: 'Red apple'
+    crisp: 'Crisp apple'
+    hopped: 'Hopped'
+    ginger: 'Ginger beer'
+    'two-point-five': 'Two point five'
+    crumble: 'Apple crumble'

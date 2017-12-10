@@ -1,0 +1,66 @@
+&__details {
+    &__taste-sheet {
+        .hopped & {
+            color: $dark-green;
+            blockquote, p, li, td, th, h2, h3, h4, h5, h6 {
+                color: $dark-green;
+            }
+        }
+    }
+
+    &__taste-sheet {
+        .column {
+            &.is-half {
+                .columns {
+                    .hopped & {
+                        border-color: $dark-green;
+                    }
+                    &.dryness,
+                    &.tannin {
+                        .hopped & {
+                            .column {
+                                .cross {
+                                    border-color: $dark-green;
+
+                                    &:after {
+                                        border-color: $dark-green;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    &.availabilities {
+                        border: none;
+                        .column {
+                            .hopped & {
+                                border-color: $dark-green;
+                            }
+                        }
+                    }
+                }
+
+                .with-title {
+                    .hopped & {
+                        border-color: $dark-green;
+                        h4 {
+                            border-color: $dark-green;
+                        }
+                    }
+                }
+            }
+        }
+
+        &__icon {
+            .hopped & {
+                background-color: $dark-green;
+            }
+        }
+
+        &__details {
+            .hopped & {
+                border-color: $dark-green;
+            }
+        }
+    }
+}

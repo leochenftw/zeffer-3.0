@@ -1,0 +1,14 @@
+&__tag {
+    transition: all 0.3s;
+    &:focus,
+    &:hover {
+        color: $orange;
+    }
+
+    &:not(:last-child) {
+        margin-right: 0.5em;
+        &:after {
+            content: ',';
+        }
+    }
+}

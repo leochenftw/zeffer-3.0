@@ -17,7 +17,7 @@ class SubscriberAPI extends BaseRestController
     public function isAuthenticated()
     {
         if ($csrf               =   $this->request->postVar('csrf')) {
-            return $csrf        == Session::get('SecurityID');
+            return $csrf        ==  Session::get('SecurityID');
         }
 
         return false;

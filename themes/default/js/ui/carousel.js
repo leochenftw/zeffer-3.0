@@ -26,5 +26,4 @@ var $                   =   require('jquery'),
 
 window.jQuery           =   $;
 require('owl.carousel');
-
 module.exports          =   constr;
