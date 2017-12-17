@@ -20,6 +20,7 @@ var $               =   require('jquery'),
                                                     return false;
                                                 }
                                             });
+
                                             $(window).scroll(function(e)
                                             {
                                                 if ($('#header .navbar').hasClass('mini')) {
@@ -27,11 +28,11 @@ var $               =   require('jquery'),
                                                         $('#header .navbar').removeClass('mini');
                                                     }
                                                 } else {
-                                                    if ($(window).scrollTop() >= 0) {
+                                                    if ($(window).scrollTop() > 0) {
                                                         $('#header .navbar').addClass('mini');
                                                     }
                                                 }
-                                            }).scroll();
+                                            }).scrollTop(0).scroll();
                                         },
                             updated :   function()
                                         {
@@ -57,13 +58,19 @@ var $               =   require('jquery'),
                                                             {
                                                                 return 'navbar-item is-logo order-' + ((this.navitems.length * 0.5) + 1);
                                                             },
-                                            go_to       :   function(id, has_hero, e)
+                                            go_to       :   function(id, e)
                                                             {
-                                                                if (!has_hero) {
-                                                                    $.scrollTo(document.getElementById(id), 500, {axis: 'y'});
+                                                                var target  =   $('#' + id);
+                                                                if (target.hasClass('to-section')) {
+                                                                    $.scrollTo(target.find('.section:eq(0)'), 1000, {axis: 'y', offset: -40});
                                                                 } else {
-                                                                    $.scrollTo($('#' + id).find('.section:eq(0)')[0], 500, {axis: 'y'});
+                                                                    $.scrollTo(target, 1000, {axis: 'y', offset: -40});
                                                                 }
+                                                                // if (!has_hero) {
+                                                                //     $.scrollTo(document.getElementById(id), 500, {axis: 'y'});
+                                                                // } else {
+                                                                //     $.scrollTo($('#' + id).find('.section:eq(0)')[0], 500, {axis: 'y'});
+                                                                // }
                                                             }
                                         }
                         });

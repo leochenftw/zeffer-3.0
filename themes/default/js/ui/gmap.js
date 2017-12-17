@@ -91,13 +91,15 @@ var gmap = function(api_key, map_id, locs, zoom_rate, routing_options, disableUI
                                     }),
                     infowindow  =   new google.maps.InfoWindow(
                                     {
-                                        content     :   '<a target="_blank" href="https://www.google.com/maps/place//data=!4m2!3m1!1s0x6d69b7b04a05a2ad:0xc1555f77cd924c9b?hl=en-AU" class="button is-info">View on Google map</a>'
+                                        content     :   '<a target="_blank" href="https://www.google.com/maps/place/data=!4m2!3m1!1s0x6d69b7b04a05a2ad:0xc1555f77cd924c9b?hl=en-AU" class="button is-info">View on Google map</a>'
                                     });
 
                 markers.push(marker);
                 marker.addListener('click', function()
                 {
-                    infowindow.open(map, marker);
+                    // infowindow.open(map, marker);
+                    var win = window.open('https://www.google.com/maps/place/data=!4m2!3m1!1s0x6d69b7b04a05a2ad:0xc1555f77cd924c9b?hl=en-AU', '_blank');
+                    win.focus();
                 });
             }
 

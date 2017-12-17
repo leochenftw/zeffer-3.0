@@ -9,6 +9,13 @@
 class BuyOption extends Link
 {
     /**
+     * Database fields
+     * @var array
+     */
+    private static $db = [
+        'Region'                => 'Enum("NZ,AUS")'
+    ];
+    /**
      * Has_one relationship
      * @var array
      */
@@ -29,7 +36,7 @@ class BuyOption extends Link
     public function getData()
     {
         $data                   =   parent::getData();
-        $data['image']          =   !empty($this->OptionLogoID) ? $this->OptionLogo()->SetHeight(96)->URL : null;
+        $data['image']          =   !empty($this->OptionLogoID) ? $this->OptionLogo()->SetHeight(48)->URL : null;
         return $data;
     }
 

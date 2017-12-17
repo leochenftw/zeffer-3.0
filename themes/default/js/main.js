@@ -18,12 +18,11 @@ require('waypoints/lib/noframework.waypoints');
 
 $.getJSON(window.location.pathname, function(data)
 {
-    $('body').addClass('ready');
     $('html').attr('lang', data.lang);
 
     var header          =   new Header(data.navigation, data.languages),
         caro            =   new Carousel(data.carousel),
-        ciders          =   new Ciders(data.ciders),
+        ciders          =   new Ciders(data.ciders, header.navitems),
         story           =   new Story('#story', data.story),
         sustain         =   new Story('#sustainability', data.sustainability),
         awards          =   new Awards(data.awards),
@@ -50,9 +49,10 @@ $.getJSON(window.location.pathname, function(data)
                                     }
                                 });
                             },
-        point_maker     =   function(section, title, use_inner_section)
+        point_maker     =   function(section, title)
                             {
-                                var el      =   use_inner_section ? $(section.$el).find('.section:eq(0)')[0] : $(section.$el)[0];
+                                var to_sec  =   $(section.$el).hasClass('to-section'),
+                                    el      =   to_sec ? $(section.$el).find('.section:eq(0)')[0] : $(section.$el)[0];
                                     top     =   new Waypoint(
                                                 {
                                                     element     :   el,
@@ -70,7 +70,13 @@ $.getJSON(window.location.pathname, function(data)
                                                     element     :   $(section.$el).find('.end-of-section')[0],
                                                     handler     :   function(direction)
                                                                     {
-                                                                        activate(title, direction);
+                                                                        if (section.$el.id == 'ciders') {
+                                                                            if (direction == 'up') {
+                                                                                activate(title, direction);
+                                                                            }
+                                                                        } else {
+                                                                            activate(title, direction);
+                                                                        }
                                                                     },
                                                     offset      :   40
                                                 });
@@ -84,12 +90,12 @@ $.getJSON(window.location.pathname, function(data)
                             };
 
     point_maker(ciders, 'Ciders');
-    point_maker(story, 'Story', true);
-    point_maker(sustain, 'Sustainability', true);
-    point_maker(awards, 'Awards', true);
-    point_maker(contact, 'Contact', true);
-    point_maker(buy, 'Buy now', true);
-    point_maker(news, 'News', true);
+    point_maker(story, 'Story');
+    point_maker(sustain, 'Sustainability');
+    point_maker(awards, 'Awards');
+    point_maker(contact, 'Contact');
+    point_maker(buy, 'Buy now');
+    point_maker(news, 'News');
 
     $(window).on('scroll resize', function(e)
     {
@@ -114,7 +120,8 @@ $.getJSON(window.location.pathname, function(data)
             {
                 $('#language-selector').removeClass('is-active');
                 $('html').attr('lang', response.lang);
-                header.navigation   =   response.navigation;
+                $('body').addClass(response.lang.toLowerCase());
+                header.navitems     =   response.navigation;
                 header.languages    =   response.languages;
                 story.title         =   response.story.title;
                 story.content       =   response.story.content;
@@ -122,9 +129,17 @@ $.getJSON(window.location.pathname, function(data)
                 sustain.title       =   response.sustainability.title;
                 sustain.content     =   response.sustainability.content;
                 sustain.hero        =   response.sustainability.hero;
+                awards.title        =   response.awards.title;
+                awards.content      =   response.awards.content;
+                awards.hero         =   response.awards.hero;
+                awards.labels       =   response.awards.labels;
+                awards.awards       =   response.awards.awards;
             }
         );
     });
+
+    $(window).scrollTop(0).scroll();
+    $('body').addClass('ready').addClass(data.lang.toLowerCase());
 });
 
 $(document).ready(function(e)

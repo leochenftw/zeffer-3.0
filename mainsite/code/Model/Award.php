@@ -57,4 +57,17 @@ class Award extends DataObject
                     'cider'         =>  $this->Cider
                 ];
     }
+
+    /**
+     * Event handler called before writing to the database.
+     */
+    public function onBeforeWrite()
+    {
+        parent::onBeforeWrite();
+        if (empty($this->PageID)) {
+            if ($page = Awards::get()->first()) {
+                $this->PageID = $page->ID;
+            }
+        }
+    }
 }

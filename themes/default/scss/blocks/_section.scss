@@ -1,10 +1,13 @@
 .section {
     &__text {
-        h2.title {
+        .title {
             font-family: $knockout;
-            font-size: 50px;
             font-weight: normal;
             text-transform: uppercase;
+        }
+
+        h2.title {
+            font-size: 50px;
             position: relative;
             color: $brown;
             margin-bottom: 30px;
@@ -30,6 +33,15 @@
                 margin-bottom: 1.5em;
                 &:last-child {
                     margin-bottom: 0;
+                }
+
+                a {
+                    transition: all 0.3s;
+                    color: $copper;
+                    border-bottom: 1px solid rgba($copper, 0.2);
+                    &:hover {
+                        border-bottom: 1px solid rgba($copper, 1);
+                    }
                 }
             }
         }

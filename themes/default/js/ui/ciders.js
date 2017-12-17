@@ -1,7 +1,7 @@
 var $                   =   require('jquery'),
     TweenMax            =   require('gsap'),
     Vue                 =   require('vue/dist/vue.common'),
-    constr              =   function(data)
+    constr              =   function(data, cider_menu)
     {
         this.ciders    =   new Vue(
                             {
@@ -41,8 +41,6 @@ var $                   =   require('jquery'),
                                                     o.availabilities        =   o.availabilities.split(',');
                                                 }
 
-
-
                                                 $(window).on('scroll resize', function(e)
                                                 {
                                                     var n                   =   $(window).scrollTop();
@@ -81,15 +79,17 @@ var $                   =   require('jquery'),
                                                             top             =   cider.offset().top - scrollTop,
                                                             bottom          =   top + cider.outerHeight();
 
-                                                        if (top <= 90 && bottom >= 0) {
+                                                        if (top <= 100 && bottom >= $(window).height() * 0.5) {
                                                             $('.ciders__menu__item.is-active').removeClass('is-active');
                                                             $('.ciders__menu__item:eq(' + i + ')').addClass('is-active');
                                                             if (direct == 'up') {
                                                                 if (b >= $(window).height()) {
                                                                     $('.ciders__menu').addClass('is-active');
+                                                                    me.activate_myself();
                                                                 }
                                                             } else {
                                                                 $('.ciders__menu').addClass('is-active');
+                                                                me.activate_myself();
                                                             }
                                                         }
                                                     });
@@ -106,10 +106,21 @@ var $                   =   require('jquery'),
                                                 }).scroll();
                                             },
                                 methods :   {
+                                                activate_myself             :   function()
+                                                                                {
+                                                                                    cider_menu.forEach(function(item)
+                                                                                    {
+                                                                                        if (item.title == 'Ciders') {
+                                                                                            item.is_active  =   true;
+                                                                                        } else {
+                                                                                            item.is_active  =   false;
+                                                                                        }
+                                                                                    });
+                                                                                },
                                                 go_to                       :   function(title)
                                                                                 {
                                                                                     var target  =   $('.cider[data-cider="' + title + '"]');
-                                                                                    $.scrollTo(target, 500, {axis: 'y', offset: -80});
+                                                                                    $.scrollTo(target, 1000, {axis: 'y', offset: -80});
                                                                                 },
                                                 make_class                  :   function(colour)
                                                                                 {

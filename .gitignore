@@ -64,3 +64,5 @@ silverstripe-rest-api/
 themes/default/package-lock.json
 translatable/
 silverstripe-socialnetwork-links/
+awards.txt
+awards_cn.txt

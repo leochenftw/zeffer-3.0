@@ -8,6 +8,8 @@ use SaltedHerring\Grid;
  */
 class Awards extends Page
 {
+    private static $labels_en    =   ['Year', 'Award & Class', 'Competition', 'Cider'];
+    private static $labels_cn    =   ['年度', '奖项及类别', '赛事名称', '获奖产品'];
     /**
      * Creating Permissions
      * @return boolean
@@ -48,7 +50,8 @@ class Awards extends Page
                     'title'     =>  $this->getSectionTitle(),
                     'content'   =>  $this->Content,
                     'hero'      =>  $this->ImageBreak()->exists() ? $this->ImageBreak()->SetWidth(1980)->URL : null,
-                    'awards'    =>  $this->Awards()->exists() ? $this->Awards()->getData() : null
+                    'awards'    =>  $this->Awards()->exists() ? $this->Awards()->getData() : null,
+                    'labels'    =>  $this->Locale == 'en_NZ' ? self::$labels_en : self::$labels_cn
                 ];
     }
 

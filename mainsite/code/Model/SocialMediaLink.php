@@ -63,9 +63,11 @@ class SocialMediaLink extends Link
 
     public function getData()
     {
+        $icons          =   Config::inst()->get('Icons', 'socials');
         $data           =   parent::getData();
         $data['media']  =   $this->SocialMedia;
         $data['class']  =  'fa fa-' . $data['media'];
+        $data['icon']   =   $icons[$this->SocialMedia];
 
         return $data;
     }

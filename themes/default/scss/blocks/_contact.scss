@@ -39,19 +39,24 @@
             }
 
             &__social {
+                display: inline-block;
                 font-size: 16px;
-                margin-bottom: 8px;
+                margin-right: 1em;
                 &:last-child {
+                    margin-right: 0;
                     margin-bottom: 0;
                 }
                 &__link {
                     transition: all 0.3s;
                     color: $brown;
-                    border-bottom: 1px solid rgba($brown, 0);
-                    &:focus,
-                    &:hover {
-                        border-color: rgba($brown, 1);
+                    img {
+                        display: block;
                     }
+                    // border-bottom: 1px solid rgba($brown, 0);
+                    // &:focus,
+                    // &:hover {
+                    //     border-color: rgba($brown, 1);
+                    // }
                     .icon {
                         display: inline-block;
                         // width: 32px;

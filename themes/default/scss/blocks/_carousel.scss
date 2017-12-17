@@ -1,8 +1,47 @@
 .owl {
+    &-carousel {
+        position: relative;
+    }
+
+    &-nav {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 100%;
+        transform: translateY(-50%);
+        .owl {
+            &-prev,
+            &-next {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                background-color: rgba(255,255,255,0.6);
+                border-radius: 50%;
+                width: 60px;
+                height: 60px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: $blue;
+                font-size: 24px;
+                transition: all 0.3s;
+                &:hover {
+                    background-color: rgba(255,255,255,1);
+                }
+            }
+
+            &-prev {
+                left: 24px;
+            }
+
+            &-next {
+                right: 24px;
+            }
+        }
+    }
+
     &-item {
         height: 100vh;
-        background-position: center;
-        background-size: cover;
         transition: all 0.3s;
         opacity: 0;
         visibility: hidden;
@@ -11,6 +50,50 @@
             visibility: visible;
             img {
                 display: none;
+            }
+        }
+
+        .caro-slide {
+            height: 100%;
+            background-position: center;
+            background-size: cover;
+            display: flex;
+            padding: 40px 1.5rem;
+            align-items: center;
+
+            &__content {
+                color: white;
+                a {
+                    color: white;
+                }
+                &.content {
+                    padding-right: 20%;
+                    img {
+                        display: inline-block;
+                        width: auto;
+                    }
+                }
+
+                &.title {
+                    font-size: 56px;
+                    text-transform: uppercase;
+                    text-shadow: 0 0 36px #000;
+                    margin-bottom: 0;
+                    a {
+                        display: inline-block;
+                        padding: 1em 0;
+                    }
+                }
+            }
+
+            &.text-heavy {
+                p {
+                    color: white;
+                    font-family: $knockout;
+                    font-size: 28px;
+                    text-shadow: 0 2px 2px #000;
+                    text-transform: uppercase;
+                }
             }
         }
     }

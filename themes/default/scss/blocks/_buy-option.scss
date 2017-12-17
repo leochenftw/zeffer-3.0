@@ -2,6 +2,36 @@
     &s {
         margin-top: -35px;
         margin-bottom: 36px !important;
+        &__region {
+            @include mobile {
+                margin-bottom: 1.5rem;
+            }
+
+            @include until(480px) {
+                margin-left: 0 !important;
+                margin-right: 0 !important;
+                padding-left: 0 !important;
+                padding-right: 0 !important;
+            }
+
+            .title {
+                color: $brown;
+                display: inline-block;
+                padding-bottom: 5px;
+                border-bottom: 1px solid $brown;
+                margin-bottom: 48px;
+            }
+
+            .is-mobile {
+                @include until(480px) {
+                    display: block;
+                    .column {
+                        flex: none !important;
+                        width: 100% !important;
+                    }
+                }
+            }
+        }
     }
 
     &__link {

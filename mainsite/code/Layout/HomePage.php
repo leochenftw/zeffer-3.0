@@ -132,6 +132,11 @@ class HomePage_Controller extends Page_Controller
     private function AttachAwards(&$data)
     {
         if ($awards =   Awards::get()->first()) {
+            if (Session::get('lang') == 'zh_Hans') {
+                if ($translated = $awards->getTranslation('zh_Hans')) {
+                    $awards             =   $translated;
+                }
+            }
             $data['awards']             =   $awards->getData();
         }
     }

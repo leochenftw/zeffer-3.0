@@ -1,9 +1,6 @@
 <div class="awards">
     <div class="columns award__heading">
-        <div class="column is-1">Year</div>
-        <div class="column">Award & Class</div>
-        <div class="column">Competition</div>
-        <div class="column is-3">Cider</div>
+        <div v-for="(label, i) in labels" :class="{'column': true, 'is-1': i == 0, 'is-3': i == 3}">{{label}}</div>
     </div>
     <div v-for="award in awards" class="columns award">
         <div class="column is-1">{{award.year}}</div>

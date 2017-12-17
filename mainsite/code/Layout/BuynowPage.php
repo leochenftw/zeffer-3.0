@@ -69,7 +69,10 @@ class BuynowPage extends Page
                                     'content'           =>  $this->Content,
                                     'secondary_content' =>  $this->SecondaryContent,
                                     'hero'              =>  $this->ImageBreak()->exists() ? $this->ImageBreak()->SetWidth(1980)->URL : null,
-                                    'options'           =>  $this->exists() ? $this->BuyOptions()->getData() : null,
+                                    'options'           =>  [
+                                                                'NZ'    =>  $this->exists() ? $this->BuyOptions()->filter(['Region' => 'NZ'])->getData() : null,
+                                                                'AUS'   =>  $this->exists() ? $this->BuyOptions()->filter(['Region' => 'AUS'])->getData() : null
+                                                            ]
                                 ];
         return $data;
     }

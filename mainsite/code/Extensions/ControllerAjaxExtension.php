@@ -29,24 +29,30 @@ class ControllerAjaxExtension extends DataExtension
         $navigation                 =   $this->owner->getMenu(1);
         foreach ($navigation as $nav_item)
         {
+            if (Session::get('lang') == 'zh_Hans') {
+                if ($translated     =   $nav_item->getTranslation('zh_Hans')) {
+                    $nav_item       =   $translated;
+                }
+            }
+            
             $nav[]                  =   [
                                             'title'     =>  $nav_item->MenuTitle,
                                             'url'       =>  $nav_item->Link(),
                                             'scrollto'  =>  $nav_item->MenuToSection,
-                                            'has_hero'  =>  !empty($nav_item->ImageBreakID),
                                             'is_active' =>  $nav_item->LinkOrCurrent() == 'current'
                                         ];
         }
 
         $flags                      =   Config::inst()->get('Icons', 'flags');
-
+        $csrf                       =   Session::get('SecurityID');
+        $csrf                       =   !empty($csrf) ? $csrf : SecurityToken::getSecurityID();
         return  [
                     'id'            =>  $this->owner->ID,
                     'url'           =>  $this->owner->Link() == '/home/' ? '/' : $this->owner->Link(),
                     'title'         =>  $this->owner->Title,
                     'content'       =>  $this->owner->Content,
                     'navigation'    =>  $nav,
-                    'csrf'          =>  Session::get('SecurityID'),
+                    'csrf'          =>  $csrf,
                     'subscribed'    =>  !empty(Session::get('Subscribed')),
                     'lang'          =>  str_replace('_', '-', Session::get('lang')),
                     'languages'     =>  [

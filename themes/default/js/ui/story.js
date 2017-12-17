@@ -6,9 +6,9 @@ var $               =   require('jquery'),
                         {
                             el      :   id,
                             data    :   {
-                                            title   :   data.title,
-                                            content :   data.content,
-                                            hero    :   data.hero
+                                            title       :   data.title,
+                                            content     :   data.content,
+                                            hero        :   data.hero
                                         },
                             mounted :   function()
                                         {
