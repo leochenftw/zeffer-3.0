@@ -22,6 +22,14 @@ class ContactPage extends Page
     ];
 
     /**
+     * Has_one relationship
+     * @var array
+     */
+    private static $has_one = [
+        'FallbackMapImage'  =>  'Image'
+    ];
+
+    /**
      * Has_many relationship
      * @var array
      */
@@ -39,6 +47,7 @@ class ContactPage extends Page
                                     'lat'       =>  $this->Latitude,
                                     'lng'       =>  $this->Longitude,
                                     'api_key'   =>  Config::inst()->get('GoogleAPIs', 'Map'),
+                                    'fallback'  =>  $this->FallbackMapImage()->exists() ? $this->FallbackMapImage()->SetWidth(800)->URL : null,
                                     'methods'   =>  $this->exists() ? $this->ContactMethods()->getData() : null,
                                     'socials'   =>  $this->exists() ? $this->SocialMedias()->getData() : null,
                                 ];
@@ -98,6 +107,10 @@ class ContactPage extends Page
                 TextField::create(
                     'ZoomRate',
                     'ZoomRate'
+                ),
+                UploadField::create(
+                    'FallbackMapImage',
+                    'Fallback map image'
                 )
             ]
         );

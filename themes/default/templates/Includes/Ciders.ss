@@ -30,7 +30,7 @@
                                         </div>
                                     </div>
                                     <div class="column cider__details__taste-sheet__details">
-                                        <h4>See</h4>
+                                        <h4>{{labels.see}}</h4>
                                         <p>{{cider.see}}</p>
                                     </div>
                                 </div>
@@ -43,7 +43,7 @@
                                         </div>
                                     </div>
                                     <div class="column cider__details__taste-sheet__details">
-                                        <h4>Smell</h4>
+                                        <h4>{{labels.smell}}</h4>
                                         <p>{{cider.smell}}</p>
                                     </div>
                                 </div>
@@ -56,7 +56,7 @@
                                         </div>
                                     </div>
                                     <div class="column cider__details__taste-sheet__details">
-                                        <h4>Taste</h4>
+                                        <h4>{{labels.taste}}</h4>
                                         <p>{{cider.taste}}</p>
                                     </div>
                                 </div>
@@ -69,14 +69,14 @@
                                         </div>
                                     </div>
                                     <div class="column cider__details__taste-sheet__details">
-                                        <h4>Try me with</h4>
+                                        <h4>{{labels.trywith}}</h4>
                                         <p>{{cider.trymewith}}</p>
                                     </div>
                                 </div>
                             </div>
                             <div class="column is-half">
                                 <div class="with-title">
-                                    <h4>Dryness</h4>
+                                    <h4>{{labels.dryness}}</h4>
                                     <div class="columns dryness is-marginless is-mobile">
                                         <div v-for="n in 5" class="column"><div class="cross"></div></div>
                                     </div>
@@ -84,7 +84,7 @@
                             </div>
                             <div class="column is-half">
                                 <div class="with-title">
-                                    <h4>Tannin</h4>
+                                    <h4>{{labels.tannin}}</h4>
                                     <div class="columns tannin is-marginless is-mobile">
                                         <div v-for="n in 5" class="column"><div class="cross"></div></div>
                                     </div>
@@ -92,7 +92,7 @@
                             </div>
                             <div class="column is-half">
                                 <div class="with-title">
-                                    <h4>Available in</h4>
+                                    <h4>{{labels.avail}}</h4>
                                     <div class="columns is-marginless availabilities is-mobile">
                                         <div v-for="availability in cider.availabilities" class="has-text-centered column is-4">{{availability}}</div>
                                     </div>

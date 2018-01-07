@@ -55,6 +55,25 @@
     }
 }
 
+#welcome {
+    .container {
+        text-align: center;
+        .title {
+            display: none;
+        }
+
+        .content {
+            margin-bottom: 0;
+            padding-bottom: 48px;
+            border-bottom: 1px solid $brown;
+            img {
+                margin-left: .5em;
+                margin-right: .5em;
+            }
+        }
+    }
+}
+
 #sustainability {
     .section {
         background-color: $smoke;

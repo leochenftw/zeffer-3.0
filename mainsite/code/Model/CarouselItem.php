@@ -42,10 +42,11 @@ class CarouselItem extends DataObject
         return  [
                     'id'            =>  $this->ID,
                     'title'         =>  $this->Title,
-                    'content'       =>  $this->Content . ($this->TitleAsLink ? '' : '<p><a class="is-info button is-large btn-go-to" href="#" data-scrollto="' . $this->ScrollTo . '">Learn more</a></p>'),
+                    'content'       =>  $this->Content . ($this->TitleAsLink ? '' : '<p><a class="is-info button is-large btn-go-to" href="#" data-scrollto="' . $this->ScrollTo . '">Keep in touch</a></p>'),
                     'title_as_link' =>  $this->TitleAsLink,
                     'scroll_to'     =>  $this->ScrollTo,
-                    'background'    =>  $this->Background()->exists() ? $this->Background()->SetWidth(1980)->URL : null
+                    'background'    =>  $this->Background()->exists() ? $this->Background()->SetWidth(1980)->URL : null,
+                    'overlay'       =>  $this->TextImage()->exists() ? $this->TextImage()->URL : null
                 ];
     }
 }

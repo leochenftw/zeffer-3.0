@@ -4,13 +4,28 @@
     }
 
     .contact {
+        &__map {
+            &__fallback {
+                background-size: cover;
+                height: 100%;
+                background-position: center;
+            }
+        }
+
         &__info {
+            @include mobile {
+                padding-left: 0;
+                padding-right: 0;
+            }
             h3 {
                 font-family: $knockout;
                 font-weight: normal;
                 font-size: 18px;
                 margin-bottom: 14px;
                 text-transform: uppercase;
+                .zh-hans & {
+                    font-weight: bold;
+                }
             }
 
             &__method {
@@ -19,7 +34,7 @@
                 }
 
                 p {
-                    font-size: 18px;
+                    font-size: 14px;
                     line-height: 1.4;
                     margin-bottom: 1em;
                     a {

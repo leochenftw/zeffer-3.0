@@ -1,8 +1,9 @@
 <div class="contact columns">
     <div class="column is-7 contact__map">
-        <div id="map-holder">
+        <div id="map-holder" v-if="!fallback">
             <div id="map" :data-api="key" :data-lat="lat" :data-lng="lng" data-zoom="12"></div>
         </div>
+        <div v-else class="contact__map__fallback" :style="get_style"></div>
     </div>
     <div class="column is-5 contact__info">
         <ul class="contact__info__methods">
@@ -11,7 +12,7 @@
                 <div class="content" v-html="method.content"></div>
             </li>
         </ul>
-        <h3 class="title is-6">Chat with Zeffer online</h3>
+        <h3 class="title is-6">{{social_label}}</h3>
         <ul class="contact__info__socials">
             <li class="contact__info__social" v-for="social in socials">
                 <%-- <a v-if="!social.lightbox" target="_blank" class="contact__info__social__link" :href="social.url"><span :class="make_class(social)"><i :class="social.class"></i></span> {{social.title}}</a>

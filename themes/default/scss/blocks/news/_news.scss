@@ -71,6 +71,12 @@
 
 .news {
     &__item {
+        .column {
+            @include mobile {
+                padding-left: 0 !important;
+                padding-right: 0 !important;
+            }
+        }
         &__news {
             margin-bottom: 64px !important;
             &__date-cube {
@@ -86,6 +92,14 @@
                 text-transform: uppercase;
                 display: flex;
                 align-items: center;
+                @include mobile {
+                    height: auto;
+                    width: auto;
+                    padding-left: .75em;
+                    padding-right: .75em;
+                    font-size: 24px;
+                    display: inline-block;
+                }
             }
 
             &__category {

@@ -9,7 +9,50 @@ var $                   =   require('jquery'),
                                 data    :   {
                                                 title           :   data.title,
                                                 content         :   data.content,
-                                                ciders          :   data.list
+                                                ciders          :   data.list,
+                                                labels          :   {
+                                                                        see     :   null,
+                                                                        smell   :   null,
+                                                                        taste   :   null,
+                                                                        trywith :   null,
+                                                                        dryness :   null,
+                                                                        tannin  :   null,
+                                                                        avail   :   null
+                                                                    }
+                                            },
+                                updated :   function()
+                                            {
+                                                $('.cross img').remove();
+                                                var me          =   this;
+                                                for (var i = 0; i < me.ciders.length; i++)
+                                                {
+                                                    var dryness =   $('.dryness').eq(i).find('.column'),
+                                                        tannin  =   $('.tannin').eq(i).find('.column'),
+                                                        n       =   this.ciders[i].dryness,
+                                                        j       =   this.ciders[i].tannin,
+                                                        o       =   this.ciders[i];
+
+                                                    dryness.each(function(i, el)
+                                                    {
+                                                        if (n > 0) {
+                                                            $(this).find('.cross').append(me.icon(o));
+                                                            n--;
+                                                        }
+                                                    });
+
+                                                    tannin.each(function(i, el)
+                                                    {
+                                                        if (j > 0) {
+                                                            $(this).find('.cross').append(me.icon(o));
+                                                            j--;
+                                                        }
+                                                    });
+
+                                                    if ((typeof o.availabilities) == 'string') {
+                                                        o.availabilities        =   o.availabilities.split(',');
+                                                    }
+                                                }
+                                                $('.ciders__menu').removeClass('is-active');
                                             },
                                 mounted :   function()
                                             {
@@ -38,7 +81,9 @@ var $                   =   require('jquery'),
                                                         }
                                                     });
 
-                                                    o.availabilities        =   o.availabilities.split(',');
+                                                    if ((typeof o.availabilities) == 'string') {
+                                                        o.availabilities        =   o.availabilities.split(',');
+                                                    }
                                                 }
 
                                                 $(window).on('scroll resize', function(e)

@@ -14,12 +14,44 @@
     }
 
     .award {
+        @include mobile {
+            border-bottom:  1px solid $copper;
+            margin-bottom: 2em;
+        }
         &__heading {
+            @include mobile {
+                display: none;
+            }
             .column {
                 text-transform: uppercase;
                 font-size: 32px;
                 color: $copper;
                 font-family: $knockout;
+                .zh-hans & {
+                    font-size: 24px;
+                    font-weight: bold;
+                }
+                &.is-1 {
+                    .zh-hans & {
+                        width: 12%;
+                    }
+
+                }
+            }
+        }
+
+        .column {
+            @include mobile {
+                padding-left: 0;
+                padding-right: 0;
+            }
+            &.is-1 {
+                @include mobile {
+                    font-weight: bold;
+                }
+                .zh-hans & {
+                    width: 12%;
+                }
             }
         }
     }

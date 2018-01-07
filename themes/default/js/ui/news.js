@@ -18,11 +18,11 @@ var $               =   require('jquery'),
                         {
                             el      :   '#news',
                             data    :   {
-                                            title       :   data.title,
-                                            content     :   data.content,
-                                            hero        :   data.hero,
-                                            articles    :   data.articles.list,
-                                            next_page   :   data.articles.pagination.url
+                                            title       :   data ? data.title : null,
+                                            content     :   data ? data.content : null,
+                                            hero        :   data ? data.hero : null,
+                                            articles    :   data ? data.articles.list : null,
+                                            next_page   :   data ? data.articles.pagination.url : null
                                         },
                             mounted :   function()
                                         {
@@ -67,7 +67,26 @@ var $               =   require('jquery'),
                                         },
                             updated :   function()
                                         {
+                                            var me      =   this;
+                                            $('#news').find('.section-hero').attr('data-img-src', this.hero);
+                                            $('#news').find('.section-hero').jarallax(
+                                            {
+                                                speed: 0.2
+                                            });
 
+                                            $(this.$el).find('button.button').on('click touchend', function(e)
+                                            {
+                                                e.preventDefault();
+                                                var url =   $(this).data('next');
+                                                $.get(
+                                                    url,
+                                                    function(data)
+                                                    {
+                                                        me.articles     =   me.articles.concat(data.articles.list);
+                                                        me.next_page    =   data.articles.pagination.url;
+                                                    }
+                                                );
+                                            });
                                         }
                         });
 

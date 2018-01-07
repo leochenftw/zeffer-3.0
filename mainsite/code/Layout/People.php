@@ -50,6 +50,10 @@ class People extends Page
     {
         if ($this->Team()->exists()) {
 
+            if (Session::get('lang') == 'zh_Hans') {
+                return '团队成员';
+            }
+
             $title              =   'Meet ';
             $team_array         =   $this->Team()->column('Title');
             $team               =   '';

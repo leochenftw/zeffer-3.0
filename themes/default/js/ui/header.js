@@ -56,7 +56,7 @@ var $               =   require('jquery'),
                                                             },
                                             logo_class  :   function()
                                                             {
-                                                                return 'navbar-item is-logo order-' + ((this.navitems.length * 0.5) + 1);
+                                                                return 'navbar-item is-logo order-' + (Math.floor(this.navitems.length * 0.5) + 1);
                                                             },
                                             go_to       :   function(id, e)
                                                             {

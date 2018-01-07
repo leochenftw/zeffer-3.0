@@ -9,8 +9,15 @@
         height: 75px;
         min-height: 0;
         transition: all 0.2s;
+        @include mobile {
+            height: auto;
+        }
+
         &.mini {
             height: 40px;
+            @include mobile {
+                height: auto;
+            }
             .navbar-item.is-logo {
                 transform: scale(0.5);
             }
@@ -69,9 +76,6 @@
                             width: 100%;
                         }
                     }
-
-                    left: auto;
-                    right: 0;
 
                     .navbar-item {
                         font-size: 18px;

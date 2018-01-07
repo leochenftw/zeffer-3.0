@@ -1,6 +1,10 @@
 .cider {
     &.columns {
         margin-bottom: 140px;
+        @include mobile {
+            margin-bottom: 60px;
+        }
+
         &:last-child {
             margin-bottom: 36px;
         }
@@ -12,6 +16,9 @@
         img {
             max-height: 85vh;
             display: inline-block;
+            @include mobile {
+                transform: none !important;
+            }
         }
     }
 
@@ -60,6 +67,13 @@
             flex-wrap: wrap;
             align-items: center;
             width: 155px;
+            .zh-hans & {
+                width: 180px;
+                height: 30vh;
+                @include fullhd {
+                    width: 255px;
+                }
+            }
             pointer-events: none;
             @include until(960px) {
                 display: none;
@@ -72,6 +86,9 @@
                 text-transform: uppercase;
                 @include fullhd {
                     font-size: 18px;
+                    .zh-hans & {
+                        font-size: 16px;
+                    }
                 }
                 padding: 0.5em 1em;
                 width: 100%;
@@ -179,6 +196,10 @@
     }
 
     &__details {
+        @include mobile {
+            padding-left: 0;
+            padding-right: 0;
+        }
         .title {
             font-family: $knockout;
             text-transform: uppercase;
@@ -220,6 +241,13 @@
             color: $red;
             blockquote, p, li, td, th, h2, h3, h4, h5, h6 {
                 color: $red;
+            }
+
+            @include mobile {
+                > .column {
+                    padding-left: 0;
+                    padding-right: 0;
+                }
             }
         }
 
@@ -310,6 +338,7 @@
                 background-color: $red;
                 border-radius: 50%;
                 padding: 10px;
+                text-align: center;
             }
 
             &__details {
@@ -337,6 +366,11 @@
 
     &__alcohol {
         font-size: 30px;
+        &.has-text-centered {
+            @include mobile {
+                text-align: left !important;
+            }
+        }
     }
 
     @import 'modifiers/crisp',

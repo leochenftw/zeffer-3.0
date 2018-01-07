@@ -32,15 +32,23 @@ class ControllerAjaxExtension extends DataExtension
             if (Session::get('lang') == 'zh_Hans') {
                 if ($translated     =   $nav_item->getTranslation('zh_Hans')) {
                     $nav_item       =   $translated;
-                }
-            }
-            
-            $nav[]                  =   [
-                                            'title'     =>  $nav_item->MenuTitle,
-                                            'url'       =>  $nav_item->Link(),
-                                            'scrollto'  =>  $nav_item->MenuToSection,
-                                            'is_active' =>  $nav_item->LinkOrCurrent() == 'current'
+                    $nav[]          =   [
+                                            'title'         =>  $nav_item->MenuTitle,
+                                            'url'           =>  $nav_item->Link(),
+                                            'scrollto'      =>  $nav_item->MenuToSection,
+                                            'is_active'     =>  $nav_item->LinkOrCurrent() == 'current'
                                         ];
+                }
+            } else {
+                $nav[]                  =   [
+                                                'title'         =>  $nav_item->MenuTitle,
+                                                'url'           =>  $nav_item->Link(),
+                                                'scrollto'      =>  $nav_item->MenuToSection,
+                                                'is_active'     =>  $nav_item->LinkOrCurrent() == 'current'
+                                            ];
+            }
+
+
         }
 
         $flags                      =   Config::inst()->get('Icons', 'flags');

@@ -50,6 +50,7 @@ class HomePage_Controller extends Page_Controller
     public function AjaxResponse()
     {
         $data                           =   parent::AjaxResponse();
+        $this->AttachStory($data, 'Zeffer', 'welcome');
         $this->AttachCarousel($data);
         $this->AttachCiders($data);
         $this->AttachStory($data, 'Story', 'story');
@@ -66,36 +67,57 @@ class HomePage_Controller extends Page_Controller
     public function AttachCiders(&$data)
     {
         if ($cider = Ciders::get()->first()) {
+            if (Session::get('lang') == 'zh_Hans') {
+                if ($translated = $cider->getTranslation('zh_Hans')) {
+                    $cider               =   $translated;
+                }
+            }
             $data['ciders']              =   $cider->getData();
         }
     }
 
     public function AttachNews(&$data)
     {
-        if ($news = NewsLandingPage::get()->first()) {
-            $data['news']                =   $news->getData();
+        if (Session::get('lang') != 'zh_Hans') {
+            if ($news = NewsLandingPage::get()->first()) {
+                $data['news']            =   $news->getData();
+            }
         }
     }
 
     private function AttachBuyNow(&$data)
     {
-        if ($buy = BuynowPage::get()->first()) {
-            $data['buy']                =   $buy->getData();
+        if (Session::get('lang') != 'zh_Hans') {
+            if ($buy = BuynowPage::get()->first()) {
+                $data['buy']                =   $buy->getData();
+            }
         }
     }
 
     private function AttachContact(&$data)
     {
         if ($contact = ContactPage::get()->first()) {
+            if (Session::get('lang') == 'zh_Hans') {
+                if ($translated = $contact->getTranslation('zh_Hans')) {
+                    $contact            =   $translated;
+                }
+            }
             $data['contact']            =   $contact->getData();
         }
     }
 
     private function AttachCarousel(&$data)
     {
-        if ($this->CarouselItems()->count() > 0) {
+        $carousel_items             =   $this->CarouselItems();
+        if (Session::get('lang') == 'zh_Hans') {
+            if ($translated = $this->getTranslation('zh_Hans')) {
+                $carousel_items     =   $translated->CarouselItems();
+            }
+        }
+
+        if ($carousel_items->count() > 0) {
             $data['carousel']           =   [];
-            $carousel                   =   $this->CarouselItems();
+            $carousel                   =   $carousel_items;
             foreach ($carousel as $item)
             {
                 $data['carousel'][]     =   $item->getData();
@@ -125,6 +147,11 @@ class HomePage_Controller extends Page_Controller
     private function AttachTeam(&$data)
     {
         if ($team   =   People::get()->first()) {
+            if (Session::get('lang') == 'zh_Hans') {
+                if ($translated = $team->getTranslation('zh_Hans')) {
+                    $team              =   $translated;
+                }
+            }
             $data['team']               =   $team->getData();
         }
     }

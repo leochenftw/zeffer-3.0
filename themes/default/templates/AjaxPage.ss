@@ -25,6 +25,7 @@
         <% include VueHeader %>
         <main id="main">
             <% include Carousel %>
+            <% include Section SectionID=welcome %>
             <% include Ciders %>
             <% include Section SectionID=story, toID=true %>
             <% include Section SectionID=team %>

@@ -14,7 +14,15 @@ var $                   =   require('jquery'),
                                                 lng             :   data.lng,
                                                 key             :   data.api_key,
                                                 methods         :   data.methods,
-                                                socials         :   data.socials
+                                                socials         :   data.socials,
+                                                fallback        :   data.fallback,
+                                                social_label    :   data.social_label
+                                            },
+                                computed:   {
+                                                get_style       :   function()
+                                                                    {
+                                                                        return 'background-image: url(' + this.fallback + ');';
+                                                                    }
                                             },
                                 mounted :   function()
                                             {
@@ -23,7 +31,16 @@ var $                   =   require('jquery'),
                                                 {
                                                     speed: 0.2
                                                 });
-                                                $(this.$el).find('#map').gmap();
+
+                                                if ($(this.$el).find('#map').length > 0) {
+                                                    $(this.$el).find('#map').gmap();
+                                                }
+                                            },
+                                updated :   function()
+                                            {
+                                                if ($(this.$el).find('#map').length > 0) {
+                                                    $(this.$el).find('#map').gmap();
+                                                }
                                             },
                                 methods :   {
                                                 'make_class'    :   function(media)

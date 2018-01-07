@@ -6,9 +6,18 @@ var $                   =   require('jquery'),
                             {
                                 el      :   '#carousel',
                                 data    :   {
-                                                carousel        :   data
+                                                carousel                :   data,
+                                                pressed                 :   false
                                             },
-                                mounted :   function() {
+                                beforeUpdate : function()
+                                            {
+                                                $('#carousel').trigger('destroy.owl.carousel');
+                                                $('#carousel owl-item').remove();
+                                            },
+                                updated :   function()
+                                            {
+                                                var me                  =   this;
+
                                                 $('#carousel').owlCarousel({
                                                     items               :   1,
                                                     lazyLoad            :   true,
@@ -24,11 +33,56 @@ var $                   =   require('jquery'),
                                                 {
                                                     var slide   =   $(e.target).find('img[src="' + e.url + '"]').parent();
                                                     slide.css('background-image', 'url(' + e.url + ')').parent().addClass('backgrounded');
+                                                }).on('drag.owl.carousel', function(e)
+                                                {
+                                                    me.pressed          =   true;
+                                                }).on('dragged.owl.carousel', function(e)
+                                                {
+                                                    me.pressed          =   true;
+                                                }).on('translate.owl.carousel', function(e)
+                                                {
+                                                    me.pressed          =   true;
+                                                }).on('translated.owl.carousel', function(e)
+                                                {
+                                                    me.pressed          =   false;
+                                                });
+                                            },
+                                mounted :   function() {
+                                                var me                  =   this;
+                                                $('#carousel').owlCarousel({
+                                                    items               :   1,
+                                                    lazyLoad            :   true,
+                                                    loop                :   true,
+                                                    nav                 :   true,
+                                                    dots                :   false,
+                                                    smartSpeed          :   1000,
+                                                    autoplay            :   true,
+                                                    autoplayTimeout     :   6000,
+                                                    autoplayHoverPause  :   true,
+                                                    navText             :   ["<i class='fa fa-chevron-left'></i>","<i class='fa fa-chevron-right'></i>"]
+                                                }).on('loaded.owl.lazy', function(e)
+                                                {
+                                                    var slide   =   $(e.target).find('img[src="' + e.url + '"]').parent();
+                                                    slide.css('background-image', 'url(' + e.url + ')').parent().addClass('backgrounded');
+                                                }).on('drag.owl.carousel', function(e)
+                                                {
+                                                    me.pressed          =   true;
+                                                }).on('dragged.owl.carousel', function(e)
+                                                {
+                                                    me.pressed          =   true;
+                                                }).on('translate.owl.carousel', function(e)
+                                                {
+                                                    me.pressed          =   true;
+                                                }).on('translated.owl.carousel', function(e)
+                                                {
+                                                    me.pressed          =   false;
                                                 });
 
                                                 $(this.$el).find('.btn-go-to').on('click touchend', function(e)
                                                 {
                                                     e.preventDefault();
+
+                                                    if (me.pressed) return;
 
                                                     var target  =   $(this).data('scrollto');
                                                     target      =   $('#' + target);

@@ -27,6 +27,9 @@
             font-weight: bold;
             text-transform: uppercase;
             min-height: 87px;
+            @include mobile {
+                min-height: 0;
+            }
 
             &:before {
                 font-family: $knockout;
@@ -87,6 +90,9 @@
 
     &__availability {
         &-col {
+            @include mobile {
+                width: 100% !important;
+            }
             .with-title {
                 border: 1px dotted $copper;
                 padding: 5px;
@@ -107,6 +113,7 @@
                     font-weight: bold;
                     color: $blue;
                     border-right: 1px dotted $copper;
+
                     &:last-child {
                         border-right: none;
                         &:first-child {
@@ -143,8 +150,15 @@
         margin-bottom: 24px !important;
         .column {
             border-right: 1px dotted $copper;
+            @include mobile {
+                border-right: none;
+                border-bottom: 1px dotted $copper;
+            }
             &:last-child {
                 border-right: none;
+                @include mobile {
+                    border-bottom: none;
+                }
             }
         }
     }

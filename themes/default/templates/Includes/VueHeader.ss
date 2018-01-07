@@ -18,7 +18,7 @@
                         <img :src="active_lang.icon" />
                     </span>
                 </a>
-                <div class="navbar-dropdown is-boxed">
+                <div class="navbar-dropdown is-boxed is-right">
                     <a v-for="language in languages" :class="{'navbar-item': true, 'btn-lang': true, 'is-active': language.is_active}" :data-locale="language.locale">
                         <span class="lang-icon">
                             <img :src="language.icon" />

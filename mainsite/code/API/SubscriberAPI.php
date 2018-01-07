@@ -58,13 +58,13 @@ class SubscriberAPI extends BaseRestController
     {
         $client                 =   new Client(['base_uri' => 'https://api.createsend.com/api/v3.1/']);
 
-        // list id ?? - Zeffer's (api: ??)
+        // fc34006c665ef47033fdcb1fa01a07d1 - Zeffer's (api: cd9f8ba8cf21150bb852a5e5e2fd8efeb740924a44843e07)
         // a19bb6f016d0b335942b39824d2168fd - the test account (api: 5e20a90c8dea174856b60952e4fbc273)
-        $list_id                =   'a19bb6f016d0b335942b39824d2168fd';
+        $list_id                =   'fc34006c665ef47033fdcb1fa01a07d1';
 
         $signup_data            =   [
                                         'auth'  =>  [
-                                                        '5e20a90c8dea174856b60952e4fbc273',
+                                                        'cd9f8ba8cf21150bb852a5e5e2fd8efeb740924a44843e07',
                                                         null
                                                     ],
                                         'json'  =>  [
@@ -81,7 +81,7 @@ class SubscriberAPI extends BaseRestController
             $response           =   $client->request('POST', 'subscribers/' . $list_id . '.json', $signup_data);
             return json_decode($response->getBody());
         } catch (Exception $e) {
-            
+
         }
 
         return false;

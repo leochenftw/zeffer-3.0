@@ -1,4 +1,4 @@
-<section id="$SectionID" class="section__text<% if not $toID %> to-section<% end_if %>">
+<section id="$SectionID" class="section__text<% if not $toID %> to-section<% end_if %>"<% if $SectionID == 'news' || $SectionID == 'buy' %> v-if="title" <% end_if %>>
     <div v-if="hero" class="section-hero"></div>
     <div class="section">
         <div class="container">

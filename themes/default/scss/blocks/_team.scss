@@ -22,5 +22,10 @@
                 line-height: 1.4;
             }
         }
+
+        @include mobile {
+            padding-left: 0;
+            padding-right: 0;
+        }
     }
 }
