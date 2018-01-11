@@ -18,7 +18,8 @@ var $                   =   require('jquery'),
                                             {
                                                 var me                  =   this;
 
-                                                $('#carousel').owlCarousel({
+                                                $('#carousel').owlCarousel(
+                                                {
                                                     items               :   1,
                                                     lazyLoad            :   true,
                                                     loop                :   true,
@@ -35,16 +36,32 @@ var $                   =   require('jquery'),
                                                     slide.css('background-image', 'url(' + e.url + ')').parent().addClass('backgrounded');
                                                 }).on('drag.owl.carousel', function(e)
                                                 {
-                                                    me.pressed          =   true;
+                                                    // me.pressed          =   true;
                                                 }).on('dragged.owl.carousel', function(e)
                                                 {
-                                                    me.pressed          =   true;
+                                                    // me.pressed          =   true;
                                                 }).on('translate.owl.carousel', function(e)
                                                 {
                                                     me.pressed          =   true;
                                                 }).on('translated.owl.carousel', function(e)
                                                 {
                                                     me.pressed          =   false;
+                                                });
+
+                                                $(this.$el).find('.btn-go-to').on('click touchend', function(e)
+                                                {
+                                                    e.preventDefault();
+                                                    console.log(me.pressed);
+                                                    if (me.pressed) return;
+
+                                                    var target  =   $(this).data('scrollto');
+                                                    target      =   $('#' + target);
+
+                                                    if (!target.hasClass('to-section')) {
+                                                        $.scrollTo(target, 1000, {axis: 'y'});
+                                                    } else {
+                                                        $.scrollTo(target.find('.section:eq(0)'), 1000, {axis: 'y'});
+                                                    }
                                                 });
                                             },
                                 mounted :   function() {
@@ -66,10 +83,10 @@ var $                   =   require('jquery'),
                                                     slide.css('background-image', 'url(' + e.url + ')').parent().addClass('backgrounded');
                                                 }).on('drag.owl.carousel', function(e)
                                                 {
-                                                    me.pressed          =   true;
+                                                    // me.pressed          =   true;
                                                 }).on('dragged.owl.carousel', function(e)
                                                 {
-                                                    me.pressed          =   true;
+                                                    // me.pressed          =   true;
                                                 }).on('translate.owl.carousel', function(e)
                                                 {
                                                     me.pressed          =   true;
@@ -81,6 +98,7 @@ var $                   =   require('jquery'),
                                                 $(this.$el).find('.btn-go-to').on('click touchend', function(e)
                                                 {
                                                     e.preventDefault();
+                                                    console.log(me.pressed);
 
                                                     if (me.pressed) return;
 

@@ -46,6 +46,10 @@ var $               =   require('jquery'),
                                             });
                                         },
                             methods :   {
+                                            show_menu   :   function(e)
+                                                            {
+                                                                $('#main-menu').animate({height: 'toggle'});
+                                                            },
                                             make_class  :   function(i)
                                                             {
                                                                 var n       =   1;

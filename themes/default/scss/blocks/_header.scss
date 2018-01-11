@@ -13,6 +13,30 @@
             height: auto;
         }
 
+        &-brand {
+            @include mobile {
+                position: relative;
+                display: flex;
+                justify-content: space-between;
+            }
+        }
+
+        &-burger {
+            margin-left: 0;
+        }
+
+        &-logo {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            height: 40px;
+            img {
+                max-height: 100%;
+                width: auto;
+            }
+        }
+
         &.mini {
             height: 40px;
             @include mobile {
@@ -29,6 +53,13 @@
 
             &.is-logo {
                 transition: all 0.3s;
+                @include mobile {
+                    display: none;
+                }
+            }
+
+            @include mobile {
+                text-align: center;
             }
 
             &:not([data-locale="zh_Hans"]) {
@@ -59,21 +90,57 @@
 
                 .navbar-link {
                     user-select: none;
+                    @include mobile {
+                        padding: 0.5rem 1rem;
+                        &#selector-trigger {
+                            padding-top: 10px;
+                            height: 100%;
+                            max-height: 52px;
+                            .lang {
+                                &-icon {
+                                    display: block;
+                                }
+                            }
+                        }
+                    }
                 }
 
                 &.is-active {
                     .navbar-link {
                         background-color: rgba($orange, 0.1) !important;
                     }
+
+                    .navbar-dropdown {
+                        @include mobile {
+                            display: block;
+                        }
+                    }
                 }
 
                 .navbar-dropdown {
-                    .lang-icon {
-                        display: inline-block;
-                        width: 32px;
-                        margin-right: 12px;
-                        img {
-                            width: 100%;
+                    @include mobile {
+                        background-color: #ffffff;
+                        padding: 0;
+                        display: none;
+                    }
+                    .lang {
+                        &-icon {
+                            display: inline-block;
+                            width: 32px;
+                            margin-right: 12px;
+                            @include mobile {
+                                display: block;
+                                margin-right: 0;
+                            }
+                            img {
+                                width: 100%;
+                            }
+                        }
+
+                        &-label {
+                            @include mobile {
+                                display: none;
+                            }
                         }
                     }
 
@@ -82,6 +149,10 @@
                         &[data-locale="zh_Hans"] {
                             font-size: 12px;
                             font-family: $chinese;
+                        }
+
+                        @include mobile {
+                            padding: 0.5rem 1rem;
                         }
                     }
                 }
