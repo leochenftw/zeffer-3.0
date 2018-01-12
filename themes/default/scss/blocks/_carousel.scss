@@ -2,6 +2,9 @@
     &-carousel {
         overflow: hidden;
         position: relative;
+        .is-scrolling & {
+            pointer-events: none;
+        }
     }
 
     &-nav {
@@ -45,6 +48,9 @@
 
     &-item {
         height: 100vh;
+        @include mobile {
+            height: 70vh;
+        }
         transition: all 0.3s;
         opacity: 0;
         visibility: hidden;
@@ -74,6 +80,10 @@
                     img {
                         display: inline-block;
                         width: auto;
+                        @include until(480px) {
+                            max-height: 50px;
+                            width: auto;
+                        }
                     }
                 }
 
@@ -85,6 +95,12 @@
                     a {
                         display: inline-block;
                         padding: 1em 0;
+                    }
+                }
+
+                .btn-go-to {
+                    @include mobile {
+                        font-size: 20px;
                     }
                 }
             }
@@ -104,6 +120,11 @@
                     color: white;
                     font-family: $knockout;
                     font-size: 28px;
+
+                    @include mobile {
+                        font-size: 16px;
+                    }
+
                     text-shadow: 0 2px 2px #000;
                     text-transform: uppercase;
                 }

@@ -1,12 +1,13 @@
 <?php
 class CustomSiteConfig extends DataExtension
 {
-    public static $db = array(
+    public static $db = [
+        'Copyright'                     =>  'Varchar(64)',
         'GoogleSiteVerificationCode'    =>  'Varchar(128)',
         'GoogleAnalyticsCode'           =>  'Varchar(20)',
         'SiteVersion'                   =>  'Varchar(10)',
         'GoogleCustomCode'              =>  'HTMLText'
-    );
+    ];
 
     /**
      * Has_one relationship
@@ -16,11 +17,11 @@ class CustomSiteConfig extends DataExtension
         'SiteLogo'                      =>  'Image'
     ];
 
-	public function updateCMSFields(FieldList $fields)
+    public function updateCMSFields(FieldList $fields)
     {
-		$fields->addFieldToTab("Root.Google", new TextField('GoogleSiteVerificationCode', 'Google Site Verification Code'));
-		$fields->addFieldToTab("Root.Google", new TextField('GoogleAnalyticsCode', 'Google Analytics Code'));
-		$fields->addFieldToTab("Root.Google", new TextareaField('GoogleCustomCode', 'Custom Google Code'));
+        $fields->addFieldToTab("Root.Google", new TextField('GoogleSiteVerificationCode', 'Google Site Verification Code'));
+        $fields->addFieldToTab("Root.Google", new TextField('GoogleAnalyticsCode', 'Google Analytics Code'));
+        $fields->addFieldToTab("Root.Google", new TextareaField('GoogleCustomCode', 'Custom Google Code'));
         $fields->addFieldToTab(
             'Root.Main',
             SaltedUploader::create(
@@ -29,7 +30,8 @@ class CustomSiteConfig extends DataExtension
             ), //->setCropperRatio(170/60),
             'Title'
         );
-		$fields->addFieldToTab('Root.Main', new TextField('SiteVersion', 'Site Version'));
-	}
+        $fields->addFieldToTab('Root.Main', new TextField('Copyright', 'Copyright'));
+        $fields->addFieldToTab('Root.Main', new TextField('SiteVersion', 'Site Version'));
+    }
 
 }

@@ -6,6 +6,7 @@ var $               =   require('jquery'),
                         {
                             el      :   '#subscription',
                             data    :   {
+                                            lang            :   'en-NZ',
                                             title           :   'Subscribe to our newsletter',
                                             content         :   '<p>You can also sign up to our newsletter. We promise not to spam you! We’ll only be sharing juicy news, upcoming cider releases and giveaways (so just the good stuff).</p>',
                                             csrf            :   csrf,

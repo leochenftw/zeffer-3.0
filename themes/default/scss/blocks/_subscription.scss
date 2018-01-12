@@ -20,6 +20,11 @@
             .fa {
                 margin-right: 0.5em;
             }
+
+            @include mobile {
+                width: 100%;
+                display: block;
+            }
         }
     }
 }

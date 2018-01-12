@@ -6,7 +6,7 @@
                 <span></span>
                 <span></span>
             </div>
-            <a v-on:click.prevent="go_to('carousel', $event)" class="navbar-logo mobile-only" href="/">
+            <a v-on:click.prevent="go_to('carousel', $event)" class="navbar-logo" href="/">
                 <% if $SiteConfig.SiteLogo %>$SiteConfig.SiteLogo.SetHeight(60)<% else %>$SiteConfig.Title<% end_if %>
             </a>
         </div>

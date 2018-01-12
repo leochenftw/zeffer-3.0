@@ -48,7 +48,8 @@ var $               =   require('jquery'),
                             methods :   {
                                             show_menu   :   function(e)
                                                             {
-                                                                $('#main-menu').animate({height: 'toggle'});
+                                                                $('#main-menu').toggleClass('is-active');
+                                                                $('#language-selector').removeClass('is-active');
                                                             },
                                             make_class  :   function(i)
                                                             {
@@ -64,17 +65,13 @@ var $               =   require('jquery'),
                                                             },
                                             go_to       :   function(id, e)
                                                             {
+                                                                $('#main-menu, #language-selector').removeClass('is-active');
                                                                 var target  =   $('#' + id);
                                                                 if (target.hasClass('to-section')) {
                                                                     $.scrollTo(target.find('.section:eq(0)'), 1000, {axis: 'y', offset: -40});
                                                                 } else {
                                                                     $.scrollTo(target, 1000, {axis: 'y', offset: -40});
                                                                 }
-                                                                // if (!has_hero) {
-                                                                //     $.scrollTo(document.getElementById(id), 500, {axis: 'y'});
-                                                                // } else {
-                                                                //     $.scrollTo($('#' + id).find('.section:eq(0)')[0], 500, {axis: 'y'});
-                                                                // }
                                                             }
                                         }
                         });
@@ -86,6 +83,7 @@ $(document).on('click touchend', '#selector-trigger', function(e)
 {
     e.preventDefault();
     $(this).parent().toggleClass('is-active');
+    $('#main-menu').removeClass('is-active');
 });
 
 module.exports  =   constr;

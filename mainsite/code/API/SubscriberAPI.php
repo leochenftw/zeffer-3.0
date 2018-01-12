@@ -29,7 +29,7 @@ class SubscriberAPI extends BaseRestController
         $data                   =   $request->postVars();
 
         if ($test               =   Subscriber::get()->filter(['Email' => $data['Email']])->first()) {
-            return  $this->httpError(500, 'You\'ve signed up already.');
+            return  $this->httpError(500, Session::get('lang') == 'zh_Hans' ? '您已经订阅过啦!' : 'You\'ve signed up already.');
         }
 
         $subscription           =   new Subscriber();
@@ -43,15 +43,15 @@ class SubscriberAPI extends BaseRestController
                 Session::set('Subscribed', 1);
                 return  [
                             'code'      =>  200,
-                            'message'   =>  'Congratulation! you have successfully subscribed to our newsletter!'
+                            'message'   =>  Session::get('lang') == 'zh_Hans' ? '谢谢您的订阅! 您已经成功加入我们的订阅列表!' : 'Congratulation! you have successfully subscribed to our newsletter!'
                         ];
             }
 
-            return $this->httpError(400, 'Sorry we couldn\'t add you to our newsletter this at this time, but we have had your name and email address saved in our database.');
+            return $this->httpError(400, Session::get('lang') == 'zh_Hans' ? '抱歉, 我们未能将您录入我们的订阅列表, 但您的订阅申请已经被存入我们的服务器.' : 'Sorry we couldn\'t add you to our newsletter this at this time, but we have had your name and email address saved in our database.');
 
         }
 
-        return $this->httpError(500, 'internal server error');
+        return $this->httpError(500, Session::get('lang') == 'zh_Hans' ? '服务器出错啦!' : 'internal server error');
     }
 
     private function NotifyCampaignMonitor(&$subscriber)

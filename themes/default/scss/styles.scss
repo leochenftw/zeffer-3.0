@@ -54,5 +54,18 @@ html {
                 visibility: visible;
             }
         }
+
+        @include mobile {
+            padding-top: 52px;
+        }
+    }
+
+    &.no-scroll {
+        height: 100vh;
+        overflow: hidden;
+        body {
+            height: 100vh;
+            overflow: hidden;
+        }
     }
 }

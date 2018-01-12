@@ -54,15 +54,24 @@ class ControllerAjaxExtension extends DataExtension
         $flags                      =   Config::inst()->get('Icons', 'flags');
         $csrf                       =   Session::get('SecurityID');
         $csrf                       =   !empty($csrf) ? $csrf : SecurityToken::getSecurityID();
+        $site_config                =   SiteConfig::current_site_config();
+        $owner                      =   $this->owner;
+        if (Session::get('lang') == 'zh_Hans') {
+            $site_config            =   $site_config->getTranslation('zh_Hans');
+            $owner                  =   $owner->getTranslation('zh_Hans');
+        }
         return  [
-                    'id'            =>  $this->owner->ID,
+                    'id'            =>  $owner->ID,
                     'url'           =>  $this->owner->Link() == '/home/' ? '/' : $this->owner->Link(),
-                    'title'         =>  $this->owner->Title,
-                    'content'       =>  $this->owner->Content,
+                    'title'         =>  $owner->Title,
+                    'page_title'    =>  $owner->MetaTitle,
+                    'content'       =>  $owner->Content,
                     'navigation'    =>  $nav,
                     'csrf'          =>  $csrf,
                     'subscribed'    =>  !empty(Session::get('Subscribed')),
                     'lang'          =>  str_replace('_', '-', Session::get('lang')),
+                    'site_name'     =>  $site_config->Title,
+                    'copyright'     =>  $site_config->Copyright,
                     'languages'     =>  [
                                             [
                                                 'title'     =>  'English',

@@ -11,7 +11,8 @@ var $           =   require('jquery');
     Subscriber  =   require('./ui/subscribe-form'),
     lightbox    =   require('lightbox2'),
     Waypoint    =   require('./ui/waypoint'),
-    jarallax    =   require('jarallax');
+    jarallax    =   require('jarallax'),
+    Footer      =   require('./ui/footer');
 
 $.getJSON(window.location.pathname, function(data)
 {
@@ -30,6 +31,7 @@ $.getJSON(window.location.pathname, function(data)
         news            =   new News(data.news),
         form            =   new Subscriber(data.csrf, data.subscribed),
         nav_items       =   data.navigation,
+        footer          =   new Footer(data.copyright),
         activate        =   function(title, direction)
                             {
                                 nav_items.forEach(function(item)
@@ -37,7 +39,7 @@ $.getJSON(window.location.pathname, function(data)
                                     // console.log(item.title + ': ' + title);
                                     if (item.title == title) {
                                         item.is_active  =   true;
-                                        if (title == 'Ciders' || title == '获奖西打') {
+                                        if (title == 'Ciders' || title == '全部产品') {
                                             if (direction && direction == 'up') {
                                                 $('.ciders__menu').addClass('is-active');
                                             }
@@ -64,13 +66,16 @@ $.getJSON(window.location.pathname, function(data)
                                 return wp;
                             };
 
-    var anchor_ciders   =   point_maker(ciders, data.lang == 'zh-Hans' ? '获奖西打' : 'Ciders'),
-        anchor_story    =   point_maker(story, data.lang == 'zh-Hans' ? '我们的故事' : 'Story'),
-        anchor_sustain  =   point_maker(sustain, data.lang == 'zh-Hans' ? '可持续发展' : 'Sustainability'),
-        anchor_awards   =   point_maker(awards, data.lang == 'zh-Hans' ? '奖项' : 'Awards'),
+    var anchor_ciders   =   point_maker(ciders, data.lang == 'zh-Hans' ? '全部产品' : 'Ciders'),
+        anchor_story    =   point_maker(story, data.lang == 'zh-Hans' ? '企业文化' : 'Story'),
+        anchor_sustain  =   point_maker(sustain, data.lang == 'zh-Hans' ? '环保理念' : 'Sustainability'),
+        anchor_awards   =   point_maker(awards, data.lang == 'zh-Hans' ? '荣获奖项' : 'Awards'),
         anchor_contact  =   point_maker(contact, data.lang == 'zh-Hans' ? '联系我们' : 'Contact'),
         anchor_buy      =   point_maker(buy, data.lang == 'zh-Hans' ? '在线购买' : 'Buy now'),
-        anchor_news     =   point_maker(news, data.lang == 'zh-Hans' ? '新闻' : 'News');
+        anchor_news     =   point_maker(news, data.lang == 'zh-Hans' ? '最新动态' : 'News');
+
+    form.lang                   =   data.lang;
+    $('title').html(data.page_title);
 
     if (data.lang == 'zh-Hans') {
         contact.social_label    =   '社交平台';
@@ -105,7 +110,7 @@ $.getJSON(window.location.pathname, function(data)
     $(window).on('scroll resize', function(e)
     {
         if ($(window).scrollTop() <= $(window).height() * 0.8) {
-            activate($('body').hasClass('zh-hans') ? '首页' : 'Home');
+            activate($('body').hasClass('zh-hans') ? '吉馥首页' : 'Home');
         }
     }).scroll();
 
@@ -169,6 +174,8 @@ $.getJSON(window.location.pathname, function(data)
                 buy.sec_cont                =   response.buy ? response.buy.secondary_content : null;
                 buy.options                 =   response.buy ? response.buy.options : null;
 
+                form.lang                   =   response.lang;
+
                 if (response.lang == 'zh-Hans') {
                     contact.social_label    =   '社交平台';
                     ciders.labels           =   {
@@ -184,13 +191,13 @@ $.getJSON(window.location.pathname, function(data)
                     form.content            =   '';
                     form.message            =   '您已经加入了我们的订阅计划 :)';
 
-                    anchor_ciders.title     =   '获奖西打';
-                    anchor_story.title      =   '我们的故事';
-                    anchor_sustain.title    =   '可持续发展';
-                    anchor_awards.title     =   '奖项';
+                    anchor_ciders.title     =   '全部产品';
+                    anchor_story.title      =   '企业文化';
+                    anchor_sustain.title    =   '环保理念';
+                    anchor_awards.title     =   '荣获奖项';
                     anchor_contact.title    =   '联系我们';
                     anchor_buy.title        =   '在线购买';
-                    anchor_news.title       =   '新闻';
+                    anchor_news.title       =   '最新动态';
                     anchor_buy.suspend      =   true;
                     anchor_news.suspend     =   true;
                 } else {
@@ -219,10 +226,16 @@ $.getJSON(window.location.pathname, function(data)
                     anchor_news.suspend     =   false;
                 }
 
+                footer.title                =   response.copyright;
+
+                $('title').html(response.page_title);
+
                 $.scrollTo($('body'), 100, {axis: 'y', onAfter: function()
                 {
                     $('body').addClass('ready');
                 }});
+
+                activate($('body').hasClass('zh-hans') ? '吉馥首页' : 'Home');
             }
         );
     });
@@ -231,14 +244,12 @@ $.getJSON(window.location.pathname, function(data)
     $('body').addClass('ready').removeClass('en-nz').removeClass('zh-hans').addClass(data.lang.toLowerCase());
 });
 
-$(document).ready(function(e)
+$(document).on('touchstart', function(e)
 {
-    $(window).scrollTop(0);
-    $('#btn-mobile-menu').click(function(e)
-    {
-        e.preventDefault();
-        var target  =   $('#' + $(this).data('target'));
-        target.animate({height: 'toggle'});
-        $(this).toggleClass('is-active');
-    });
+    window.fingerdown   =   true;
+});
+
+$(document).on('touchend', function(e)
+{
+    window.fingerdown   =   false;
 });

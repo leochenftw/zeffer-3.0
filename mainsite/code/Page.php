@@ -161,7 +161,11 @@ class Page_Controller extends ContentController
 
         if (count($matches) > 0) {
             if ($this->MetaTitle) {
-                $tags = preg_replace($title, '$1' . $this->MetaTitle . '$3', $tags);
+                $meta_title     =   $this->MetaTitle;
+                if (Session::get('lang') == 'zh_Hans') {
+                    $meta_title =   $this->getTranslation('zh_Hans')->MetaTitle;
+                }
+                $tags = preg_replace($title, '$1' . $meta_title . '$3', $tags);
             }
         }
 
