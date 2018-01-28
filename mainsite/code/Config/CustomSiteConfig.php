@@ -14,7 +14,8 @@ class CustomSiteConfig extends DataExtension
      * @var array
      */
     private static $has_one = [
-        'SiteLogo'                      =>  'Image'
+        'SiteLogo'                      =>  'Image',
+        'SubscriptionHero'              =>  'Image'
     ];
 
     public function updateCMSFields(FieldList $fields)
@@ -29,6 +30,13 @@ class CustomSiteConfig extends DataExtension
                 'Website logo'
             ), //->setCropperRatio(170/60),
             'Title'
+        );
+        $fields->addFieldToTab(
+            'Root.Subscription',
+            SaltedUploader::create(
+                'SubscriptionHero',
+                'Subscription section hero'
+            )//->setCropperRatio(170/60),
         );
         $fields->addFieldToTab('Root.Main', new TextField('Copyright', 'Copyright'));
         $fields->addFieldToTab('Root.Main', new TextField('SiteVersion', 'Site Version'));

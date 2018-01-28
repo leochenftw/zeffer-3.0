@@ -32,6 +32,8 @@ var $                   =   require('jquery'),
                                                         j       =   this.ciders[i].tannin,
                                                         o       =   this.ciders[i];
 
+                                                    o.alchohol  =   parseFloat(o.alchohol).toString();
+
                                                     dryness.each(function(i, el)
                                                     {
                                                         if (n > 0) {
@@ -185,6 +187,6 @@ var $                   =   require('jquery'),
         return  this.ciders;
     };
 
-require('waypoints/lib/noframework.waypoints');
+// require('waypoints/lib/noframework.waypoints');
 
 module.exports          =   constr;

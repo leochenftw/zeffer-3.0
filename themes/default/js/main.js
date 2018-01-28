@@ -29,7 +29,7 @@ $.getJSON(window.location.pathname, function(data)
         contact         =   new Contact(data.contact);
         buy             =   new Buy(data.buy),
         news            =   new News(data.news),
-        form            =   new Subscriber(data.csrf, data.subscribed),
+        form            =   new Subscriber(data.csrf, data.subscribed, data.sub_hero),
         nav_items       =   data.navigation,
         footer          =   new Footer(data.copyright),
         activate        =   function(title, direction)
@@ -80,13 +80,13 @@ $.getJSON(window.location.pathname, function(data)
     if (data.lang == 'zh-Hans') {
         contact.social_label    =   '社交平台';
         ciders.labels           =   {
-                                        see                     :   '色泽',
-                                        smell                   :   '气味',
-                                        taste                   :   '品味',
-                                        trywith                 :   '佐餐',
-                                        dryness                 :   '干度',
-                                        tannin                  :   '单宁',
-                                        avail                   :   '包装'
+                                        see                     :   '视觉',//'色泽',
+                                        smell                   :   '嗅觉',//'气味',
+                                        taste                   :   '味觉',//'品味',
+                                        trywith                 :   '佐餐推荐',//'佐餐',
+                                        dryness                 :   '甜度',//'干度',
+                                        tannin                  :   '单宁含量',//'单宁',
+                                        avail                   :   '容量'//'包装'
                                     };
         form.title              =   '加入订阅';
         form.content            =   '';
@@ -131,6 +131,11 @@ $.getJSON(window.location.pathname, function(data)
                 $('#language-selector').removeClass('is-active');
                 $('html').attr('lang', response.lang);
                 $('body').removeClass('en-nz').removeClass('zh-hans').addClass(response.lang.toLowerCase());
+
+                welcome.title               =   response.welcome.title;
+                welcome.content             =   response.welcome.content;
+                welcome.hero                =   response.welcome.hero;
+
                 header.navitems             =   response.navigation;
                 header.languages            =   response.languages;
                 caro.carousel               =   response.carousel;
@@ -175,6 +180,7 @@ $.getJSON(window.location.pathname, function(data)
                 buy.options                 =   response.buy ? response.buy.options : null;
 
                 form.lang                   =   response.lang;
+                form.hero                   =   response.sub_hero;
 
                 if (response.lang == 'zh-Hans') {
                     contact.social_label    =   '社交平台';

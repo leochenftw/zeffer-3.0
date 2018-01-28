@@ -60,6 +60,7 @@ class ControllerAjaxExtension extends DataExtension
             $site_config            =   $site_config->getTranslation('zh_Hans');
             $owner                  =   $owner->getTranslation('zh_Hans');
         }
+
         return  [
                     'id'            =>  $owner->ID,
                     'url'           =>  $this->owner->Link() == '/home/' ? '/' : $this->owner->Link(),
@@ -71,6 +72,7 @@ class ControllerAjaxExtension extends DataExtension
                     'subscribed'    =>  !empty(Session::get('Subscribed')),
                     'lang'          =>  str_replace('_', '-', Session::get('lang')),
                     'site_name'     =>  $site_config->Title,
+                    'sub_hero'      =>  $site_config->SubscriptionHero()->exists() ? $site_config->SubscriptionHero()->SetWidth(1980)->URL : null,
                     'copyright'     =>  $site_config->Copyright,
                     'languages'     =>  [
                                             [

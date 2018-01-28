@@ -1,6 +1,6 @@
 var $               =   require('jquery'),
     Vue             =   require('vue/dist/vue.common'),
-    constr          =   function(csrf, subscribed)
+    constr          =   function(csrf, subscribed, hero)
     {
         this.form =   new Vue(
                         {
@@ -10,14 +10,18 @@ var $               =   require('jquery'),
                                             title           :   'Subscribe to our newsletter',
                                             content         :   '<p>You can also sign up to our newsletter. We promise not to spam you! We’ll only be sharing juicy news, upcoming cider releases and giveaways (so just the good stuff).</p>',
                                             csrf            :   csrf,
-                                            hero            :   '/assets/Uploads/_resampled/ScaleWidthWzE5ODBd/3-GroupShot-1.jpg',
+                                            hero            :   hero,
                                             completed       :   subscribed,
                                             message         :   'You have already subscribed to our newsletter :)'
                                         },
+                            updated :   function()
+                                        {
+                                            $(this.$el).find('.section-hero div div').css('background-image', 'url(' + this.hero + ')');
+                                        },
                             mounted :   function()
                                         {
-                                            $('#subscription').find('.section-hero').attr('data-img-src', this.hero);
-                                            $('#subscription').find('.section-hero').jarallax(
+                                            $(this.$el).find('.section-hero').attr('data-img-src', this.hero);
+                                            $(this.$el).find('.section-hero').jarallax(
                                             {
                                                 speed: 0.2
                                             });
