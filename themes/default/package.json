@@ -12,7 +12,7 @@
    "devDependencies": {
       "breakpoint-sass": "^2.7.1",
       "generator-sh-base-styles": "^0.0.7",
-      "grunt": "^1.0.1",
+      "grunt": "^1.0.2",
       "grunt-bg-shell": "^2.3.3",
       "grunt-cli": "^1.2.0",
       "grunt-contrib-imagemin": "^1.0.1",
@@ -23,7 +23,7 @@
       "gulp": "^3.9.1",
       "gulp-autoprefixer": "^4.1.0",
       "gulp-sass": "^3.1.0",
-      "gulp-sourcemaps": "^2.6.3",
+      "gulp-sourcemaps": "^2.6.4",
       "sass-module-importer": "^1.4.0",
       "sassdoc": "^2.2.2",
       "susy": "^2.2.12"
@@ -34,7 +34,7 @@
       "font-awesome": "^4.7.0",
       "format-number": "^3.0.0",
       "gsap": "^1.20.3",
-      "jarallax": "1.9.0",
+      "jarallax": "^1.9.3",
       "jquery": "~3.2.1",
       "jquery-validation": "^1.17.0",
       "jquery-waypoints": "^2.0.5",
@@ -44,7 +44,7 @@
       "raf": "^3.3.2",
       "rangeslider-js": "^3.0.2",
       "save": "^2.3.2",
-      "uglify-js": "^3.3.4",
+      "uglify-js": "^3.3.9",
       "vue": "^2.5.13",
       "waypoints": "^4.0.1"
    },
