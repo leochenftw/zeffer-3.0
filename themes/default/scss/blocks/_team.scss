@@ -23,9 +23,21 @@
             }
         }
 
-        @include mobile {
+        @include until(768px) {
             padding-left: 0;
             padding-right: 0;
+        }
+
+        &s {
+            @include just-tablet {
+                display: flex;
+                flex-wrap: wrap;
+            }
+        }
+
+        @include just-tablet {
+            flex: none;
+            width: 50%;
         }
     }
 }

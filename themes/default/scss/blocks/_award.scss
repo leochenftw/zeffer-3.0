@@ -18,10 +18,23 @@
             border-bottom:  1px solid $copper;
             margin-bottom: 2em;
         }
+
+        @include just-tablet {
+            display: flex;
+            .column {
+
+            }
+        }
+
         &__heading {
-            @include mobile {
+            @include until(767px) {
                 display: none;
             }
+
+            @include just-tablet {
+                display: flex;
+            }
+
             .column {
                 text-transform: uppercase;
                 font-size: 32px;
@@ -35,18 +48,53 @@
                     .zh-hans & {
                         width: 12%;
                     }
+                }
 
+                @include just-tablet {
+                    font-size: 24px;
+                    &.is {
+                        &-1 {
+                            width: 8.33333%;
+                            flex: none;
+                            .zh-hans & {
+                                width: 12%;
+                            }
+                        }
+
+                        &-3 {
+                            width: 25%;
+                            flex: none;
+                        }
+                    }
                 }
             }
         }
 
         .column {
-            @include mobile {
+            @include until(767px) {
                 padding-left: 0;
                 padding-right: 0;
             }
+
+            @include just-tablet {
+                &.is {
+                    &-1 {
+                        width: 8.33333%;
+                        flex: none;
+                        .zh-hans & {
+                            width: 12%;
+                        }
+                    }
+
+                    &-3 {
+                        width: 25%;
+                        flex: none;
+                    }
+                }
+            }
+
             &.is-1 {
-                @include mobile {
+                @include until(767px) {
                     font-weight: bold;
                 }
                 .zh-hans & {

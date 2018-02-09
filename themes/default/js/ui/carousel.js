@@ -26,7 +26,6 @@ var $                   =   require('jquery'),
                                     document.ontouchmove        =   function(e)
                                                                     {
                                                                         e.preventDefault();
-                                                                        console.log('test');
                                                                     }
                                 }).on('dragged.owl.carousel', function(e)
                                 {
@@ -62,23 +61,25 @@ var $                   =   require('jquery'),
                             };
         this.carousel   =   new Vue(
                             {
-                                el      :   '#carousel',
-                                data    :   {
-                                                carousel                :   data,
-                                                pressed                 :   false
-                                            },
-                                beforeUpdate : function()
-                                            {
-                                                $('#carousel').trigger('destroy.owl.carousel');
-                                                $('#carousel owl-item').remove();
-                                            },
-                                updated :   function()
-                                            {
-                                                owlIniter($('#carousel'), this);
-                                            },
-                                mounted :   function() {
-                                                owlIniter($('#carousel'), this);
-                                            }
+                                el              :   '#carousel',
+                                data            :   {
+                                                        carousel                :   data,
+                                                        pressed                 :   false
+                                                    },
+                                beforeUpdate    :   function()
+                                                    {
+                                                        $('#carousel').trigger('destroy.owl.carousel');
+                                                        $('#carousel .owl-item').remove();
+                                                    },
+                                updated         :   function()
+                                                    {
+                                                        owlIniter($('#carousel'), this);
+                                                        $(this.$el).find('.owl-item').addClass('backgrounded');
+                                                    },
+                                mounted         :   function()
+                                                    {
+                                                        owlIniter($('#carousel'), this);
+                                                    }
                             });
 
         return this.carousel;

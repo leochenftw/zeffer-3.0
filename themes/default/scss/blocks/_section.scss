@@ -1,4 +1,8 @@
 .section {
+    @include until(767px) {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
     &__text {
         .title {
             font-family: $knockout;
@@ -49,6 +53,9 @@
 
     &-hero {
         height: 60vh;
+        @include mobile {
+            height: 40vh;
+        }
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;

@@ -5,8 +5,27 @@
             margin-bottom: 60px;
         }
 
+        @include just-tablet {
+            display: flex;
+        }
+
         &:last-child {
             margin-bottom: 36px;
+        }
+
+        .column {
+            @include just-tablet {
+                flex: none;
+                &.is {
+                    &-4 {
+                        width: 33.33333%;
+                    }
+
+                    &-8 {
+                        width: 66.66667%;
+                    }
+                }
+            }
         }
     }
 
@@ -16,7 +35,7 @@
         img {
             max-height: 85vh;
             display: inline-block;
-            @include mobile {
+            @include until(767px) {
                 transform: none !important;
             }
         }
@@ -243,10 +262,41 @@
                 color: $red;
             }
 
-            @include mobile {
+            @include until(767px) {
                 > .column {
                     padding-left: 0;
                     padding-right: 0;
+                }
+            }
+
+            @include just-tablet {
+                display: flex;
+                &:not(.is-mobile) {
+                    margin-left: -0.75rem !important;
+                    margin-right: -0.75rem !important;
+                }
+                .column {
+                    flex: none;
+                    &.is-half {
+                        width: 50%;
+                        .column {
+                            &.is {
+                                &-3 {
+                                    width: 33.33333%;
+                                }
+                            }
+
+                            &.cider__details__taste-sheet__details {
+                                flex: auto;
+                            }
+                        }
+                    }
+
+                    .with-title {
+                        .column {
+                            flex: auto;
+                        }
+                    }
                 }
             }
         }
@@ -314,6 +364,10 @@
                                 &:last-child {
                                     border-right: none;
                                 }
+
+                                @include just-tablet {
+                                    font-size: 12px;
+                                }
                             }
                         }
                     }
@@ -367,7 +421,7 @@
     &__alcohol {
         font-size: 30px;
         &.has-text-centered {
-            @include mobile {
+            @include until(767px) {
                 text-align: left !important;
             }
         }

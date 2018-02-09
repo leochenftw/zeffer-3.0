@@ -4,7 +4,20 @@
     }
 
     .contact {
+        @include just-tablet {
+            display: flex;
+            &.columns:not(.is-mobile) {
+                margin-left: -0.75rem !important;
+                margin-right: -0.75rem !important;
+            }
+        }
+
         &__map {
+            @include until(767px) {
+                padding-left: 0;
+                padding-right: 0;
+            }
+
             &__fallback {
                 background-size: cover;
                 height: 100%;
@@ -57,10 +70,12 @@
                 display: inline-block;
                 font-size: 16px;
                 margin-right: 1em;
+
                 &:last-child {
                     margin-right: 0;
                     margin-bottom: 0;
                 }
+
                 &__link {
                     transition: all 0.3s;
                     color: $brown;
@@ -111,6 +126,22 @@
                             // background-color: $newsletter;
                             color: $newsletter;
                         }
+                    }
+                }
+            }
+        }
+
+        &__map,
+        &__info {
+            @include just-tablet {
+                flex: none;
+                &.is {
+                    &-7 {
+                        width: 58.33333%;
+                    }
+
+                    &-5 {
+                        width: 41.66667%;
                     }
                 }
             }

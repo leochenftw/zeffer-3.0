@@ -35,11 +35,14 @@ var $               =   require('jquery'),
                                             $(this.$el).find('button.button').on('click touchend', function(e)
                                             {
                                                 e.preventDefault();
-                                                var url =   $(this).data('next');
+                                                var url =   $(this).data('next'),
+                                                    btn =   $(this);
+                                                $(this).addClass('is-loading');
                                                 $.get(
                                                     url,
                                                     function(data)
                                                     {
+                                                        btn.removeClass('is-loading');
                                                         me.articles     =   me.articles.concat(data.articles.list);
                                                         me.next_page    =   data.articles.pagination.url;
                                                     }

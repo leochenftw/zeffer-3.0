@@ -70,6 +70,25 @@
 }
 
 .news {
+    &__eol {
+        position: relative;
+        &:before {
+            content: '';
+            display: block;
+            position: absolute;
+            border-top: 1px dashed $brown;
+            top: 50%;
+            width: 100%;
+            transform: translateY(50%);
+        }
+
+        &__label {
+            display: inline-block;
+            position: relative;
+            background-color: white;
+            padding: 0.5em 1em;
+        }
+    }
     &__item {
         .column {
             @include mobile {
@@ -79,6 +98,9 @@
         }
         &__news {
             margin-bottom: 64px !important;
+            &:last-child {
+                margin-bottom: 32px !important;
+            }
             &__date-cube {
                 width: 96px;
                 height: 96px;
