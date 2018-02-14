@@ -19,6 +19,7 @@ if (extension_loaded('imagick')) {
     Image::set_backend("OptimisedGDBackend");
 }
 
+SS_Cache::set_cache_lifetime('HomeData', 31536000); // 1 year
 
 Requirements::set_write_js_to_body(false);
 

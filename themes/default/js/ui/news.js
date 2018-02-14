@@ -43,8 +43,8 @@ var $               =   require('jquery'),
                                                     function(data)
                                                     {
                                                         btn.removeClass('is-loading');
-                                                        me.articles     =   me.articles.concat(data.articles.list);
-                                                        me.next_page    =   data.articles.pagination.url;
+                                                        me.articles     =   me.articles.concat(data.news.articles.list);
+                                                        me.next_page    =   data.news.articles.pagination.url;
                                                     }
                                                 );
                                             });

@@ -79,6 +79,12 @@ var $                   =   require('jquery'),
                                 mounted         :   function()
                                                     {
                                                         owlIniter($('#carousel'), this);
+                                                    },
+                                methods         :   {
+                                                        'img_with_max_width'    :   function(width)
+                                                                                    {
+                                                                                        return "max-width: " + width + 'px';
+                                                                                    }
                                                     }
                             });
 

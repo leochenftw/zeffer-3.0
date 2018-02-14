@@ -90,3 +90,20 @@ Cider:
     ginger: 'Ginger beer'
     'two-point-five': 'Two point five'
     crumble: 'Apple crumble'
+  labels:
+    'en_NZ':
+      'see': 'See',
+      'smell': 'Smell',
+      'taste': 'Taste',
+      'trywith': 'Try me with',
+      'dryness': 'Dryness',
+      'tannin': 'Tannin',
+      'avail': 'Available in'
+    'zh_Hans':
+      'see': '视觉'
+      'smell': '嗅觉'
+      'taste': '味觉'
+      'trywith': '佐餐推荐'
+      'dryness': '甜度'
+      'tannin': '单宁含量'
+      'avail': '容量'

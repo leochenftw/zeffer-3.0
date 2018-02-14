@@ -71,12 +71,21 @@
 
         .content {
             margin-bottom: 0;
-            padding-bottom: 48px;
-            border-bottom: 1px solid $brown;
+            padding-bottom: 24px;
             img {
                 margin-left: .5em;
                 margin-right: .5em;
             }
+        }
+
+        .welcome {
+            &__info {
+                &__social {
+                    margin: 0 16px 16px;
+                }
+            }
+            padding-bottom: 48px;
+            border-bottom: 1px solid $brown;
         }
     }
 }

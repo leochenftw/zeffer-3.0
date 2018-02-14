@@ -46,12 +46,17 @@ class ContactPage extends Page
                                     'hero'      =>  $this->ImageBreak()->exists() ? $this->ImageBreak()->SetWidth(1980)->URL : null,
                                     'lat'       =>  $this->Latitude,
                                     'lng'       =>  $this->Longitude,
-                                    'api_key'   =>  Config::inst()->get('GoogleAPIs', 'Map'),
+                                    'api_key'   =>  $this->getAPIKey(),
                                     'fallback'  =>  $this->FallbackMapImage()->exists() ? $this->FallbackMapImage()->SetWidth(800)->URL : null,
                                     'methods'   =>  $this->exists() ? $this->ContactMethods()->getData() : null,
                                     'socials'   =>  $this->exists() ? $this->SocialMedias()->getData() : null,
                                 ];
         return $data;
+    }
+
+    public function getAPIKey()
+    {
+        return Config::inst()->get('GoogleAPIs', 'Map');
     }
 
     private static $description = 'Contact page. You may only create 1 Contact page at all times';

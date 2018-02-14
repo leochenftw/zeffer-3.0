@@ -20,7 +20,7 @@ class ControllerAjaxExtension extends DataExtension
             return json_encode($this->owner->AjaxResponse());
         }
 
-        return $this->owner->renderWith([$this->owner->ClassName, 'AjaxPage']);
+        return $this->owner->renderWith([$this->owner->ClassName, $this->owner->ClassName == 'HomePage' ? 'AjaxPage' : 'Page']);
     }
 
     public function AjaxResponse()
@@ -62,11 +62,11 @@ class ControllerAjaxExtension extends DataExtension
         }
 
         return  [
-                    'id'            =>  $owner->ID,
+                    'id'            =>  !empty($owner) ? $owner->ID : null,
                     'url'           =>  $this->owner->Link() == '/home/' ? '/' : $this->owner->Link(),
-                    'title'         =>  $owner->Title,
-                    'page_title'    =>  $owner->MetaTitle,
-                    'content'       =>  $owner->Content,
+                    'title'         =>  !empty($owner) ? $owner->Title : null,
+                    'page_title'    =>  !empty($owner) ? $owner->MetaTitle : null,
+                    'content'       =>  !empty($owner) ? $owner->Content : null,
                     'navigation'    =>  $nav,
                     'csrf'          =>  $csrf,
                     'subscribed'    =>  !empty(Session::get('Subscribed')),

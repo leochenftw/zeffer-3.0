@@ -1,6 +1,8 @@
 <?php
 use SaltedHerring\Debugger;
 use SaltedHerring\Grid;
+use SaltedHerring\SaltedCache;
+
 class HomePage extends Page
 {
     /**
@@ -49,17 +51,21 @@ class HomePage_Controller extends Page_Controller
 {
     public function AjaxResponse()
     {
-        $data                           =   parent::AjaxResponse();
-        $this->AttachStory($data, 'Zeffer', 'welcome');
-        $this->AttachCarousel($data);
-        $this->AttachCiders($data);
-        $this->AttachStory($data, 'Story', 'story');
-        $this->AttachStory($data, 'Sustainability', 'sustainability');
-        $this->AttachTeam($data);
-        $this->AttachAwards($data);
-        $this->AttachContact($data);
-        $this->AttachBuyNow($data);
-        $this->AttachNews($data);
+        $data                           =   SaltedCache::read('HomeData', Session::get('lang'));
+        if (empty($data)) {
+            $data                       =   parent::AjaxResponse();
+            $this->AttachStory($data, 'Zeffer', 'welcome');
+            $this->AttachCarousel($data);
+            $this->AttachCiders($data);
+            $this->AttachStory($data, 'Story', 'story');
+            $this->AttachStory($data, 'Sustainability', 'sustainability');
+            $this->AttachTeam($data);
+            $this->AttachAwards($data);
+            $this->AttachContact($data);
+            $this->AttachBuyNow($data);
+            $this->AttachNews($data);
+            SaltedCache::save('HomeData', 'all', $data);
+        }
 
         return $data;
     }
@@ -69,10 +75,10 @@ class HomePage_Controller extends Page_Controller
         if ($cider = Ciders::get()->first()) {
             if (Session::get('lang') == 'zh_Hans') {
                 if ($translated = $cider->getTranslation('zh_Hans')) {
-                    $cider               =   $translated;
+                    $cider                  =   $translated;
                 }
             }
-            $data['ciders']              =   $cider->getData();
+            $data['ciders']                 =   $cider->getData();
         }
     }
 
@@ -80,7 +86,7 @@ class HomePage_Controller extends Page_Controller
     {
         if (Session::get('lang') != 'zh_Hans') {
             if ($news = NewsLandingPage::get()->first()) {
-                $data['news']            =   $news->getData();
+                $data['news']               =   $news->getData();
             }
         }
     }
@@ -99,19 +105,19 @@ class HomePage_Controller extends Page_Controller
         if ($contact = ContactPage::get()->first()) {
             if (Session::get('lang') == 'zh_Hans') {
                 if ($translated = $contact->getTranslation('zh_Hans')) {
-                    $contact            =   $translated;
+                    $contact                =   $translated;
                 }
             }
-            $data['contact']            =   $contact->getData();
+            $data['contact']                =   $contact->getData();
         }
     }
 
     private function AttachCarousel(&$data)
     {
-        $carousel_items             =   $this->CarouselItems();
+        $carousel_items                     =   $this->CarouselItems();
         if (Session::get('lang') == 'zh_Hans') {
             if ($translated = $this->getTranslation('zh_Hans')) {
-                $carousel_items     =   $translated->CarouselItems();
+                $carousel_items             =   $translated->CarouselItems();
             }
         }
 

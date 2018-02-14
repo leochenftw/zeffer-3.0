@@ -114,16 +114,16 @@ class Page_Controller extends ContentController
         if (!$this->request->isAjax()) {
             Requirements::combine_files(
                 'scripts.js',
-                array(
-                    // 'themes/default/js/components/jquery/dist/jquery.min.js',
-                    // 'themes/default/js/components/gsap/src/minified/TweenMax.min.js',
-                    // 'themes/default/js/components/salted-js/dist/salted-js.min.js',
-                    // // 'themes/default/js/components/moment/min/moment.min.js',
-                    // // 'themes/default/js/components/clndr/clndr.min.js',
-                    // // 'themes/default/js/ui/ui-calendar.js',
-                    // 'themes/default/js/custom.scripts.js'
+                $this->ClassName == 'HomePage' ?
+                [
                     'themes/default/js/scripts.min.js'
-                )
+                ] :
+                [
+                    'themes/default/node_modules/jquery/dist/jquery.min.js',
+                    'themes/default/node_modules/jarallax/dist/jarallax.min.js',
+                    'themes/default/js/components/salted-js/dist/salted-js.min.js',
+                    'themes/default/js/custom.scripts.js'
+                ]
             );
         }
     }
@@ -207,5 +207,39 @@ class Page_Controller extends ContentController
     {
         // Debugger::inspect(Session::get('lang'));
         return str_replace('_', '-', Session::get('lang'));
+    }
+
+    public function getLogoIndex()
+    {
+        return ceil($this->Menu(1)->count() * 0.5 + 1);
+    }
+
+    public function getLangs($locale = null)
+    {
+        $flags      =   Config::inst()->get('Icons', 'flags');
+        $options    =   [
+                            'en-NZ'             =>  [
+                                                        'title'     =>  'English',
+                                                        'icon'      =>  $flags['en_NZ'],
+                                                        'locale'    =>  'en_NZ',
+                                                        'is_active' =>  $locale == 'en-NZ',
+                                                        'link'      =>  !empty($this->Translations->filter(['Locale' => 'en_NZ'])->first()) ? $this->Translations->filter(['Locale' => 'en_NZ'])->first()->Link() : $this->Link()
+                                                    ],
+                            'zh-Hans'           =>  [
+                                                        'title'     =>  '简体中文',
+                                                        'icon'      =>  $flags['zh_Hans'],
+                                                        'locale'    =>  'zh_Hans',
+                                                        'is_active' =>  $locale == 'zh-Hans',
+                                                        'link'      =>  !empty($this->Translations->filter(['Locale' => 'zh_Hans'])->first()) ? $this->Translations->filter(['Locale' => 'zh_Hans'])->first()->Link() : $this->Link()
+                                                    ]
+                        ];
+        if (!empty($locale)) {
+            return  ArrayData::create($options[$locale]);
+        }
+
+        return  ArrayList::create([
+                    $options['en-NZ'],
+                    $options['zh-Hans']
+                ]);
     }
 }

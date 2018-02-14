@@ -1,5 +1,5 @@
 <?php
-
+use SaltedHerring\Debugger;
 /**
  * Description
  *
@@ -192,5 +192,43 @@ class Cider extends DataObject
                     'product_signature' =>  $this->ProductSignature()->exists() ? $this->ProductSignature()->SetWidth(620)->URL : null,
                     'x_icons'           =>  $Xs
                 ];
+    }
+
+    public function Labels($label)
+    {
+        $labels     =   $this->config()->labels;
+        $labels     =   $labels[Controller::curr()->Locale];
+        // Debugger::inspect($labels[Session::get('lang')]);
+        return $labels[$label];
+    }
+
+    public function myAvailabilities()
+    {
+        $avail      =   explode(',', $this->Availabilities);
+        foreach ($avail as &$item)
+        {
+            $item   =   [
+                            'Title' =>  $item
+                        ];
+        }
+        return ArrayList::create($avail);
+    }
+
+    public function Crosses($property)
+    {
+        $array          =   [];
+        for ($i = 0; $i < 5; $i++)
+        {
+            $array[]    =   null;
+        }
+
+        for ($n = 0; $n < (int) $this->$property; $n++)
+        {
+            $array[$n]  =   [
+                                'X'     =>  $this->Xs()->first()
+                            ];
+        }
+
+        return ArrayList::create($array);
     }
 }

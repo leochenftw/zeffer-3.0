@@ -1,5 +1,6 @@
 #news {
     .content {
+        &.news__filters,
         &.content-content {
             padding-bottom: 14px;
             position: relative;
@@ -19,6 +20,7 @@
                 border-bottom: 1px solid rgba($copper, 0.2);
                 color: $copper;
                 transition: all 0.3s;
+                &.is-active,
                 &:hover,
                 &:focus {
                     border-bottom: 1px solid rgba($copper, 1);

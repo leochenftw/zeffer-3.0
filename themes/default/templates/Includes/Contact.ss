@@ -15,8 +15,6 @@
         <h3 class="title is-6">{{social_label}}</h3>
         <ul class="contact__info__socials">
             <li class="contact__info__social" v-for="social in socials">
-                <%-- <a v-if="!social.lightbox" target="_blank" class="contact__info__social__link" :href="social.url"><span :class="make_class(social)"><i :class="social.class"></i></span> {{social.title}}</a>
-                <a v-else target="_blank" class="contact__info__social__link" data-lightbox="QR" :href="social.url"><span :class="make_class(social)"><i :class="social.class"></i></span> {{social.title}}</a> --%>
                 <a v-if="!social.lightbox" target="_blank" class="contact__info__social__link" :href="social.url" :title="social.title"><img :src="social.icon" width="32" height="32" /></a>
                 <a v-else target="_blank" class="contact__info__social__link" data-lightbox="QR" :href="social.url" :title="social.title"><img :src="social.icon" width="32" height="32" /></a>
             </li>

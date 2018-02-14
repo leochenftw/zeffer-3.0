@@ -76,6 +76,16 @@ class BuynowPage extends Page
                                 ];
         return $data;
     }
+
+    public function getNZOptions()
+    {
+        return $this->exists() ? $this->BuyOptions()->filter(['Region' => 'NZ']) : null;
+    }
+
+    public function getAUSOptions()
+    {
+        return $this->exists() ? $this->BuyOptions()->filter(['Region' => 'AUS']) : null;
+    }
 }
 
 class BuynowPage_Controller extends Page_Controller

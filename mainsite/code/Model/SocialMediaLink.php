@@ -71,4 +71,10 @@ class SocialMediaLink extends Link
 
         return $data;
     }
+
+    public function getIcon()
+    {
+        $icons          =   Config::inst()->get('Icons', 'socials');
+        return  $icons[$this->SocialMedia];
+    }
 }

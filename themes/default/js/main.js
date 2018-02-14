@@ -19,7 +19,7 @@ $.getJSON(window.location.pathname, function(data)
     $('html').attr('lang', data.lang);
 
     var header          =   new Header(data.navigation, data.languages),
-        welcome         =   new Story('#welcome', data.welcome),
+        welcome         =   new Story('#welcome', data.welcome, data.contact.socials),
         caro            =   new Carousel(data.carousel),
         ciders          =   new Ciders(data.ciders, header.navitems),
         story           =   new Story('#story', data.story),
@@ -135,6 +135,7 @@ $.getJSON(window.location.pathname, function(data)
                 welcome.title               =   response.welcome.title;
                 welcome.content             =   response.welcome.content;
                 welcome.hero                =   response.welcome.hero;
+                welcome.socials             =   response.contact.socials
 
                 header.navitems             =   response.navigation;
                 header.languages            =   response.languages;

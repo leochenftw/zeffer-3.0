@@ -4,6 +4,9 @@
         <div class="container">
             <h2 class="title is-2">{{title}}</h2>
             <div class="content-content content" v-html="content"></div>
+            <% if $SectionID == 'welcome' %>
+            <% include Welcome %>
+            <% end_if %>
             <% if $SectionID == 'team' %>
             <% include Team %>
             <% end_if %>
