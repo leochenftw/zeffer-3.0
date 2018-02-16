@@ -22,6 +22,14 @@ class CarouselItem extends DataObject
     ];
 
     /**
+     * Belongs_to relationship
+     * @var array
+     */
+    private static $defaults = [
+        'TitleAsLink'   =>  true
+    ];
+
+    /**
      * Defines extension names and parameters to be applied
      * to this object upon construction.
      * @var array
@@ -61,7 +69,11 @@ class CarouselItem extends DataObject
     {
         $fields = parent::getCMSFields();
         $fields->removeByName([
-            'TextMaxWidth'
+            'TextMaxWidth',
+            'Content',
+            'ScrollTo',
+            'ButtonLabel',
+            'TitleAsLink'
         ]);
         return $fields;
     }

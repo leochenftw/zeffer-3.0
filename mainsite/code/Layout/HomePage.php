@@ -52,6 +52,7 @@ class HomePage_Controller extends Page_Controller
     public function AjaxResponse()
     {
         $data                           =   SaltedCache::read('HomeData', Session::get('lang'));
+
         if (empty($data)) {
             $data                       =   parent::AjaxResponse();
             $this->AttachStory($data, 'Zeffer', 'welcome');
@@ -64,7 +65,7 @@ class HomePage_Controller extends Page_Controller
             $this->AttachContact($data);
             $this->AttachBuyNow($data);
             $this->AttachNews($data);
-            SaltedCache::save('HomeData', 'all', $data);
+            SaltedCache::save('HomeData', Session::get('lang'), $data);
         }
 
         return $data;
@@ -144,7 +145,13 @@ class HomePage_Controller extends Page_Controller
                                                 'id'        =>  $story->ID,
                                                 'title'     =>  $story->getSectionTitle(),
                                                 'content'   =>  $story->Content,
-                                                'hero'      =>  $story->ImageBreak()->exists() ? $story->ImageBreak()->SetWidth(1980)->URL : null
+                                                'hero'      =>  $story->ImageBreak()->exists() ? $story->ImageBreak()->SetWidth(1980)->URL : null,
+                                                'video'     =>  !empty($story->VideoID) ?
+                                                                [
+                                                                    'video_url'     =>  $story->getVideoSource() . '?autoplay=1&rel=0',
+                                                                    'video_cover'   =>  $story->getThumbnailURL()
+                                                                ] :
+                                                                null
                                             ];
 
         }

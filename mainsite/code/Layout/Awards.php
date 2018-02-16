@@ -51,7 +51,13 @@ class Awards extends Page
                     'content'   =>  $this->Content,
                     'hero'      =>  $this->ImageBreak()->exists() ? $this->ImageBreak()->SetWidth(1980)->URL : null,
                     'awards'    =>  $this->Awards()->exists() ? $this->Awards()->getData() : null,
-                    'labels'    =>  $this->Locale == 'en_NZ' ? self::$labels_en : self::$labels_cn
+                    'labels'    =>  $this->Locale == 'en_NZ' ? self::$labels_en : self::$labels_cn,
+                    'video'     =>  !empty($this->VideoID) ?
+                                    [
+                                        'video_url'     =>  $this->getVideoSource() . '?autoplay=1&rel=0',
+                                        'video_cover'   =>  $this->getThumbnailURL()
+                                    ] :
+                                    null
                 ];
     }
 

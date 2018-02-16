@@ -21,6 +21,7 @@ var $               =   require('jquery'),
                                             title       :   data ? data.title : null,
                                             content     :   data ? data.content : null,
                                             hero        :   data ? data.hero : null,
+                                            video       :   data ? data.video : null,
                                             articles    :   data ? data.articles.list : null,
                                             next_page   :   data ? data.articles.pagination.url : null
                                         },
@@ -35,7 +36,7 @@ var $               =   require('jquery'),
                                             $(this.$el).find('button.button').on('click touchend', function(e)
                                             {
                                                 e.preventDefault();
-                                                var url =   $(this).data('next'),
+                                                var url =   me.next_page,
                                                     btn =   $(this);
                                                 $(this).addClass('is-loading');
                                                 $.get(
@@ -47,6 +48,11 @@ var $               =   require('jquery'),
                                                         me.next_page    =   data.news.articles.pagination.url;
                                                     }
                                                 );
+                                            });
+
+                                            $(this.$el).find('iframe').each(function(i, el)
+                                            {
+                                                $(this).parents('p:eq(0)').addClass('iframe-inside');
                                             });
                                         },
                             methods :   {
@@ -77,18 +83,9 @@ var $               =   require('jquery'),
                                                 speed: 0.2
                                             });
 
-                                            $(this.$el).find('button.button').on('click touchend', function(e)
+                                            $(this.$el).find('iframe').each(function(i, el)
                                             {
-                                                e.preventDefault();
-                                                var url =   $(this).data('next');
-                                                $.get(
-                                                    url,
-                                                    function(data)
-                                                    {
-                                                        me.articles     =   me.articles.concat(data.articles.list);
-                                                        me.next_page    =   data.articles.pagination.url;
-                                                    }
-                                                );
+                                                $(this).parents('p:eq(0)').addClass('iframe-inside');
                                             });
                                         }
                         });

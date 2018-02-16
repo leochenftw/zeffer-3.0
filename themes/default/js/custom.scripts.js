@@ -13,4 +13,9 @@ $(document).ready(function(e)
     {
         $(this).parent().toggleClass('is-active');
     });
+
+    $('iframe').each(function(i, el)
+    {
+        $(this).parent().addClass('video');
+    });
 });

@@ -10,7 +10,8 @@ var $               =   require('jquery'),
                                             content     :   data ? data.content : null,
                                             hero        :   data ? data.hero : null,
                                             sec_cont    :   data ? data.secondary_content : null,
-                                            options     :   data ? data.options : null
+                                            options     :   data ? data.options : null,
+                                            video       :   data ? data.video : null
                                         },
                             mounted :   function()
                                         {

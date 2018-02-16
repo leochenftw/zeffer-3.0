@@ -81,7 +81,13 @@ class People extends Page
                                         'title'     =>  $this->getSectionTitle(),
                                         'content'   =>  $this->Content,
                                         'hero'      =>  $this->ImageBreak()->exists() ? $this->ImageBreak()->SetWidth(1980)->URL : null,
-                                        'members'   =>  $this->Team()->exists() ? $this->Team()->getData() : null
+                                        'members'   =>  $this->Team()->exists() ? $this->Team()->getData() : null,
+                                        'video'     =>  !empty($this->VideoID) ?
+                                                        [
+                                                            'video_url'     =>  $this->getVideoSource() . '?autoplay=1&rel=0',
+                                                            'video_cover'   =>  $this->getThumbnailURL()
+                                                        ] :
+                                                        null
                                     ];
         return $data;
     }

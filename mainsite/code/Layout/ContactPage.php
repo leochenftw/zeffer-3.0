@@ -50,6 +50,12 @@ class ContactPage extends Page
                                     'fallback'  =>  $this->FallbackMapImage()->exists() ? $this->FallbackMapImage()->SetWidth(800)->URL : null,
                                     'methods'   =>  $this->exists() ? $this->ContactMethods()->getData() : null,
                                     'socials'   =>  $this->exists() ? $this->SocialMedias()->getData() : null,
+                                    'video'     =>  !empty($this->VideoID) ?
+                                                    [
+                                                        'video_url'     =>  $this->getVideoSource() . '?autoplay=1&rel=0',
+                                                        'video_cover'   =>  $this->getThumbnailURL()
+                                                    ] :
+                                                    null
                                 ];
         return $data;
     }

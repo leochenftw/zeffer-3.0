@@ -9,6 +9,7 @@ var $               =   require('jquery'),
                                             title   :   data.title,
                                             content :   data.content,
                                             hero    :   data.hero,
+                                            video   :   data.video,
                                             awards  :   data.awards,
                                             labels  :   data.labels
                                         },

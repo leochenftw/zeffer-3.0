@@ -4,7 +4,7 @@ var $                   =   require('jquery'),
     {
         var owlIniter   =   function(owl, me)
                             {
-                                owl.owlCarousel(
+                                var theowl = owl.owlCarousel(
                                 {
                                     items               :   1,
                                     lazyLoad            :   true,
@@ -18,6 +18,7 @@ var $                   =   require('jquery'),
                                     navText             :   ["<i class='fa fa-chevron-left'></i>","<i class='fa fa-chevron-right'></i>"]
                                 }).on('loaded.owl.lazy', function(e)
                                 {
+                                    theowl.trigger('play.owl.autoplay');
                                     var slide   =   $(e.target).find('img[src="' + e.url + '"]').parent();
                                     slide.css('background-image', 'url(' + e.url + ')').parent().addClass('backgrounded');
                                 }).on('drag.owl.carousel', function(e)
@@ -42,16 +43,16 @@ var $                   =   require('jquery'),
                                     if (!window.fingerdown) {
                                         me.pressed              =   false;
                                     }
-                                }).trigger('drag.owl.carousel').trigger('dragged.owl.carousel');
+                                }).trigger('drag.owl.carousel').trigger('dragged.owl.carousel').trigger('stop.owl.autoplay');
 
-                                $(me.$el).find('.btn-go-to').on('click touchend', function(e)
+                                $(me.$el).find('.btn-go-to').unbind('click touch').on('click touchend', function(e)
                                 {
                                     e.preventDefault();
-                                    if (me.pressed) return;
+                                    // if (me.pressed) return;
 
                                     var target  =   $(this).data('scrollto');
                                     target      =   $('#' + target);
-
+                                    
                                     if (!target.hasClass('to-section')) {
                                         $.scrollTo(target, 1000, {axis: 'y'});
                                     } else {

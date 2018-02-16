@@ -72,7 +72,13 @@ class BuynowPage extends Page
                                     'options'           =>  [
                                                                 'NZ'    =>  $this->exists() ? $this->BuyOptions()->filter(['Region' => 'NZ'])->getData() : null,
                                                                 'AUS'   =>  $this->exists() ? $this->BuyOptions()->filter(['Region' => 'AUS'])->getData() : null
-                                                            ]
+                                                            ],
+                                    'video'             =>  !empty($this->VideoID) ?
+                                                            [
+                                                                'video_url'     =>  $this->getVideoSource() . '?autoplay=1&rel=0',
+                                                                'video_cover'   =>  $this->getThumbnailURL()
+                                                            ] :
+                                                            null
                                 ];
         return $data;
     }

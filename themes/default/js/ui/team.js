@@ -9,7 +9,8 @@ var $               =   require('jquery'),
                                             title   :   data.title,
                                             content :   data.content,
                                             hero    :   data.hero,
-                                            members :   data.members
+                                            members :   data.members,
+                                            video   :   data.video
                                         },
                             mounted :   function()
                                         {

@@ -56,6 +56,7 @@ class NewsLandingPage extends Page
     public function getCMSFields()
     {
         $fields =   parent::getCMSFields();
+
         $grid   =   $fields->fieldByName('Root.ChildPages.ChildPages');
         $grid->getConfig()
             ->removeComponentsByType('GridFieldPaginator')
@@ -88,7 +89,13 @@ class NewsLandingPage extends Page
                                     'title'             =>  !empty($this->AlternativeTitle) ? $this->AlternativeTitle : $this->title,
                                     'content'           =>  $this->Content,
                                     'hero'              =>  $this->ImageBreak()->exists() ? $this->ImageBreak()->SetWidth(1980)->URL : null,
-                                    'articles'          =>  self::Paginate(NewsItem::get(), $this->NewsPerLoad)//NewsItem::get()->getData()
+                                    'articles'          =>  self::Paginate(NewsItem::get(), $this->NewsPerLoad), //NewsItem::get()->getData()
+                                    'video'             =>  !empty($this->VideoID) ?
+                                                            [
+                                                                'video_url'     =>  $this->getVideoSource() . '?autoplay=1&rel=0',
+                                                                'video_cover'   =>  $this->getThumbnailURL()
+                                                            ] :
+                                                            null
                                 ];
         return $data;
     }
@@ -129,7 +136,7 @@ class NewsLandingPage extends Page
 
                     // Debugger::inspect($paged->NextLink() . ' : ' . trim($news_link, '/'));
 
-                    $pagination         =   $news_link . str_replace(trim($news_link, '/'), '', $paged->NextLink()); // . (!empty($this->keywords) ? ('&keywords=' . $this->keywords) : '');
+                    $pagination         =   '/' . trim($news_link, '/') . trim(str_replace(trim($news_link, '/'), '', $paged->NextLink()), '/'); // . (!empty($this->keywords) ? ('&keywords=' . $this->keywords) : '');
                     return  [
                         'list'          =>  $data,
                         'count'         =>  $artcile_count,

@@ -11,6 +11,7 @@ var $               =   require('jquery'),
                                             content         :   '<p>You can also sign up to our newsletter. We promise not to spam you! We’ll only be sharing juicy news, upcoming cider releases and giveaways (so just the good stuff).</p>',
                                             csrf            :   csrf,
                                             hero            :   hero,
+                                            video           :   null,
                                             completed       :   subscribed,
                                             message         :   'You have already subscribed to our newsletter :)'
                                         },

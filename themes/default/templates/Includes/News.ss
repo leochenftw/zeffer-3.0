@@ -19,8 +19,8 @@
             </div>
         </div>
         <div v-if="next_page" class="news__items__load-more has-text-centered">
-            <button class="button is-info is-large" :data-next="next_page">Load more</button>
+            <button class="button is-info is-large">Load more</button>
         </div>
-        <p v-else class="news__eol has-text-centered"><span class="news__eol__label">All new loaded</span></p>
+        <p v-else class="news__eol has-text-centered"><span class="news__eol__label">All news loaded</span></p>
     </div>
 </div>

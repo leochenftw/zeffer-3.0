@@ -16,7 +16,8 @@ var $                   =   require('jquery'),
                                                 methods         :   data.methods,
                                                 socials         :   data.socials,
                                                 fallback        :   data.fallback,
-                                                social_label    :   data.social_label
+                                                social_label    :   data.social_label,
+                                                video           :   data.video
                                             },
                                 computed:   {
                                                 get_style       :   function()

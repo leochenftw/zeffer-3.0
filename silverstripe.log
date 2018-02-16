@@ -122,3 +122,26 @@ Unknown column 'Tag.Slug' in 'field list' (http://zeffer.leochen.co.nz/admin/tag
 [11-Feb-2018 21:56:04] Warning at framework/view/SSViewer.php line 1202: file_get_contents(): Filename cannot be empty (http://zeffer.leochen.co.nz/)
 [11-Feb-2018 21:56:04] Warning at framework/view/SSViewer.php line 918: None of the following templates could be found in theme "default": Welcome.ss (http://zeffer.leochen.co.nz/)
 [12-Feb-2018 13:39:57] Error at framework/core/Object.php line 780: Uncaught Exception: Object->__call(): the method 'news' does not exist on 'DataList', or the method is not public. (http://zeffer.leochen.co.nz/news/?tag=recipe)
+[16-Feb-2018 08:15:38] Error at framework/model/connect/DBConnector.php line 55: Uncaught SS_DatabaseException: Couldn't run query:
+
+SELECT DISTINCT "SiteTree_Live"."ClassName", "SiteTree_Live"."LastEdited", "SiteTree_Live"."Created", "SiteTree_Live"."URLSegment", "SiteTree_Live"."Title", "SiteTree_Live"."MenuTitle", "SiteTree_Live"."Content", "SiteTree_Live"."MetaDescription", "SiteTree_Live"."ExtraMeta", "SiteTree_Live"."ShowInMenus", "SiteTree_Live"."ShowInSearch", "SiteTree_Live"."Sort", "SiteTree_Live"."HasBrokenFile", "SiteTree_Live"."HasBrokenLink", "SiteTree_Live"."ReportClass", "SiteTree_Live"."CanViewType", "SiteTree_Live"."CanEditType", "SiteTree_Live"."Locale", "SiteTree_Live"."Priority", "SiteTree_Live"."Version", "SiteTree_Live"."ParentID", "Page_Live"."AlternativeTitle", "Page_Live"."MenuToSection", "Page_Live"."OGType", "Page_Live"."OGTitle", "Page_Live"."OGDescription", "Page_Live"."TwitterCard", "Page_Live"."TwitterTitle", "Page_Live"."TwitterDescription", "Page_Live"."SEOPageSubject", "Page_Live"."MetaKeywords", "Page_Live"."MetaRobots", "Page_Live"."MetaTitle", "Page_Live"."VideoID", "Page_Live"."OGImageID", "Page_Live"."TwitterImageID", "Page_Live"."ImageBreakID", "ErrorPage_Live"."ErrorCode", "SiteTree_Live"."ID", 
+			CASE WHEN "SiteTree_Live"."ClassName" IS NOT NULL THEN "SiteTree_Live"."ClassName"
+			ELSE 'SiteTree' END AS "RecordClassName"
+
+FROM "SiteTree_Live"
+LEFT JOIN "Page_Live" ON "Page_Live"."ID" = "SiteTree_Live"."ID"
+LEFT JOIN "ErrorPage_Live" ON "ErrorPage_Live"."ID" = "SiteTree_Live"."ID"
+
+WHERE ("ErrorPage_Live"."ErrorCode" = ?)
+ AND ("SiteTree_Live"."ClassName" IN (?, ?))
+ AND ("SiteTree_Live"."Locale" = 'en_NZ')
+
+ORDER BY "SiteTree_Live"."Sort" ASC
+
+LIMIT 1
+
+Unknown column 'Page_Live.VideoID' in 'field list' (http://zeffer.leochen.co.nz/robots.txt)
+[16-Feb-2018 17:21:16] Warning at mainsite/code/Layout/NewsItem.php line 169: preg_replace(): Delimiter must not be alphanumeric or backslash (http://zeffer.leochen.co.nz/)
+[16-Feb-2018 20:49:00] Error at framework/forms/CompositeField.php line 176: collateDataFields() I noticed that a field called 'SiteTreeID' appears twice in your form: '(unknown form)'.  One is a 'TreeDropdownField' and the other is a 'TreeDropdownField' (http://zeffer.leochen.co.nz/admin/pages/edit/EditForm/10/field/BuyOptions/item/12/edit?Locale=en_NZ)
+[16-Feb-2018 20:49:11] Error at framework/forms/CompositeField.php line 176: collateDataFields() I noticed that a field called 'SiteTreeID' appears twice in your form: '(unknown form)'.  One is a 'TreeDropdownField' and the other is a 'TreeDropdownField' (http://zeffer.leochen.co.nz/admin/pages/edit/EditForm/10/field/BuyOptions/item/12/edit?Locale=en_NZ)
+[16-Feb-2018 20:49:15] Error at framework/forms/CompositeField.php line 176: collateDataFields() I noticed that a field called 'SiteTreeID' appears twice in your form: '(unknown form)'.  One is a 'TreeDropdownField' and the other is a 'TreeDropdownField' (http://zeffer.leochen.co.nz/admin/pages/edit/EditForm/10/field/BuyOptions/item/12/edit?Locale=en_NZ)

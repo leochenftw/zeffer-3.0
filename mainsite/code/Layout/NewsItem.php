@@ -25,12 +25,14 @@ class NewsItem extends Page
      */
     private static $db = [
         'DatePublished'         =>  'Date',
-        'Type'                  =>  'Enum("News,Blog")'
+        'Type'                  =>  'Enum("News,Blog,Awards")'
     ];
 
     public function populateDefaults()
     {
         $this->DatePublished    =   date('Y-m-d');
+        $this->ShowInMenus      =   true;
+        $this->ShowInSearch     =   true;
         $this->AuthorID         =   Member::currentUserID();
     }
 
@@ -79,7 +81,8 @@ class NewsItem extends Page
 
         $fields->removeByName([
             'AlternativeTitle',
-            'ImageBreak'
+            'VideoID',
+            'MenuToSection'
         ]);
 
         $fields->addFieldToTab(
@@ -88,8 +91,9 @@ class NewsItem extends Page
                 'Type',
                 'Type',
                 [
-                    'News'  =>  'News',
-                    'Blog'  =>  'Blog'
+                    'News'      =>  'News',
+                    'Blog'      =>  'Blog',
+                    'Awards'    =>  'Awards'
                 ]
             ),
             'Title'
@@ -147,7 +151,7 @@ class NewsItem extends Page
         return  [
                     'type'      =>  strtolower($this->Type),
                     'title'     =>  $this->Title,
-                    'content'   =>  $this->Content,
+                    'content'   =>  $this->ContentRefinery(),
                     'published' =>  $this->DatePublished . ' ' . date("H:i:s",strtotime($this->Created)),
                     'url'       =>  $this->AbsoluteLink(),
                     'category'  =>  !empty($this->CategoryID) ?
@@ -158,6 +162,39 @@ class NewsItem extends Page
                                     null,
                     'tags'      =>  $tags
                 ];
+    }
+
+    private function ContentRefinery()
+    {
+        $content                    =   $this->Content;
+        $patten                     =   '/\[embed.*\]/';
+
+        preg_match($patten, $content, $match);
+
+        if (!empty($match)) {
+            foreach ($match as $raw_embed)
+            {
+                $video_url              =   str_replace('[/embed]', '', $raw_embed);
+                $video_url              =   preg_replace($patten, '', $video_url);
+                $video_id               =   $this->YoutubeIDRetriever($video_url);
+                $iframe                 =   '<iframe src="https://www.youtube.com/embed/' . $video_id . '?rel=0" frameborder="0" allowfullscreen="1" allow="encrypted-media" width="960" height="540"></iframe>';
+
+                $content                =   str_replace($raw_embed, $iframe, $content);
+            }
+        }
+
+        return $content;
+    }
+
+    private function YoutubeIDRetriever($url)
+    {
+        $url      =   parse_url($url);
+        parse_str($url['query'], $query);
+        if (!empty($query['v'])) {
+            return $query['v'];
+        }
+
+        return '';
     }
 }
 

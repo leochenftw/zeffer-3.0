@@ -1,5 +1,8 @@
 <section id="$SectionID" class="section__text<% if not $toID %> to-section<% end_if %>"<% if $SectionID == 'news' || $SectionID == 'buy' %> v-if="title" <% end_if %>>
-    <div v-if="hero" class="section-hero"></div>
+    <div v-if="hero" :class="{'section-hero': true, 'has-video': video}">
+        <iframe v-if="video" :src="video_url" class="section-hero__video" frameborder="0" allowfullscreen="1" allow="encrypted-media" width="640" height="360"></iframe>
+        <a v-if="video && !video_url" href="#" class="btn-play icon section-hero__button" v-on:click="play"><i class="fa fa-play-circle"></i></a>
+    </div>
     <div class="section">
         <div class="container">
             <h2 class="title is-2">{{title}}</h2>

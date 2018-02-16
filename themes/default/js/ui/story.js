@@ -9,16 +9,28 @@ var $               =   require('jquery'),
                                             title       :   data ? (data.title ? data.title : null) : null,
                                             content     :   data ? (data.content ? data.content : null) : null,
                                             hero        :   data ? (data.hero ? data.hero : null) : null,
-                                            socials     :   socials
+                                            video       :   data ? (data.video ? data.video : null) : null,
+                                            socials     :   socials,
+                                            video_url   :   null
                                         },
                             mounted :   function()
                                         {
-                                            // $(id).find('.section-hero').css('background-image', 'url(' + this.hero + ')');
-                                            $(id).find('.section-hero').attr('data-img-src', this.hero);
-                                            $(id).find('.section-hero').jarallax(
-                                            {
-                                                speed: 0.2
-                                            });
+                                            if (!this.video) {
+                                                $(id).find('.section-hero').attr('data-img-src', this.hero);
+                                                $(id).find('.section-hero').jarallax(
+                                                {
+                                                    speed: 0.2
+                                                });
+                                            } else {
+                                                $(id).find('.section-hero').css('background-image', 'url(' + this.hero + ')');
+                                            }
+                                        },
+                            methods :   {
+                                            play        :   function(e)
+                                                            {
+                                                                e.preventDefault();
+                                                                this.video_url  =   this.video.video_url;
+                                                            }
                                         }
                         });
 

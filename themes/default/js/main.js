@@ -1,18 +1,18 @@
-var $           =   require('jquery');
-    Header      =   require('./ui/header'),
-    Carousel    =   require('./ui/carousel'),
-    Ciders      =   require('./ui/ciders'),
-    Story       =   require('./ui/story'),
-    Awards      =   require('./ui/awards'),
-    Team        =   require('./ui/team'),
-    Contact     =   require('./ui/contact'),
-    Buy         =   require('./ui/buy'),
-    News        =   require('./ui/news'),
-    Subscriber  =   require('./ui/subscribe-form'),
-    lightbox    =   require('lightbox2'),
-    Waypoint    =   require('./ui/waypoint'),
-    jarallax    =   require('jarallax'),
-    Footer      =   require('./ui/footer');
+var $                   =   require('jquery');
+    Header              =   require('./ui/header'),
+    Carousel            =   require('./ui/carousel'),
+    Ciders              =   require('./ui/ciders'),
+    Story               =   require('./ui/story'),
+    Awards              =   require('./ui/awards'),
+    Team                =   require('./ui/team'),
+    Contact             =   require('./ui/contact'),
+    Buy                 =   require('./ui/buy'),
+    News                =   require('./ui/news'),
+    Subscriber          =   require('./ui/subscribe-form'),
+    lightbox            =   require('lightbox2'),
+    Waypoint            =   require('./ui/waypoint'),
+    jarallax            =   require('jarallax'),
+    Footer              =   require('./ui/footer');
 
 $.getJSON(window.location.pathname, function(data)
 {
@@ -147,6 +147,8 @@ $.getJSON(window.location.pathname, function(data)
                 story.title                 =   response.story.title;
                 story.content               =   response.story.content;
                 story.hero                  =   response.story.hero;
+                story.video                 =   response.story.video;
+
                 team.title                  =   response.team.title;
                 team.content                =   response.team.content;
                 team.hero                   =   response.team.hero;
@@ -249,6 +251,21 @@ $.getJSON(window.location.pathname, function(data)
 
     $(window).scrollTop(0).scroll();
     $('body').addClass('ready').removeClass('en-nz').removeClass('zh-hans').addClass(data.lang.toLowerCase());
+
+    // $(document).on('click touchend', '.btn-go-to', function(e)
+    // {
+    //     e.preventDefault();
+    //     if (me.pressed) return;
+    //
+    //     var target  =   $(this).data('scrollto');
+    //     target      =   $('#' + target);
+    //
+    //     if (!target.hasClass('to-section')) {
+    //         $.scrollTo(target, 1000, {axis: 'y'});
+    //     } else {
+    //         $.scrollTo(target.find('.section:eq(0)'), 1000, {axis: 'y'});
+    //     }
+    // });
 });
 
 $(document).on('touchstart', function(e)

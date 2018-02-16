@@ -28,7 +28,8 @@
         "ntb/silverstripe-rest-api": "~1.0",
         "cocur/slugify": "^3.0",
         "silverstripe/translatable": "~2.2.0",
-        "salted-herring/salted-email": "dev-master"
+        "salted-herring/salted-email": "dev-master",
+        "edgarindustries/youtubefield": "~1.0"
     },
     "require-dev": {
         "phpunit/phpunit": "3.7.*"

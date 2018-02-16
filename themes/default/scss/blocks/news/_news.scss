@@ -29,7 +29,10 @@
         }
 
         blockquote, p, li, td, th {
-            line-height: 1.4;
+            line-height: 1.6;
+            @include until(480px) {
+                font-size: 14px;
+            }
         }
 
         p {
@@ -97,6 +100,22 @@
                 padding-left: 0 !important;
                 padding-right: 0 !important;
             }
+
+            iframe {
+                display: block;
+                width: 100%;
+            }
+
+            .iframe-inside {
+                position: relative;
+                height: 0;
+                padding-top: 56.25%;
+                iframe {
+                    top: 0;
+                    position: absolute;
+                    height: 100%;
+                }
+            }
         }
         &__news {
             margin-bottom: 64px !important;
@@ -149,6 +168,29 @@
 
         &__blog {
             @import 'elements/tag';
+        }
+    }
+}
+
+#main-content {
+    .content-content {
+        .page-type-news-item & {
+            iframe {
+                display: block;
+                width: 100%;
+            }
+
+            .media.video,
+            .media {
+                position: relative;
+                height: 0;
+                padding-top: 56.25%;
+                iframe {
+                    top: 0;
+                    position: absolute;
+                    height: 100%;
+                }
+            }
         }
     }
 }

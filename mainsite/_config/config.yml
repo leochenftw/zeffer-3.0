@@ -61,7 +61,9 @@ DataList:
 ArrayList:
   extensions:
     - DataListExt
-
+DataObject:
+  extensions:
+    - HomeCacheExtension
 HtmlEditorField:
   insert_width: 1344
 

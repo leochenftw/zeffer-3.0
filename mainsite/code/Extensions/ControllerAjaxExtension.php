@@ -40,12 +40,12 @@ class ControllerAjaxExtension extends DataExtension
                                         ];
                 }
             } else {
-                $nav[]                  =   [
-                                                'title'         =>  $nav_item->MenuTitle,
-                                                'url'           =>  $nav_item->Link(),
-                                                'scrollto'      =>  $nav_item->MenuToSection,
-                                                'is_active'     =>  $nav_item->LinkOrCurrent() == 'current'
-                                            ];
+                $nav[]              =   [
+                                            'title'         =>  $nav_item->MenuTitle,
+                                            'url'           =>  $nav_item->Link(),
+                                            'scrollto'      =>  $nav_item->MenuToSection,
+                                            'is_active'     =>  $nav_item->LinkOrCurrent() == 'current'
+                                        ];
             }
 
 
