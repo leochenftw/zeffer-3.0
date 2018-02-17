@@ -1,5 +1,6 @@
 <?php
-
+Director::forceSSL();
+Director::forceWWW();
 global $project;
 $project = 'mainsite';
 

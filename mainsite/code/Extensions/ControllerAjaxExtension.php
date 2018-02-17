@@ -41,7 +41,7 @@ class ControllerAjaxExtension extends DataExtension
                 }
             } else {
                 $nav[]              =   [
-                                            'title'         =>  $nav_item->MenuTitle,
+                                            'title'         =>  $nav_item->MenuTitle == 'Zeffer Cider from New Zealand' ? 'Home' : $nav_item->MenuTitle,
                                             'url'           =>  $nav_item->Link(),
                                             'scrollto'      =>  $nav_item->MenuToSection,
                                             'is_active'     =>  $nav_item->LinkOrCurrent() == 'current'
