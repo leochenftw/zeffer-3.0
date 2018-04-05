@@ -114,15 +114,8 @@ class Page_Controller extends ContentController
         if (!$this->request->isAjax()) {
             Requirements::combine_files(
                 'scripts.js',
-                $this->ClassName == 'HomePage' ?
                 [
                     'themes/default/js/scripts.min.js'
-                ] :
-                [
-                    'themes/default/node_modules/jquery/dist/jquery.min.js',
-                    'themes/default/node_modules/jarallax/dist/jarallax.min.js',
-                    'themes/default/js/components/salted-js/dist/salted-js.min.js',
-                    'themes/default/js/custom.scripts.js'
                 ]
             );
         }
