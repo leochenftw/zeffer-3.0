@@ -180,7 +180,7 @@ class Page_Controller extends ContentController
 
         if($this->URLSegment == 'home' && SiteConfig::current_site_config()->GoogleSiteVerificationCode) {
             $tags .= '<meta name="google-site-verification" content="'
-                    . SiteConfig::current_site_config()->GoogleSiteVerificationCode . '" />\n';
+                    . SiteConfig::current_site_config()->GoogleSiteVerificationCode . '" />';
         }
 
         // prevent bots from spidering the site whilest in dev.

@@ -1,6 +1,10 @@
 <?php
 Director::forceSSL();
-Director::forceWWW();
+// SaltedHerring\Debugger::inspect($_SERVER);
+if ($_SERVER['HTTP_HOST'] == 'zeffer.co.nz') {
+    Director::forceWWW();
+}
+
 global $project;
 $project = 'mainsite';
 
