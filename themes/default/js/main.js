@@ -1,5 +1,6 @@
 var $                   =   require('jquery'),
     TopPromo            =   require('./ui/top-promo'),
+    PopupPromo          =   require('./ui/pop-up'),
     Header              =   require('./ui/header'),
     Carousel            =   require('./ui/carousel'),
     Ciders              =   require('./ui/ciders'),
@@ -28,6 +29,7 @@ $(document).ready(function(e)
             $('html').attr('lang', data.lang);
 
             var top_promo       =   new TopPromo(data.alert),
+                popup_promo     =   new PopupPromo(data.pop_up),
                 header          =   new Header(data.navigation, data.languages),
                 welcome         =   new Story('#welcome', data.welcome, data.contact.socials),
                 caro            =   new Carousel(data.carousel),

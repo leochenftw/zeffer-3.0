@@ -81,6 +81,7 @@ class ControllerAjaxExtension extends DataExtension
                                             'url'           =>  $site_config->TopStripePromo()->getLinkURL()
                                         ] :
                                         null,
+                    'pop_up'        =>  $site_config->getPopupData(),
                     'copyright'     =>  $site_config->Copyright,
                     'languages'     =>  [
                                             [

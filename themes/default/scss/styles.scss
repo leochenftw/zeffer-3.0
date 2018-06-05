@@ -72,6 +72,26 @@ html {
         @include mobile {
             padding-top: 52px;
         }
+
+        .modal {
+            z-index: 10000;
+            &#pop-up-promo {
+                .title {
+                    margin-bottom: 0.5rem;
+                    text-transform: uppercase;
+                    a {
+                        color: white;
+                    }
+                }
+
+                label {
+                    display: block;
+                    font-size: 12px;
+                    color: white;
+                    margin-top: 0.5rem;
+                }
+            }
+        }
     }
 
     &.no-scroll {
