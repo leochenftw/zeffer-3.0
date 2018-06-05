@@ -1,4 +1,5 @@
 <?php
+
 class CustomSiteConfig extends DataExtension
 {
     public static $db = [
@@ -15,7 +16,8 @@ class CustomSiteConfig extends DataExtension
      */
     private static $has_one = [
         'SiteLogo'                      =>  'Image',
-        'SubscriptionHero'              =>  'Image'
+        'SubscriptionHero'              =>  'Image',
+        'TopStripePromo'                =>  'Link'
     ];
 
     public function updateCMSFields(FieldList $fields)
@@ -40,6 +42,13 @@ class CustomSiteConfig extends DataExtension
         );
         $fields->addFieldToTab('Root.Main', new TextField('Copyright', 'Copyright'));
         $fields->addFieldToTab('Root.Main', new TextField('SiteVersion', 'Site Version'));
+        $fields->addFieldToTab(
+            'Root.Main',
+            LinkField::create(
+                'TopStripePromoID',
+                'Top stripe promo'
+            )
+        );
     }
 
 }

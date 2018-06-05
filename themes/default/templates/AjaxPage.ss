@@ -37,5 +37,9 @@
             <% include Section SectionID=subscription %>
         </main>
         <% include Footer %>
+        <div id="alert" v-if="alert && show">
+            <a class="section has-text-centered" :href="alert.url" target="_blank">{{alert.title}}</a>
+            <a class="btn-close" v-on:click="close" title="close"><span class="icon"><i class="fa fa-times"></i></span></a>
+        </div>
     </body>
 </html>

@@ -1,4 +1,5 @@
-var $                   =   require('jquery');
+var $                   =   require('jquery'),
+    TopPromo            =   require('./ui/top-promo'),
     Header              =   require('./ui/header'),
     Carousel            =   require('./ui/carousel'),
     Ciders              =   require('./ui/ciders'),
@@ -17,18 +18,17 @@ var $                   =   require('jquery');
 $(document).ready(function(e)
 {
     if ($('body').hasClass('is-static')) {
-        console.log('static');
         $('.section-hero').jarallax(
         {
             speed: 0.2
         });
     } else {
-        console.log('vue');
         $.getJSON(window.location.pathname, function(data)
         {
             $('html').attr('lang', data.lang);
 
-            var header          =   new Header(data.navigation, data.languages),
+            var top_promo       =   new TopPromo(data.alert),
+                header          =   new Header(data.navigation, data.languages),
                 welcome         =   new Story('#welcome', data.welcome, data.contact.socials),
                 caro            =   new Carousel(data.carousel),
                 ciders          =   new Ciders(data.ciders, header.navitems),
@@ -278,7 +278,7 @@ $(document).ready(function(e)
             // });
         });
     }
-    
+
 }).on('touchstart', function(e)
 {
     window.fingerdown   =   true;

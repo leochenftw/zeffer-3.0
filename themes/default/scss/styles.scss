@@ -21,6 +21,7 @@
 // @include retina-sprite-add(spritesheet, 'sprites/*.png', 'retina_sprites/*.png');
 
 @import 'blocks/header',
+        'blocks/alert',
         'blocks/owl',
         'blocks/carousel',
         'blocks/map',
@@ -59,6 +60,12 @@ html {
                     opacity: 1;
                     visibility: visible;
                 }
+            }
+        }
+
+        &.has {
+            &-alert {
+                padding-top: 56px;
             }
         }
 

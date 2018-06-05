@@ -1,0 +1,44 @@
+#alert {
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    background-color: white;
+    width: 100%;
+    .section {
+        font-weight: bold;
+        text-transform: uppercase;
+        min-height: 56px;
+        @include until(356px) {
+            font-size: 14px;
+        }
+        color: white;
+        display: block;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        background-color: rgba(#076730, 1);
+        transition: all ease-out 0.3s;
+        &:hover,
+        &:focus {
+            background-color: rgba(#076730, 0.8);
+        }
+    }
+
+    .btn-close {
+        position: absolute;
+        height: 56px;
+        right: 0;
+        top: 0;
+        width: 56px;
+        .icon {
+            width: 24px;
+            height: 24px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            border-radius: 50%;
+            background-color: white;
+            transform: translate(-50%, -50%);
+            color: #076730;
+        }
+    }
+}
