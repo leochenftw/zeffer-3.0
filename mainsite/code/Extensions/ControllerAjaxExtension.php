@@ -4,9 +4,16 @@ class ControllerAjaxExtension extends DataExtension
 {
     public function index()
     {
-        $request                    =   $this->owner->request;
+        $request    =   $this->owner->request;
+        $header     =   $this->owner->getResponse();
+
+        // if (!Director::isLive()) {
+            $header->addHeader('Access-Control-Allow-Origin', '*');
+            $header->addHeader('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE, OPTIONS');
+            $header->addHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With');
+        // }
+
         if ($request->isAjax()) {
-            $header =   $this->owner->getResponse();
             $header->addHeader('Content-Type', 'application/json');
             // $header->addHeader('Cache-Control', 'no-transform, public, max-age=300, s-maxage=900');
 
@@ -52,8 +59,7 @@ class ControllerAjaxExtension extends DataExtension
         }
 
         $flags                      =   Config::inst()->get('Icons', 'flags');
-        $csrf                       =   Session::get('SecurityID');
-        $csrf                       =   !empty($csrf) ? $csrf : SecurityToken::getSecurityID();
+
         $site_config                =   SiteConfig::current_site_config();
         $owner                      =   $this->owner;
         if (Session::get('lang') == 'zh_Hans') {
@@ -68,10 +74,13 @@ class ControllerAjaxExtension extends DataExtension
                     'page_title'    =>  !empty($owner) ? $owner->MetaTitle : null,
                     'content'       =>  !empty($owner) ? $owner->Content : null,
                     'navigation'    =>  $nav,
-                    'csrf'          =>  $csrf,
                     'subscribed'    =>  !empty(Session::get('Subscribed')),
                     'lang'          =>  str_replace('_', '-', Session::get('lang')),
                     'site_name'     =>  $site_config->Title,
+                    'site_version'  =>  $site_config->SiteVersion,
+                    'site_logo'     =>  $site_config->SiteLogo()->exists() ?
+                                        $site_config->SiteLogo()->SetHeight(60)->URL :
+                                        null,
                     'sub_hero'      =>  $site_config->SubscriptionHero()->exists() ?
                                         $site_config->SubscriptionHero()->SetWidth(1980)->URL :
                                         null,

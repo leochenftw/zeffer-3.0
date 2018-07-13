@@ -90,6 +90,12 @@ html {
                     color: white;
                     margin-top: 0.5rem;
                 }
+
+                .modal-content {
+                    width: 100%;
+                    max-width: 480px;
+                    max-height: calc(100vh - 40px);
+                }
             }
         }
     }

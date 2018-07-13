@@ -51,10 +51,10 @@ class HomePage_Controller extends Page_Controller
 {
     public function AjaxResponse()
     {
-        $data                           =   SaltedCache::read('HomeData', Session::get('lang'));
+        $data                               =   SaltedCache::read('HomeData', Session::get('lang'));
 
         if (empty($data)) {
-            $data                       =   parent::AjaxResponse();
+            $data                           =   parent::AjaxResponse();
             $this->AttachStory($data, 'Zeffer', 'welcome');
             $this->AttachCarousel($data);
             $this->AttachCiders($data);
@@ -67,6 +67,10 @@ class HomePage_Controller extends Page_Controller
             $this->AttachNews($data);
             SaltedCache::save('HomeData', Session::get('lang'), $data);
         }
+
+        $csrf                               =   Session::get('SecurityID');
+        $csrf                               =   !empty($csrf) ? $csrf : SecurityToken::getSecurityID();
+        $data['csrf']                       =   $csrf;
 
         return $data;
     }

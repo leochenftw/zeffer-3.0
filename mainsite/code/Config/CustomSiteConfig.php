@@ -19,7 +19,7 @@ class CustomSiteConfig extends DataExtension
         'SubscriptionHero'              =>  'Image',
         'TopStripePromo'                =>  'Link',
         'PopupImage'                    =>  'Image',
-        'PopupLinkTo'                   =>  'Link'
+        'PopupLink'                   =>  'Link'
     ];
 
     public function updateCMSFields(FieldList $fields)
@@ -60,7 +60,7 @@ class CustomSiteConfig extends DataExtension
                     '<h2 class="title">Pop-up promo</h2>'
                 ),
                 LinkField::create(
-                    'PopupLinkToID',
+                    'PopupLinkID',
                     'Pop-up image links to'
                 ),
                 UploadField::create(
@@ -73,12 +73,12 @@ class CustomSiteConfig extends DataExtension
 
     public function getPopupData()
     {
-        if ($this->owner->PopupLinkTo()->exists() && $this->owner->PopupImage()->exists()) {
-            $link_to                =   $this->owner->PopupLinkTo();
+        if ($this->owner->PopupLink()->exists() && $this->owner->PopupImage()->exists()) {
+            $link_to                =   $this->owner->PopupLink();
             return  [
                         'title'     =>  $link_to->Title,
                         'url'       =>  $link_to->getLinkURL(),
-                        'image'     =>  $this->owner->PopupImage()->SetWidth(600)->URL
+                        'image'     =>  $this->owner->PopupImage()->SetWidth(640)->URL
                     ];
         }
         return null;
