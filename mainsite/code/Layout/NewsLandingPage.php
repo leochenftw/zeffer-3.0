@@ -86,10 +86,14 @@ class NewsLandingPage extends Page
     public function getData()
     {
         $data               =   [
-                                    'title'             =>  !empty($this->AlternativeTitle) ? $this->AlternativeTitle : $this->title,
+                                    'title'             =>  !empty($this->AlternativeTitle) ?
+                                                            $this->AlternativeTitle :
+                                                            $this->title,
                                     'content'           =>  $this->Content,
-                                    'hero'              =>  $this->ImageBreak()->exists() ? $this->ImageBreak()->SetWidth(1980)->URL : null,
-                                    'articles'          =>  self::Paginate(NewsItem::get(), $this->NewsPerLoad), //NewsItem::get()->getData()
+                                    'hero'              =>  $this->ImageBreak()->exists() ?
+                                                            $this->ImageBreak()->SetWidth(1980)->URL :
+                                                            null,
+                                    'articles'          =>  self::Paginate(NewsItem::get(), $this->NewsPerLoad),
                                     'video'             =>  !empty($this->VideoID) ?
                                                             [
                                                                 'video_url'     =>  $this->getVideoSource() . '?autoplay=1&rel=0',
@@ -131,12 +135,9 @@ class NewsLandingPage extends Page
 
             if ($paged->MoreThanOnePage()) {
                 if ($paged->NotLastPage()) {
-                    // $pagination         =   $paged->NextLink() . (!empty($this->keywords) ? ('&keywords=' . $this->keywords . '&csrf=' . Session::get('SecurityID')) : '');
-                    $news_link          =   NewsLandingPage::get()->first()->Link();
 
-                    // Debugger::inspect($paged->NextLink() . ' : ' . trim($news_link, '/'));
+                    $pagination         =   '/news' . str_replace('news', '', trim($paged->NextLink(), '/'));
 
-                    $pagination         =   '/' . trim($news_link, '/') . trim(str_replace(trim($news_link, '/'), '', $paged->NextLink()), '/'); // . (!empty($this->keywords) ? ('&keywords=' . $this->keywords) : '');
                     return  [
                         'list'          =>  $data,
                         'count'         =>  $artcile_count,
@@ -147,7 +148,7 @@ class NewsLandingPage extends Page
                 return  array(
                     'list'              =>  $data,
                     'count'             =>  $artcile_count,
-                    'pagination'        =>  ['message' => null]
+                    'pagination'        =>  null
                 );
             }
         }
@@ -164,7 +165,7 @@ class NewsLandingPage_Controller extends Page_Controller
     {
         $data                           =   parent::AjaxResponse();
         $data['news']                   =   $this->getData();
-        return $data;
+        return $this->getData();
     }
 
     public function Paginated()

@@ -79,7 +79,7 @@ class ControllerAjaxExtension extends DataExtension
                     'site_name'     =>  $site_config->Title,
                     'site_version'  =>  $site_config->SiteVersion,
                     'site_logo'     =>  $site_config->SiteLogo()->exists() ?
-                                        $site_config->SiteLogo()->SetHeight(60)->URL :
+                                        $site_config->SiteLogo()->URL :
                                         null,
                     'sub_hero'      =>  $site_config->SubscriptionHero()->exists() ?
                                         $site_config->SubscriptionHero()->SetWidth(1980)->URL :

@@ -86,12 +86,18 @@ GoogleAPIs:
 
 Cider:
   colours:
-    red: 'Red apple'
-    crisp: 'Crisp apple'
-    hopped: 'Hopped'
-    ginger: 'Ginger beer'
-    'two-point-five': 'Two point five'
-    crumble: 'Apple crumble'
+    ginger-beer: 'Ginger beer'
+    ginger-beer-lite: 'Ginger beer - lite'
+    crip-apple: 'Crisp apple'
+    crip-apple-lite: 'Crisp apple - lite'
+    cherry: 'Cherry'
+    cherry-lite: 'Cherry - lite'
+    apple-crumble: 'Apple crumble'
+    apple-crumble-lite: 'Apple crumble - lite'
+    red-apple: 'Red apple'
+    red-apple-lite: 'Red apple - lite'
+    hop: 'Hopped'
+    hop-lite: 'Hopped - lite'
   labels:
     'en_NZ':
       'see': 'See',

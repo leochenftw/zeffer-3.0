@@ -13,7 +13,8 @@ class Cider extends DataObject
      * @var array
      */
     private static $db = [
-        'Title'             =>  'Varchar(32)',
+        'Title'             =>  'Text',
+        'Promoted'          =>  'Boolean',
         'Content'           =>  'HTMLText',
         'ReserveRange'      =>  'Boolean',
         'Subtitle'          =>  'Varchar(128)',
@@ -70,6 +71,8 @@ class Cider extends DataObject
         $fields         =   parent::getCMSFields();
         $SoldOut        =   $fields->fieldByName('Root.Main.SoldOut');
         $isReserved     =   $fields->fieldByName('Root.Main.ReserveRange');
+
+        $fields->fieldByName('Root.Main.Promoted')->setDescription('Promoted ciders get displayed on the homepage, right under the carousel, in a row');
 
         $fields->addFieldsToTab(
             'Root.Main',
@@ -171,7 +174,7 @@ class Cider extends DataObject
 
         return  [
                     'id'                =>  $this->ID,
-                    'title'             =>  $this->Title,
+                    'title'             =>  str_replace("\n", '<br>', $this->Title),
                     'subtitle'          =>  $this->Subtitle,
                     'content'           =>  $this->Content,
                     'see'               =>  $this->See,

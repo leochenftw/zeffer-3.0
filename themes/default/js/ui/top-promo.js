@@ -7,7 +7,7 @@ var $               =   require('jquery'),
                             el      :   '#alert',
                             data    :   {
                                             alert       :   alert_data,
-                                            show        :   true,
+                                            show        :   false,
                                             read        :   false
                                         },
                             mounted :   function()

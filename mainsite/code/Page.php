@@ -100,25 +100,13 @@ class Page_Controller extends ContentController
         Requirements::block("framework/javascript/ConfirmedPasswordField.js");
         Requirements::block("framework/css/ConfirmedPasswordField.css");
 
-        // uncomment below to force login
+        Requirements::combine_files(
+            'scripts.js',
+            [
+                'themes/default/js/custom.scripts.js'
+            ]
+        );
 
-        // if (empty(Member::currentUser())) {
-        //     $raw    =   explode('?', $_SERVER['REQUEST_URI']);
-        //     $url    =   trim($raw[0], '/');
-        //     $url    =   explode('/', $url);
-        //     if ($url[0] != 'signin' && $url[0] != 'Security') {
-        //         return $this->redirect('/signin?BackURL=' . $this->request->getVar('url'));
-        //     }
-        // }
-
-        if (!$this->request->isAjax()) {
-            Requirements::combine_files(
-                'scripts.js',
-                [
-                    'themes/default/js/scripts.min.js'
-                ]
-            );
-        }
     }
 
     protected function getSessionID()

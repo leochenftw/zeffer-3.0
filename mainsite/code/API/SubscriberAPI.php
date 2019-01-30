@@ -12,24 +12,15 @@ class SubscriberAPI extends BaseRestController
 
     private static $allowed_actions = [
         'get'                   =>  false,
-        'post'                  =>  "->isAuthenticated"
+        'post'                  =>  true
     ];
-
-    public function isAuthenticated()
-    {
-        if ($csrf               =   $this->request->postVar('csrf')) {
-            return $csrf        ==  Session::get('SecurityID');
-        }
-
-        return false;
-    }
 
     public function post($request)
     {
         $data                   =   $request->postVars();
 
         if ($test               =   Subscriber::get()->filter(['Email' => $data['Email']])->first()) {
-            return  $this->httpError(500, Session::get('lang') == 'zh_Hans' ? '您已经订阅过啦!' : 'You\'ve signed up already.');
+            return  $this->httpError(400, Session::get('lang') == 'zh_Hans' ? '您已经订阅过啦!' : 'You\'ve signed up already.');
         }
 
         $subscription           =   new Subscriber();

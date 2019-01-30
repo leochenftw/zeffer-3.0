@@ -1,21 +1,6 @@
-$(document).ready(function(e)
-{
-    $('.section-hero').jarallax(
-    {
-        speed: 0.2
-    });
+var pathname            =   window.location.pathname;
 
-    if ($('#map').length > 0) {
-        $('#map').gmap();
-    }
-
-    $('#selector-trigger').on('click touchend', function(e)
-    {
-        $(this).parent().toggleClass('is-active');
-    });
-
-    $('iframe').each(function(i, el)
-    {
-        $(this).parent().addClass('video');
-    });
-});
+if (pathname.indexOf('/Security') != 0 && pathname.indexOf('/dev') != 0) {
+    var target_url      =   '/!/#' + window.location.pathname;
+    window.location.replace(target_url);
+}

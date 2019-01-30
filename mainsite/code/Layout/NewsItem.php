@@ -1,4 +1,5 @@
 <?php
+
 use SaltedHerring\Debugger;
 /**
  * Description
@@ -24,8 +25,10 @@ class NewsItem extends Page
      * @var array
      */
     private static $db = [
-        'DatePublished'         =>  'Date',
-        'Type'                  =>  'Enum("News,Blog,Awards")'
+        'DatePublished' =>  'Date',
+        'Type'          =>  'Enum("News,Blog,Awards")',
+        'ContentTop'    =>  'HTMLText',
+        'ContentBottom' =>  'HTMLText'
     ];
 
     public function populateDefaults()
@@ -117,6 +120,20 @@ class NewsItem extends Page
             'URLSegment'
         );
 
+        $fields->addFieldsToTab(
+            'Root.Main',
+            [
+                HtmlEditorField::create(
+                    'ContentTop',
+                    'Content above the main content'
+                ),
+                HtmlEditorField::create(
+                    'ContentBottom',
+                    'Content below the main content'
+                )
+            ]
+        );
+
         $fields->addFieldToTab(
             'Root.Main',
             TagField::create(
@@ -149,24 +166,25 @@ class NewsItem extends Page
         }
 
         return  [
-                    'type'      =>  strtolower($this->Type),
-                    'title'     =>  $this->Title,
-                    'content'   =>  $this->ContentRefinery(),
-                    'published' =>  $this->DatePublished . ' ' . date("H:i:s",strtotime($this->Created)),
-                    'url'       =>  $this->AbsoluteLink(),
-                    'category'  =>  !empty($this->CategoryID) ?
-                                    [
-                                        'title'     =>  $this->Category()->Title,
-                                        'slug'      =>  $this->Category()->Slug
-                                    ] :
-                                    null,
-                    'tags'      =>  $tags
+                    'type'              =>  strtolower($this->Type),
+                    'title'             =>  $this->Title,
+                    'content_top'       =>  $this->ContentRefinery($this->ContentTop),
+                    'content'           =>  $this->ContentRefinery($this->Content),
+                    'content_bottom'    =>  $this->ContentRefinery($this->ContentBottom),
+                    'published'         =>  $this->DatePublished . ' ' . date("H:i:s",strtotime($this->Created)),
+                    'url'               =>  $this->AbsoluteLink(),
+                    'category'          =>  !empty($this->CategoryID) ?
+                                            [
+                                                'title'     =>  $this->Category()->Title,
+                                                'slug'      =>  $this->Category()->Slug
+                                            ] :
+                                            null,
+                    'tags'              =>  $tags
                 ];
     }
 
-    private function ContentRefinery()
+    private function ContentRefinery($content)
     {
-        $content                    =   $this->Content;
         $patten                     =   '/\[embed.*\]/';
 
         preg_match($patten, $content, $match);

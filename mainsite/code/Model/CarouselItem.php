@@ -13,7 +13,8 @@ class CarouselItem extends DataObject
      * @var array
      */
     private static $db = [
-        'Title'         =>  'Varchar(128)',
+        'Title'         =>  'Text',
+        'TitleColour'   =>  'Enum("White,Blue","White")',
         'Content'       =>  'HTMLText',
         'TitleAsLink'   =>  'Boolean',
         'ScrollTo'      =>  'Varchar(128)',
@@ -51,7 +52,8 @@ class CarouselItem extends DataObject
     {
         return  [
                     'id'            =>  $this->ID,
-                    'title'         =>  $this->Title,
+                    'title'         =>  str_replace("\n", '<br>', $this->Title),
+                    'title_colour'  =>  strtolower($this->TitleColour),
                     'content'       =>  $this->Content . ($this->TitleAsLink ? '' : (empty($this->ButtonLabel) ? '' : '<p><a class="is-info button is-large btn-go-to" href="#" data-scrollto="' . $this->ScrollTo . '">' . $this->ButtonLabel . '</a></p>')),
                     'title_as_link' =>  $this->TitleAsLink,
                     'scroll_to'     =>  $this->ScrollTo,

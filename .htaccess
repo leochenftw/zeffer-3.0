@@ -34,7 +34,7 @@ ErrorDocument 500 /assets/error-500.html
 
 	# Turn off index.php handling requests to the homepage fixes issue in apache >=2.4
 	<IfModule mod_dir.c>
-		DirectoryIndex disabled
+		DirectoryIndex disabled index.html
 	</IfModule>
 
 	SetEnv HTTP_MOD_REWRITE On
@@ -52,6 +52,7 @@ ErrorDocument 500 /assets/error-500.html
 	# Pass through the original path as a query parameter, and retain the existing parameters.
 	RewriteCond %{REQUEST_URI} ^(.*)$
 	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteCond %{REQUEST_FILENAME} !/\!
 	RewriteRule .* framework/main.php?url=%1 [QSA]
 
 	# If framework isn't in a subdirectory, rewrite to installer
@@ -69,6 +70,8 @@ ErrorDocument 500 /assets/error-500.html
     <IfModule mod_headers.c>
         BrowserMatch MSIE ie
         Header set X-UA-Compatible "IE=Edge,chrome=1" env=ie
+		Header set Access-Control-Allow-Origin "https://localhost:8080"
+        Header set Access-Control-Allow-Credentials "true"
     </IfModule>
 </FilesMatch>
 

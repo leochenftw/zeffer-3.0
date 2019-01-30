@@ -7,7 +7,7 @@ var $               =   require('jquery'),
                             el      :   '#pop-up-promo',
                             data    :   {
                                             data        :   data,
-                                            show        :   true,
+                                            show        :   false,
                                             read        :   false,
                                             no_more     :   false
                                         },
@@ -19,7 +19,7 @@ var $               =   require('jquery'),
                                                                                     true;
                                             }
 
-                                            this.show                           =   !this.no_more;
+                                            this.show                           =   false;
                                         },
                             updated :   function()
                                         {
